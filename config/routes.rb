@@ -17,7 +17,12 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'account#callback'
 
 
-  resources :finds
+  resources :finds do
+    collection do
+      post 'clear' => 'finds#clear', as: :clear
+    end
+  end
+
   resources :game_players
   resources :players
   resources :games

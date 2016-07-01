@@ -1,4 +1,4 @@
-class FindsController < ApplicationController
+class FindsController < ActivePlayerController
   before_action :set_find, only: [:show, :edit, :update, :destroy]
 
   # GET /finds
@@ -24,12 +24,9 @@ class FindsController < ApplicationController
   # POST /finds
   # POST /finds.json
   def create
-    puts params
     @find = Find.new()
     @find.game_id = cookies["current_game_id"]
     @find.player_id = session[:player_id]
-    puts "%%%%%%%%%%%%%%%%"
-    puts Plate.find_by_code(params[:code]).inspect
     @find.plate_id = Plate.find_by_code(params[:code]).id
 
     respond_to do |format|
@@ -43,16 +40,21 @@ class FindsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /finds/1
-  # PATCH/PUT /finds/1.json
-  def update
-    respond_to do |format|
-      if @find.update(find_params)
-        format.html { redirect_to @find, notice: 'Find was successfully updated.' }
-        format.json { render :show, status: :ok, location: @find }
-      else
-        format.html { render :edit }
-        format.json { render json: @find.errors, status: :unprocessable_entity }
+  def clear
+
+    @plate = Plate.find_by(code:params[:code])
+    @find = @active_player.finds.find_by(game_id: cookies["current_game_id"], plate_id: @plate.id ) # if @active_player.finds.any?
+
+    if @find
+      @find.destroy
+      respond_to do |format|
+        format.html { redirect_to finds_url, notice: 'Find was successfully cleared.' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { render :none }
+        format.json { render json: nil, status: :unprocessable_entity }
       end
     end
   end
