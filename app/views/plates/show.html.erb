@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>State:</strong>
+  <%= @plate.state %>
+</p>
+
+<p>
+  <strong>Geocode:</strong>
+  <%= @plate.geocode %>
+</p>
+
+<%= link_to 'Edit', edit_plate_path(@plate) %> |
+<%= link_to 'Back', plates_path %>

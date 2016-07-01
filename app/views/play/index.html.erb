@@ -1,0 +1,25 @@
+<h2>Game On!</h2>
+
+<div id="play" class="row" game_id="<%= @game.id %>" player_id="<%= @active_player_id %>">
+  <div class="small-12 medium-3 large-4 columns">
+    <h3>Players</h3>
+    <ul class="inline">
+      <% @game.game_players.active.each do |gp| %>
+        <li><%= gp.player %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="small-12 medium-9 large-8 columns">
+    <h3>States</h3>
+    <ul class="small-block-grid-2 medium-block-grid-3">
+      <% @plates.each do | plate | %>
+        <li class="plate-card">
+          <div class="plate <%= "visibility-faded" if @game.plates.include?(plate) %>" >
+            <%= render partial: 'controls', locals: {plate: plate} %>
+            <%= plate %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+rails g scaffold GameType name
+rails g scaffold Plate state geocode
+rails g scaffold Game title game_type:references
+rails g scaffold Game title player email
+rails g scaffold player email
+rails g scaffold game_player game:references player:references accepted:boolean
+rails g scaffold find game:references player:references plate:references points:integer
+rails g controller welcome index about
+rails g controller invite index

@@ -1,0 +1,9 @@
+<%= form_tag :send_invite, remote: true, id: 'invite_form' do | f | %>
+<%= hidden_field :invite, :game_id, value: @game.id %>
+
+<div class="row">
+  <div class="small-4 medium-2 large-1 columns">Invite</div>
+  <div class="small-4 columns"><%= text_field :invite, :email, value: "", placeholder: 'email' %></div>
+  <div class="small-4 columns end"><%= submit_tag 'Invite', class: 'button small' %></div>
+</div>
+<% end %>

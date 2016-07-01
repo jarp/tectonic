@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Game:</strong>
+  <%= @find.game %>
+</p>
+
+<p>
+  <strong>Player:</strong>
+  <%= @find.player %>
+</p>
+
+<p>
+  <strong>Plate:</strong>
+  <%= @find.plate %>
+</p>
+
+<p>
+  <strong>Points:</strong>
+  <%= @find.points %>
+</p>
+
+<%= link_to 'Edit', edit_find_path(@find) %> |
+<%= link_to 'Back', finds_path %>

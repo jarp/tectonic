@@ -1,0 +1,20 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: tectonic_app_dev
+  username: find_app_user
+  password: find
+
+test:
+  <<: *default
+  database: tectonic_app_test
+
+production:
+  <<: *default
+  database: tectonic_app_prod
+  username: tectonicapp

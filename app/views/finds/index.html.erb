@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Finds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Game</th>
+      <th>Player</th>
+      <th>Plate</th>
+      <th>Points</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @finds.each do |find| %>
+      <tr>
+        <td><%= find.game %></td>
+        <td><%= find.player %></td>
+        <td><%= find.plate %></td>
+        <td><%= find.points %></td>
+        <td><%= link_to 'Show', find %></td>
+        <td><%= link_to 'Edit', edit_find_path(find) %></td>
+        <td><%= link_to 'Destroy', find, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Find', new_find_path %>
