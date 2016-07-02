@@ -27,10 +27,18 @@ class FindsController < ActivePlayerController
     @find = Find.new()
     @find.game_id = cookies["current_game_id"]
     @find.player_id = session[:player_id]
-    @find.plate_id = Plate.find_by_code(params[:code]).id
+    @plate = Plate.find_by_code(params[:code])
+    @find.plate_id = @plate.id
 
     respond_to do |format|
       if @find.save
+
+          ActionCable.server.broadcast 'play',
+          message: "#{@active_player.first_name} found the plate for  #{@plate.state}",
+          state: params[:code],
+          player_name: @active_player.first_name
+
+
         format.html { redirect_to @find, notice: 'Find was successfully created.' }
         format.json { render :show, status: :created, location: @find }
       else

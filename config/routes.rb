@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  # Serve websocket cable requests in-process
+  mount ActionCable.server => '/cable'
+
   get '/play/:id' => 'play#set', as: :play_game
   get '/play' => 'play#index', as: :current_game
   get 'play/table' => 'play#index', as: :current_table

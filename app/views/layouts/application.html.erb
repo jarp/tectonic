@@ -4,12 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Tectonic" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
   </head>
 
   <body>
@@ -18,6 +19,7 @@
 
     <div class="row">
       <div class="small-12 columns">
+        <%= render 'layouts/messages' %>
         <%= yield %>
       </div>
     </div>

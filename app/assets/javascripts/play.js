@@ -18,7 +18,7 @@ $(document).ready(function(){
   function turnOn(cb){
     cb.parent().fadeTo('slow', 1);
     cb.parent().removeClass('visibilty-faded');
-    cb.attr('checked','')
+    cb.attr('checked',' ')
 
   }
 
