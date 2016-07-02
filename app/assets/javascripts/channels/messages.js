@@ -6,8 +6,14 @@
       //console.log($("#play").html());
       MessageBox.set( this.renderMessage(data), 'html');
       cb = $('input').filter('#' + data.state + "-control")
-      console.log('turn off', cb.val());
-      turnOff(cb);
+      if (data.action == 'find'){
+        // console.log('turn off', cb.val());
+        turnOff(cb);
+      }
+      else{
+        // console.log('turn ON', cb.val());
+        turnOn(cb);
+      }
     },
 
     renderMessage: function(data) {
@@ -18,12 +24,14 @@
   function turnOn(cb){
     cb.parent().fadeTo('slow', 1);
     cb.parent().removeClass('visibilty-faded');
-    cb.attr('checked',' ')
+    cb.prop('checked', false)
+    removeAvatars(cb.parent());
 
   }
 
   function turnOff(cb){
     cb.parent().fadeTo('slow', .3);
     cb.parent().addClass('visibilty-faded');
+    loadAvatars(cb.parent());
     cb.attr('checked','checked')
   }

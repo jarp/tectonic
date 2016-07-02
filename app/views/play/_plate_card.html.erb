@@ -1,0 +1,8 @@
+
+  <div class="plate <%= "visibility-faded found" if @game.plates.include?(plate) %>" >
+
+    <span class="owner"></span>
+
+    <%= render partial: 'controls', locals: {plate: plate} %>
+    <%= plate %>
+  </div>

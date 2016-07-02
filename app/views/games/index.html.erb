@@ -2,28 +2,33 @@
 
 <h1>Games</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Game type</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
     <% @games.each do |game| %>
-      <tr>
-        <td><%= game.title %></td>
-        <td><%= game.game_type %></td>
-        <td><%= link_to 'Show', game %></td>
-        <td><%= link_to 'Edit', edit_game_path(game) %></td>
-        <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="game-list-item">
+        <div class="row">
+          <div class="small-6 columns">
+            <%= game.title %>
+          </div>
+          <div class="small-6 columns">
+            <%= game.game_type %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 columns text-right">
+            <ul class="button-group radius">
+              <li><%= link_to 'Play', play_game_path(game), class: 'button tiny' %></li>
+              <li><%= link_to 'Details', game, class: 'button tiny' %></li>
+              <li><%= link_to 'Edit', edit_game_path(game), class: 'button tiny' %></li>
+              <li><%= link_to 'Complete', edit_game_path(game), class: 'button tiny' %></li>
+              <li><%= link_to 'Remove', game, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button tiny' %></li>
+          </ul>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
 
-<br>
-
-<%= link_to 'New Game', new_game_path %>
+<div class="row">
+  <div class="small-6 columns">
+    <%= link_to 'New Game', new_game_path, class: 'button' %>
+  </div>
+</div>

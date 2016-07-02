@@ -21,6 +21,12 @@ class FindsController < ActivePlayerController
   def edit
   end
 
+  def avatar
+    @plate = Plate.find_by(code:params[:code])
+    @find = Find.find_by(game_id: cookies["current_game_id"], plate_id: @plate.id ) # if @active_player.finds.any?
+    render text: @find.player.image
+  end
+
   # POST /finds
   # POST /finds.json
   def create
@@ -36,7 +42,8 @@ class FindsController < ActivePlayerController
           ActionCable.server.broadcast 'play',
           message: "#{@active_player.first_name} found the plate for  #{@plate.state}",
           state: params[:code],
-          player_name: @active_player.first_name
+          player_name: @active_player.first_name,
+          action: "find"
 
 
         format.html { redirect_to @find, notice: 'Find was successfully created.' }
@@ -49,12 +56,20 @@ class FindsController < ActivePlayerController
   end
 
   def clear
-
     @plate = Plate.find_by(code:params[:code])
     @find = @active_player.finds.find_by(game_id: cookies["current_game_id"], plate_id: @plate.id ) # if @active_player.finds.any?
 
     if @find
       @find.destroy
+
+      ActionCable.server.broadcast 'play',
+      message: "Apparently #{@active_player.first_name} didn't find the plate for  #{@plate.state}",
+      state: params[:code],
+      player_name: @active_player.first_name,
+      action: "clear"
+
+
+
       respond_to do |format|
         format.html { redirect_to finds_url, notice: 'Find was successfully cleared.' }
         format.json { head :no_content }

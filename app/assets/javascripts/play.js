@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+  loadAvatars( $('.plate.found') )
+
   $('input.control-toggle').on('change', function(){
 
     var plate = $(this).val();
@@ -18,13 +20,15 @@ $(document).ready(function(){
   function turnOn(cb){
     cb.parent().fadeTo('slow', 1);
     cb.parent().removeClass('visibilty-faded');
-    cb.attr('checked',' ')
+    cb.attr('checked', '')
+    removeAvatars(cb.parent());
 
   }
 
   function turnOff(cb){
     cb.parent().fadeTo('slow', .3);
     cb.parent().addClass('visibilty-faded');
+    //loadAvatars(cb.parent());
     cb.attr('checked','checked')
   }
 
@@ -36,7 +40,7 @@ $(document).ready(function(){
         data: { code: plate }
         })
         .success(function(response){
-          console.log("success response is ", response)
+          // console.log("success response is ", response)
           turnOff(cb)
         })
         .error(function(response){
@@ -55,7 +59,7 @@ $(document).ready(function(){
           data: { code: plate }
           })
           .success(function(response){
-            console.log("success response is ", response)
+            // console.log("success response is ", response)
             turnOn(cb)
           })
           .error(function(response){

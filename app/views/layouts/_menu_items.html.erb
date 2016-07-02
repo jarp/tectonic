@@ -5,32 +5,29 @@
   <li class="has-dropdown">
       <a href="#">Profile</a>
       <ul class="dropdown">
-        <li><a href="/account">Go to Profile</a></li>
-        <li><a href="/account">Go to Games</a></li>
-        <li><a href="/account">Current Game</a></li>
+        <li><a href="/play">Current Game</a></li>
+        <li><a href="/games">Go to Games</a></li>
 
       </ul>
   </li>
 
   <% if @active_player.super? %>
-  <li class="has-dropdown">
-    <a href="#">Administers</a>
-      <ul class="dropdown">
-        <li><a href="/manage">Dashboard</a></li>
-        <li><a href="/manage/players">Manage players</a></li>
-        <li><a href="/manage/stories/all">Manage Games</a></li>
-        <li><a href="/manage/stories/all">Manage Plates</a></li>
-      </ul>
-  </li>
+    <li class="has-dropdown">
+      <a href="#">Administers</a>
+        <ul class="dropdown">
+          <li><a href="/manage">Dashboard</a></li>
+          <li><a href="/manage/players">Manage players</a></li>
+          <li><a href="/manage/stories/all">Manage Games</a></li>
+          <li><a href="/manage/stories/all">Manage Plates</a></li>
+        </ul>
+    </li>
+    <% end %>?
 
-  <% end %>
-
-<% end %>
-
-<li>
-<% if session[:player_id] %>
-    <%= link_to 'Logout', logout_path %>
+    <li>
+        <%= link_to 'Logout', logout_path %>
+    </li>
   <% else %>
-    <%= link_to 'Login', login_path %>
+    <li>
+      <%= link_to 'Login', login_path %>
+    </li>
   <% end %>
-</li>

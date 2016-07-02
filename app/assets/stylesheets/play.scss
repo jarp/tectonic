@@ -1,6 +1,18 @@
 #play {
 
-  li {
+  li.plate-card {
+    span.owner {
+      width: 36px;
+      height: 36px;
+      background: #fff;
+      display: block;
+      margin-left: -24px;
+      margin-top: -24px;
+      border-radius: 12px;
+      display:none;
+      border: thin solid #000;
+
+    }
 
     .plate {
       background-color: #efefef;

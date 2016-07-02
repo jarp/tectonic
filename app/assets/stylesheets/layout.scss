@@ -1,3 +1,10 @@
+// gray 7F8F9B
+// light blue 78B6E8
+// gold 9B7232
+// darker 1C2A35
+// bright 517A9B
+// brown 4F4029
+
 header {
   background-color: #293e4f;
   text-align: center;
@@ -7,3 +14,11 @@ h1.site-header-text {
   color: #fff;
   padding-left: 10px;
 }
+
+.game-list-item {
+  background-color: #efefef;
+  border-bottom: thin solid #ccc;
+  padding: 10px 10px 0px 10px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  }

@@ -29,7 +29,7 @@ class InviteController < ActivePlayerController
 
   def send_invite
     # TODO send envite via email
-    puts "should send invite to #{params[:email]} with invite code of #{@game_token}"
+    puts "should send invite to #{params[:email]} with invite code of #{@game_player.token}"
   end
 
 end

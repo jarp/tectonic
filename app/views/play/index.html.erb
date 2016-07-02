@@ -15,10 +15,7 @@
     <ul class="small-block-grid-2 medium-block-grid-3">
       <% @plates.each do | plate | %>
         <li class="plate-card">
-          <div class="plate <%= "visibility-faded" if @game.plates.include?(plate) %>" >
-            <%= render partial: 'controls', locals: {plate: plate} %>
-            <%= plate %>
-          </div>
+          <%= render partial: 'plate_card', locals: {plate: plate} %>
         </li>
       <% end %>
     </ul>
