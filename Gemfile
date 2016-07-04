@@ -21,6 +21,7 @@ gem 'coffee-rails'
 
 gem 'redis'
 
+gem 'google_maps_service'
 # Use jquery as the JavaScript library
 
 gem 'foundation-rails', '~> 5.5.2.1'

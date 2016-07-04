@@ -1,3 +1,6 @@
+require 'net/http'
+require 'openssl'
+
 class FindsController < ActivePlayerController
   before_action :set_find, only: [:show, :edit, :update, :destroy]
 
@@ -29,23 +32,38 @@ class FindsController < ActivePlayerController
 
   # POST /finds
   # POST /finds.json
+
+  def lock
+    @plate = Plate.find_by_code(params[:code])
+    ActionCable.server.broadcast 'play',
+    message: "#{@active_player.first_name} found the plate for  #{@plate.state}",
+    state: params[:code],
+    action: "lock"
+  end
+
+  def unlock
+    ActionCable.server.broadcast 'play',
+    state: params[:code],
+    action: "unlock"
+  end
+
   def create
     @find = Find.new()
     @find.game_id = cookies["current_game_id"]
     @find.player_id = session[:player_id]
     @plate = Plate.find_by_code(params[:code])
     @find.plate_id = @plate.id
+    @find.current_coord = params[:current_location]
+    state_coords = get_target_coordinates(@plate.state)
+    @find.state_coord = "#{state_coords["lat"]}::#{state_coords["lng"]}"
 
     respond_to do |format|
       if @find.save
-
           ActionCable.server.broadcast 'play',
           message: "#{@active_player.first_name} found the plate for  #{@plate.state}",
           state: params[:code],
           player_name: @active_player.first_name,
           action: "find"
-
-
         format.html { redirect_to @find, notice: 'Find was successfully created.' }
         format.json { render :show, status: :created, location: @find }
       else
@@ -102,4 +120,14 @@ class FindsController < ActivePlayerController
     def find_params
       params.require(:find).permit(:plate_id)
     end
+
+    def get_target_coordinates(state)
+      puts  "fetching target location from google"
+      uri = URI("http://maps.googleapis.com/maps/api/geocode/json?address=#{state}")
+      http = Net::HTTP.new(uri.host, uri.port)
+      request = Net::HTTP::Get.new(uri.request_uri)
+      res = http.request(request)
+      return JSON.parse(res.body)["results"][0]["geometry"]["location"]
+    end
+
 end

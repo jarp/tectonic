@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   # Serve websocket cable requests in-process
   mount ActionCable.server => '/cable'
 
+  get 'play/map' => 'play#map', as: :map
+  get 'play/table' => 'play#index', as: :current_table
   get '/play/:id' => 'play#set', as: :play_game
   get '/play' => 'play#index', as: :current_game
-  get 'play/table' => 'play#index', as: :current_table
 
   root 'welcome#index'
   get 'about' => 'welcome#about'
@@ -19,11 +20,14 @@ Rails.application.routes.draw do
   get '/auth/google'
   get '/auth/:provider/callback', to: 'account#callback'
 
+  post 'finds/lock/' => 'finds#lock', as: :lock
+  delete 'finds/lock/:code' => 'finds#unlock', as: :unlock
 
   resources :finds do
     collection do
       post 'clear' => 'finds#clear', as: :clear
       get 'avatar/:code' => 'finds#avatar', as: :avatar
+
     end
   end
 
