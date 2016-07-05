@@ -14,7 +14,11 @@
 //= require jquery_ujs
 //= require foundation
 //= require turbolinks
-//= require_tree .
+//= require avatars
+//= require message_box
+//= require plate-manager
+//= require xs-play
+// require_tree .
 
 //= require_tree ./channels
 $(function(){ $(document).foundation(); });
