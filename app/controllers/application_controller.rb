@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def active_player
-    puts ">>>>>>>>>>>>>>>>>>>>>>>   getting active player for #{session[:player_id]}"
     if session[:player_id]
       @active_player || @active_player = Player.find(session[:player_id])
     end
