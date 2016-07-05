@@ -35,10 +35,10 @@ class AccountController < ApplicationController
       session[:is_super] = true if @player.is_super
       puts "super user!" if @player.is_super
       flash[:notice] = "You have been logged in..."
-      if new_record
-        redirect_to '/about'
+      if cookies[:return_to]
+        redirect_to cookies[:return_to]
       else
-        redirect_to '/'
+        redirect_to games_path
       end
 
     else
@@ -47,7 +47,7 @@ class AccountController < ApplicationController
     end
   rescue => e
     puts ">> session error >> #{e}"
-    flash[:notice] = "Login could not be processed. Please try again."
+    flash[:message] = "Login could not be processed. Please try again."
     redirect_to login_path
 
   end
