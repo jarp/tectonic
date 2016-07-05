@@ -1,4 +1,4 @@
-// app/assets/javascripts/channels/chatrooms.js
+  // app/assets/javascripts/channels/chatrooms.js
 
 //= require action_cable
 //= require_self

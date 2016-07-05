@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-  loadAvatars( $('.plate.found') )
+  Avatar.load( $('.plate.found') )
 
   $('input.control-toggle').on('change', function(){
 
@@ -11,7 +11,7 @@ $(document).ready(function(){
       update(plate, $(this) )
     }
     else{
-      turnOn($(this).parent(), $(this))
+      Plate.turnOn($(this).parent(), $(this))
       delete_find(plate, $(this))
     }
 
@@ -19,7 +19,7 @@ $(document).ready(function(){
 
 
   function update(plate, cb){
-    disable(cb);
+    Plate.disable(cb);
     navigator.geolocation.getCurrentPosition(
       function(position) {
         var pos = {
@@ -65,13 +65,13 @@ $(document).ready(function(){
           })
           .success(function(response){
             console.log("post update >> success // response: ", response)
-            enable(cb);
-            turnOff(cb);
+            Plate.enable(cb);
+            Plate.turnOff(cb);
           })
           .error(function(response){
             console.log("error response is ", response)
-            enable(cb);
-            turnOn(cb);
+            Plate.enable(cb);
+            Plate.turnOn(cb);
             alert('An error occured')
 
           })
@@ -87,12 +87,12 @@ $(document).ready(function(){
           })
           .success(function(response){
             // console.log("success response is ", response)
-            turnOn(cb)
+            Plate.turnOn(cb)
           })
           .error(function(response){
             console.log("error response is ", response)
             alert('An error occured')
-            turnOff(cb)
+            Plate.turnOff(cb)
           })
       }
 

@@ -1,13 +1,14 @@
-function loadAvatars(plates){
-  plates.each(function(){
-    var target = $(this).find('span');
-    var code = $(this).find('input').val();
-    // console.log("get avatar for ", code, target);
-    getAvatar(code,target);
-  })
-}
+Avatar = {
+  load: function(plates) {
+    plates.each(function(){
+      var target = $(this).find('span');
+      var code = $(this).find('input').val();
+      // console.log("get avatar for ", code, target);
+      Avatar.get(code,target);
+    })
+  },
 
-function removeAvatars(plates){
+remove: function(plates){
   plates.each(function(){
     var target = $(this).find('span');
     var code = $(this).find('input').val();
@@ -15,17 +16,14 @@ function removeAvatars(plates){
     target.css('background-size', '')
     target.fadeOut('fast')
   })
-}
+},
 
-
-
-function getAvatar(code, target){
+get: function(code, target){
   var jqxhr = $.ajax({
       type: "get",
       url: '/finds/avatar/'+ code
       })
       .success(function(response){
-        //console.log('returning avator: ' + response);
         target.css('background-image', 'url('+ response + ')')
         target.css('background-size', '36px')
         target.css('display', 'block')
@@ -35,3 +33,4 @@ function getAvatar(code, target){
         console.log("error response is ", response)
       })
   }
+}

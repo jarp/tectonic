@@ -8,18 +8,18 @@
       cb = $('input').filter('#' + data.state + "-control")
       if (data.action == 'find'){
         // console.log('turn off', cb.val());
-        turnOff(cb);
-        enable(cb);
+        Plate.turnOff(cb);
+        Plate.enable(cb);
       }
 
       else if (data.action == 'clear'){
         // console.log('turn ON', cb.val());
-        turnOn(cb);
-        enable(cb);
+        Plate.turnOn(cb);
+        Plate.enable(cb);
       }
       else if ( data.action == 'lock') {
         console.log("disable this plate~");
-        disable(cb);
+        Plate.disable(cb);
       }
     },
 
