@@ -12,6 +12,7 @@ class PlayController < ActivePlayerController
 
   def table
     @game = Game.find(cookies[:current_game_id])
+    @leaders = Table.new(@game).leaders
   end
 
   def map

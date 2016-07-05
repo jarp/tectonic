@@ -1,2 +1,9 @@
-<h1>Play#table</h1>
-<p>Find me in app/views/play/table.html.erb</p>
+<% @leaders.each do | leader | %>
+  <h3><%= leader[:player] %>: <%= leader[:total_points] %></h3>
+  <ul>
+    <% leader[:states].each do | state | %>
+      <li><%= state[:state] %> - <%= state[:points] %> points</li>
+      <% end %>
+  </ul>
+
+<% end %>

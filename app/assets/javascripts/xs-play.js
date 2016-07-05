@@ -26,7 +26,7 @@ $(document).ready(function(){
           lat: position.coords.latitude,
           lng: position.coords.longitude
         }
-        coord_as_string =  position.coords.latitude + "::" + position.coords.longitude
+        coord_as_string =  position.coords.latitude + "|" + position.coords.longitude
         post_update(plate, cb, coord_as_string)
       }
     )
@@ -44,7 +44,7 @@ $(document).ready(function(){
         }
         })
         .success(function(response){
-          console.log("success response is ", response)
+          console.log("lock >> success // response: ", response)
         })
         .error(function(response){
           console.log("error response is ", response)
@@ -64,7 +64,7 @@ $(document).ready(function(){
           }
           })
           .success(function(response){
-            console.log("success response is ", response)
+            console.log("post update >> success // response: ", response)
             enable(cb);
             turnOff(cb);
           })

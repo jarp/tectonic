@@ -39,12 +39,16 @@ class FindsController < ActivePlayerController
     message: "#{@active_player.first_name} found the plate for  #{@plate.state}",
     state: params[:code],
     action: "lock"
+
+    render text: "true"
   end
 
   def unlock
     ActionCable.server.broadcast 'play',
     state: params[:code],
     action: "unlock"
+
+    render text: "true"
   end
 
   def create
@@ -55,7 +59,9 @@ class FindsController < ActivePlayerController
     @find.plate_id = @plate.id
     @find.current_coord = params[:current_location]
     state_coords = get_target_coordinates(@plate.state)
-    @find.state_coord = "#{state_coords["lat"]}::#{state_coords["lng"]}"
+    @find.state_coord = "#{state_coords["lat"]}|#{state_coords["lng"]}"
+    distance=get_distance(params[:current_location],@plate.state)
+    @find.points=distance.gsub(',','').to_i / 100
 
     respond_to do |format|
       if @find.save
@@ -119,6 +125,19 @@ class FindsController < ActivePlayerController
     # Never trust parameters from the scary internet, only allow the white list through.
     def find_params
       params.require(:find).permit(:plate_id)
+    end
+
+    def get_distance(origin, state)
+      endpoint = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=#{origin.gsub('|',',')}&destinations=State of #{state}&key=AIzaSyDakUB-FNXZxPpowdi-uMTkBhaTlhe8fx4"
+      puts "endpoint is: #{endpoint}"
+      uri = URI(endpoint)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE # You should use VERIFY_PEER in production
+      request = Net::HTTP::Get.new(uri.request_uri)
+      res = http.request(request)
+      puts "found distance matrix: #{JSON.parse(res.body)}"
+      return JSON.parse(res.body)["rows"][0]["elements"][0]["distance"]["text"]
     end
 
     def get_target_coordinates(state)

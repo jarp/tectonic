@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
 
   get 'play/map' => 'play#map', as: :map
-  get 'play/table' => 'play#index', as: :current_table
+  get 'play/table' => 'play#table', as: :current_table
   get '/play/:id' => 'play#set', as: :play_game
   get '/play' => 'play#index', as: :current_game
 
