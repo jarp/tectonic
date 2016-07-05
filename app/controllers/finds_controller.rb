@@ -35,7 +35,7 @@ class FindsController < ActivePlayerController
 
   def lock
     @plate = Plate.find_by_code(params[:code])
-    ActionCable.server.broadcast 'play',
+    ActionCable.server.broadcast 'game_channel',
     message: "#{@active_player.first_name} found the plate for  #{@plate.state}",
     state: params[:code],
     action: "lock"
@@ -65,7 +65,7 @@ class FindsController < ActivePlayerController
 
     respond_to do |format|
       if @find.save
-          ActionCable.server.broadcast 'play',
+          ActionCable.server.broadcast 'game_channel',
           message: "#{@active_player.first_name} found the plate for  #{@plate.state}",
           state: params[:code],
           player_name: @active_player.first_name,
@@ -86,7 +86,7 @@ class FindsController < ActivePlayerController
     if @find
       @find.destroy
 
-      ActionCable.server.broadcast 'play',
+      ActionCable.server.broadcast 'game_channel',
       message: "Apparently #{@active_player.first_name} didn't find the plate for  #{@plate.state}",
       state: params[:code],
       player_name: @active_player.first_name,

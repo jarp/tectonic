@@ -1,6 +1,6 @@
 // app/assets/javascripts/channels/messages.js
 
-  App.messages = App.cable.subscriptions.create('PlayChannel', {
+  App.messages = App.cable.subscriptions.create('GameChannel', {
     received: function(data) {
       //console.log('getting messages from ws', data);
       //console.log($("#play").html());
