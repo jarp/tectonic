@@ -1,7 +1,5 @@
 $(document).ready(function(){
 
-
-
   $('#message-box #close-message-x').click(function(){
     MessageBox.log("clear box")
     MessageBox.clear()
@@ -36,7 +34,7 @@ $(document).ready(function(){
       },
 
     log: function(m){
-      console.log(m);
+      // console.log(m);
       }
   }
 MessageBox.clear();

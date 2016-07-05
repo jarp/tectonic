@@ -34,7 +34,6 @@ $(document).ready(function(){
   }
 
   function lock(plate, cb){
-    console.log("lock the plate!");
     var jqxhr = $.ajax({
         type: "POST",
         url: '/finds/lock',
@@ -44,7 +43,6 @@ $(document).ready(function(){
         }
         })
         .success(function(response){
-          console.log("lock >> success // response: ", response)
         })
         .error(function(response){
           console.log("error response is ", response)
@@ -64,7 +62,6 @@ $(document).ready(function(){
           }
           })
           .success(function(response){
-            console.log("post update >> success // response: ", response)
             Plate.enable(cb);
             Plate.turnOff(cb);
           })
@@ -106,6 +103,4 @@ $(document).ready(function(){
             return position.coords.latitude + "::" + position.coords.longitude
           }
         )};
-
-
 })

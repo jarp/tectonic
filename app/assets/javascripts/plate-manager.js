@@ -19,7 +19,6 @@ Plate = {
   },
 
   turnOff: function(cb){
-    console.log("turning of plate card", cb );
     cb.parent().fadeTo('slow', .3);
     cb.parent().addClass('visibilty-faded');
     cb.attr('checked','checked')
