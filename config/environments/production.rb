@@ -76,5 +76,6 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  config.action_cable.url = "ws://localhost:3000/cable"
+  config.web_socket_server_url = "wss://tectonic-license-plate-game.herokuapp.com/cable"
+  config.action_cable.allowed_request_origins = ['https://tectonic-license-plate-game.herokuapp.com', 'http://tectonic-license-plate-game.herokuapp.com']
 end
