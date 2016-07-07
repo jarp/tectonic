@@ -21,7 +21,6 @@ gem 'coffee-rails'
 
 gem 'redis'
 gem 'aws-ses'
-
 # gem 'exception_notification'
 
 gem 'google_maps_service'

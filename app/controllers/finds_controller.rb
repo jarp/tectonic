@@ -27,7 +27,7 @@ class FindsController < ActivePlayerController
   def avatar
     @plate = Plate.find_by(code:params[:code])
     @find = Find.find_by(game_id: cookies["current_game_id"], plate_id: @plate.id ) # if @active_player.finds.any?
-    render text: @find.player.image
+    render plain: @find.player.image
   end
 
   # POST /finds
@@ -40,14 +40,13 @@ class FindsController < ActivePlayerController
     state: params[:code],
     action: "lock"
 
-    render text: "true"
+    render plain: "true"
   end
 
   def unlock
-    ActionCable.server.broadcast 'play',
+    ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
     state: params[:code],
     action: "unlock"
-
     render text: "true"
   end
 
@@ -65,7 +64,7 @@ class FindsController < ActivePlayerController
 
     respond_to do |format|
       if @find.save
-          ActionCable.server.broadcast 'game_channel',
+          ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
           message: "#{@active_player.first_name} found the plate for  #{@plate.state}",
           state: params[:code],
           player_name: @active_player.first_name,
@@ -86,7 +85,7 @@ class FindsController < ActivePlayerController
     if @find
       @find.destroy
 
-      ActionCable.server.broadcast 'game_channel',
+      ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
       message: "Apparently #{@active_player.first_name} didn't find the plate for  #{@plate.state}",
       state: params[:code],
       player_name: @active_player.first_name,

@@ -18,7 +18,6 @@
 //= require message_box
 //= require plate-manager
 //= require xs-play
-
-
+//= require cable
 //= require_tree ./channels
 $(function(){ $(document).foundation(); });
