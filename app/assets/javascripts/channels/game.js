@@ -32,7 +32,7 @@ App.game = App.cable.subscriptions.create('GameChannel', {
     },
 
     renderMessage: function(message) {
-      return "<b>Update:</b> " + message;
+      return  message;
     }
   });
 
