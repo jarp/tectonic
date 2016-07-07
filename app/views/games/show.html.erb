@@ -13,8 +13,8 @@
       <%= render 'invite_form' %>
 
       <ul id="player-list">
-        <% @game.players.each do | player | %>
-          <li class="player"><%= player %></li>
+        <% @game.game_players.each do | player | %>
+          <li class="player"><%= player.player %> [<%= player.token %>]</li>
         <% end %>
       </ul>
   </div>

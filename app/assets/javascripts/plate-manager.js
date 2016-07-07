@@ -1,6 +1,5 @@
 Plate = {
 
-
   disable: function(cb){
     cb.addClass('processing');
     //cb.attr('disabled', true);

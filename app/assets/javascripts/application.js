@@ -15,6 +15,7 @@
 //= require foundation
 //= require turbolinks
 //= require avatars
+//= require table
 //= require message_box
 //= require plate-manager
 //= require xs-play

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'invite' => 'invite#index', as: :invites
   post 'invite' => 'invite#create', as: :send_invite
   get 'invite/:token' => 'invite#accept', as: :accept_invite
+  post 'invite/join' => 'invite#accept', as: :join_game
 
   get 'login' => 'account#index', as: :login
   get 'logout' => 'account#logout', as: :logout

@@ -3,6 +3,7 @@ require 'openssl'
 
 class FindsController < ActivePlayerController
   before_action :set_find, only: [:show, :edit, :update, :destroy]
+  before_action :set_game, only: [:create, :clear]
 
   # GET /finds
   # GET /finds.json
@@ -27,7 +28,7 @@ class FindsController < ActivePlayerController
   def avatar
     @plate = Plate.find_by(code:params[:code])
     @find = Find.find_by(game_id: cookies["current_game_id"], plate_id: @plate.id ) # if @active_player.finds.any?
-    render plain: @find.player.image
+    render plain: @find.nil? ? "" : @find.player.image
   end
 
   # POST /finds
@@ -36,7 +37,7 @@ class FindsController < ActivePlayerController
   def lock
     @plate = Plate.find_by_code(params[:code])
     ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
-    message: "#{@active_player.first_name} found the plate for  #{@plate.state}",
+    #message: "#{@active_player.first_name} found the plate for  #{@plate.state}",
     state: params[:code],
     action: "lock"
 
@@ -64,10 +65,14 @@ class FindsController < ActivePlayerController
 
     respond_to do |format|
       if @find.save
+
+          points = GameService.points(@game, @active_player)
           ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
-          message: "#{@active_player.first_name} found the plate for  #{@plate.state}",
+          message: "#{@active_player.first_name} found the plate for  #{@plate.state} for #{@find.points} points.",
           state: params[:code],
           player_name: @active_player.first_name,
+          player: @active_player,
+          points: points,
           action: "find"
         format.html { redirect_to @find, notice: 'Find was successfully created.' }
         format.json { render :show, status: :created, location: @find }
@@ -84,11 +89,13 @@ class FindsController < ActivePlayerController
 
     if @find
       @find.destroy
-
+      points = GameService.points(@game, @active_player)
       ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
       message: "Apparently #{@active_player.first_name} didn't find the plate for  #{@plate.state}",
       state: params[:code],
+      points: points,
       player_name: @active_player.first_name,
+      player: @active_player,
       action: "clear"
 
 
@@ -121,13 +128,17 @@ class FindsController < ActivePlayerController
       @find = Find.find(params[:id])
     end
 
+    def set_game
+      @game = Game.find(cookies[:current_game_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def find_params
       params.require(:find).permit(:plate_id)
     end
 
     def get_distance(origin, state)
-      endpoint = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=#{origin.gsub('|',',')}&destinations=State of #{state}&key=AIzaSyDakUB-FNXZxPpowdi-uMTkBhaTlhe8fx4"
+      endpoint = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=#{origin.gsub('|',',')}&destinations=State of #{state}&key=#{ENV['TECTONIC_API']}"
       puts "endpoint is: #{endpoint}"
       uri = URI(endpoint)
       http = Net::HTTP.new(uri.host, uri.port)

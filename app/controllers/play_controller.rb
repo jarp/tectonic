@@ -6,8 +6,7 @@ class PlayController < ActivePlayerController
     @game = Game.find(cookies[:current_game_id])
     @players = @game.players
     @plates = Plate.all
-
-    puts @game.plates.inspect
+    @leaders = Table.new(@game).leaders
   end
 
   def table

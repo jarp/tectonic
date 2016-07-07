@@ -6,18 +6,24 @@ App.game = App.cable.subscriptions.create('GameChannel', {
     received: function(data) {
       console.log('getting messages from ws', data);
       //console.log($("#play").html());
-      MessageBox.set( this.renderMessage(data), 'html');
+      if (data.message !== undefined){
+        MessageBox.set( this.renderMessage(data.message), 'html');
+      }
+
       cb = $("div[plate_code='"+ data.state + "']")
+
       if (data.action == 'find'){
         // console.log('turn off', cb.val());
         Plate.turnOff(cb);
         Plate.enable(cb);
+        Table.update_points(data.player, data.points);
       }
 
       else if (data.action == 'clear'){
         // console.log('turn ON', cb.val());
         Plate.turnOn(cb);
         Plate.enable(cb);
+        Table.update_points(data.player, data.points);
       }
       else if ( data.action == 'lock') {
         console.log("disable this plate~");
@@ -25,8 +31,8 @@ App.game = App.cable.subscriptions.create('GameChannel', {
       }
     },
 
-    renderMessage: function(data) {
-      return "<b>Update:</b> " + data.message;
+    renderMessage: function(message) {
+      return "<b>Update:</b> " + message;
     }
   });
 

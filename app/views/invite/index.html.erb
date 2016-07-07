@@ -1,2 +1,16 @@
-<h1>Invite#index</h1>
-<p>Find me in app/views/invite/index.html.erb</p>
+<h2>Join a Game</h2>
+<%= form_tag :join_game do %>
+<div class="row">
+  <div class="small-4 medium-2 columns text-right">
+    <%= label_tag :token, "Invite Code", class: 'inline' %>
+  </div>
+
+  <div class="small-8 medium-4 columns">
+    <%= text_field_tag :token %>
+  </div>
+
+  <div class="small-12 small-offset-4 medium-2 columns end">
+    <%= submit_tag :join, class:'button' %>
+  </div>
+</div>
+<% end %>
