@@ -2,7 +2,7 @@ Avatar = {
   load: function(plates) {
     plates.each(function(){
       var target = $(this).find('span');
-      var code = $(this).find('input').val();
+      var code = $(this).attr('plate_code');
       // console.log("get avatar for ", code, target);
       Avatar.get(code,target);
     })

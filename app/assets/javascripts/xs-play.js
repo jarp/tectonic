@@ -1,18 +1,18 @@
 $(document).ready(function(){
-
   Avatar.load( $('.plate.found') )
 
-  $('input.control-toggle').on('change', function(){
 
-    var plate = $(this).val();
+  $('.plate').on('click', function(){
+    console.log("input box actually clicked");
+    var plate = $(this).attr('plate_code');
 
-    if( $(this).is(':checked') ) {
-      lock(plate, $(this));
-      update(plate, $(this) )
+    if( $(this).hasClass('found') ) {
+      Plate.turnOn($(this), $(this))
+      delete_find(plate, $(this))
     }
     else{
-      Plate.turnOn($(this).parent(), $(this))
-      delete_find(plate, $(this))
+      lock(plate, $(this));
+      update(plate, $(this) )
     }
 
   })

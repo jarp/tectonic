@@ -4,10 +4,10 @@ App.game = App.cable.subscriptions.create('GameChannel', {
     }
     ,
     received: function(data) {
-      //console.log('getting messages from ws', data);
+      console.log('getting messages from ws', data);
       //console.log($("#play").html());
       MessageBox.set( this.renderMessage(data), 'html');
-      cb = $('input').filter('#' + data.state + "-control")
+      cb = $("div[plate_code='"+ data.state + "']")
       if (data.action == 'find'){
         // console.log('turn off', cb.val());
         Plate.turnOff(cb);
