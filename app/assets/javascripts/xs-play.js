@@ -3,7 +3,6 @@ $(document).ready(function(){
 
 
   $('.plate').on('click', function(){
-    console.log("input box actually clicked");
     var plate = $(this).attr('plate_code');
 
     if( $(this).hasClass('found') ) {

@@ -4,7 +4,7 @@ App.game = App.cable.subscriptions.create('GameChannel', {
     }
     ,
     received: function(data) {
-      console.log('getting messages from ws', data);
+      //console.log('getting messages from ws', data);
       //console.log($("#play").html());
       if (data.message !== undefined){
         MessageBox.set( this.renderMessage(data.message), 'html');
@@ -26,7 +26,6 @@ App.game = App.cable.subscriptions.create('GameChannel', {
         Table.update_points(data.player, data.points);
       }
       else if ( data.action == 'lock') {
-        console.log("disable this plate~");
         Plate.disable(cb);
       }
     },

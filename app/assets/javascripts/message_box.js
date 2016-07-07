@@ -12,8 +12,6 @@ $(document).ready(function(){
   MessageBox = {
     set: function(msg, format){
 
-      console.log('setting message with content of ' + msg);
-
       if ( format == 'undefined'){
           format = 'normal';
         }
@@ -33,7 +31,6 @@ $(document).ready(function(){
       },
 
     clear: function(){
-      console.log('clearing out message box');
       $('#message-box').fadeOut();
       $('#message-box #message-text').text("");
       },

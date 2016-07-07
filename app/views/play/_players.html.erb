@@ -2,11 +2,16 @@
   <div id="players" class="small-12 medium-3 large-4 columns">
 
     <h3>Players</h3>
+    <div id="rankings-container">
       <% @leaders.each do | leader | %>
-      <div class="row collapse ranking" player="<%= leader[:player] %>">
-        <div class="small-10 columns player-name"><%= leader[:player] %></div>
+      <div class="row collapse ranking" player_id="<%= leader[:player].id %>">
+        <div class="small-10 columns player-name">
+          <img class="icon" width="64" src='<%= image_path(leader[:player].image) %>'</img>
+          <%= leader[:player] %>
+        </div>
         <div class="small-2 columns player-points" player="<%= leader[:player] %>"><%= leader[:total_points] %></div>
       </div>
       <% end %>
+    </div>
     </ul>
 </div>
