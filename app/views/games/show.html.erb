@@ -1,23 +1,25 @@
-<p id="notice"><%= notice %></p>
-
 <% if @game.title.present? %>
-  <p><strong>Title:</strong> <%= @game.title %></p>
+  <h2><%= @game.title %></h2>
 <% end %>
 
-<p><strong>Game type:</strong> <%= @game.game_type %> </p>
+<p><b>Game type:</b> <%= @game.game_type %> </p>
 
 <div class="row">
   <div class="small-12 columns">
-      <h3>Players</h3>
-
+      <h3>Invite Players</h3>
       <%= render 'invite_form' %>
 
+      <h3>Current Players</h3>
       <ul id="player-list">
         <% @game.game_players.each do | player | %>
           <li class="player"><%= player.player %> [<%= player.token %>]</li>
         <% end %>
       </ul>
+
   </div>
 </div>
-
-<%= link_to 'Play', play_game_path(@game), class: 'button primary' %>
+<div class="row">
+  <div class="small-12 columns">
+    <%= link_to 'Play', play_game_path(@game), class: 'button primary' %>
+  </div>
+</div>

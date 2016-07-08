@@ -2,7 +2,6 @@
   <% if game.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
-
       <ul>
       <% game.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -11,17 +10,41 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="row">
+    <div class="small-12 medium-2 medium-text-right columns">
     <%= f.label :title %>
+
+    </div>
+    <div class="small-12 medium-10 columns">
     <%= f.text_field :title %>
+
+    </div>
+
   </div>
 
-  <div class="field">
+
+  <div class="row">
+    <div class="small-12 medium-2 medium-text-right columns">
     <%= f.label :game_type_id %>
+
+    </div>
+    <div class="small-12 medium-10 columns">
     <%= f.collection_select :game_type_id, GameType.all, :id, :name, prompt: "Please select the type of game" %>
+
+    </div>
+
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="row">
+
+
+    <div class="small-12 medium-2 medium-offset-2 columns">
+      <%= f.submit "Save", class: 'button expand' %>
+    </div>
+    <div class="small-12 medium-3 columns end">
+      <%= link_to "Back to Games", games_path, class: 'button secondary expand' %>
+    </div>
   </div>
+
 <% end %>

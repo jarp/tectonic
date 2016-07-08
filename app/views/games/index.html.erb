@@ -6,10 +6,10 @@
       <div class="game-list-item">
         <div class="row">
           <div class="small-6 columns">
-            <%= game.title %>
+            <h2><%= game.title %></h2>
           </div>
           <div class="small-6 columns">
-            <%= game.game_type %>
+            <%# game.game_type %>
           </div>
         </div>
 
@@ -18,7 +18,6 @@
             <ul class="button-group radius">
               <li><%= link_to 'Play', play_game_path(game), class: 'button tiny' %></li>
               <li><%= link_to 'Details', game, class: 'button tiny' %></li>
-              <li><%= link_to 'Edit', edit_game_path(game), class: 'button tiny' %></li>
               <li><%= link_to 'Complete', edit_game_path(game), class: 'button tiny' %></li>
               <li><%= link_to 'Remove', game, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button tiny' %></li>
           </ul>
