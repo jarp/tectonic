@@ -21,4 +21,7 @@
 //= require xs-play
 //= require cable
 //= require_tree ./channels
-$(function(){ $(document).foundation(); });
+
+$(document).on('ready page:load', function () {
+  $(function(){ $(document).foundation(); });
+});
