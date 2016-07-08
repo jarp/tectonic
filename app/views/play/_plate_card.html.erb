@@ -1,8 +1,11 @@
 
-  <div class="plate <%= "visibility-faded found" if @game.plates.include?(plate) %>" plate_code="<%= plate.code %>" >
+  <div class="plate <%= @game.use_images? ? 'with-image' : 'basic'  %> <%= "visibility-faded found" if @game.plates.include?(plate) %>" plate_code="<%= plate.code %>"
+    <% if @game.use_images? %>
+    style="background-image: url(assets/plates/<%= plate.code.downcase %>.jpg);"
+    <% end %>
+    >
 
     <span class="owner"></span>
-
-    <%# render partial: 'controls', locals: {plate: plate} %>
-    <%= plate %>
+    <span class="plate-name"><%= plate unless @game.use_images? %></span>
   </div>
+  <span class="plate-name"><%= plate if @game.use_images? %></span>

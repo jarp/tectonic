@@ -1,7 +1,7 @@
 Avatar = {
   load: function(plates) {
     plates.each(function(){
-      var target = $(this).find('span');
+      var target = $(this).find('span.owner');
       var code = $(this).attr('plate_code');
       // console.log("get avatar for ", code, target);
       Avatar.get(code,target);
@@ -26,11 +26,29 @@ get: function(code, target){
       .success(function(response){
         target.css('background-image', 'url('+ response + ')')
         target.css('background-size', '36px')
+        target.css('background-color', '#fff')
         target.css('display', 'block')
+        target.css('border', 'thin solid #ccc')
         target.fadeIn('slow', 1)
       })
       .error(function(response){
         console.log("error response is ", response)
       })
+  },
+
+  preload: function(plates) {
+    plates.each(function(){
+      var target = $(this).find('span.owner');
+      var code = $(this).attr('plate_code');
+
+      target.css('background-image', 'url(/assets/preloader.gif)')
+      target.css('background-color', '')
+      target.css('background-size', '36px')
+      target.css('border', 'none')
+      target.css('opacity', '.8')
+      target.css('display', 'block')
+      target.fadeIn('slow', 1)
+    })
   }
+
 }

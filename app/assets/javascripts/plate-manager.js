@@ -2,6 +2,7 @@ Plate = {
 
   disable: function(cb){
     cb.addClass('processing');
+    Avatar.preload(cb);
     //cb.attr('disabled', true);
   },
 

@@ -71,6 +71,6 @@ class GamesController < ActivePlayerController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:title, :game_type_id)
+      params.require(:game).permit(:title, :game_type_id, :use_images)
     end
 end
