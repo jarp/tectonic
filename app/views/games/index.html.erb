@@ -16,10 +16,13 @@
         <div class="row">
           <div class="small-12 columns text-right">
             <ul class="button-group radius">
-              <li><%= link_to 'Play', play_game_path(game), class: 'button tiny' %></li>
-              <li><%= link_to 'Details', game, class: 'button tiny' %></li>
-              <li><%= link_to 'Complete', edit_game_path(game), class: 'button tiny' %></li>
-              <li><%= link_to 'Remove', game, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button tiny' %></li>
+              <li><%= link_to 'Play', play_game_path(game), class: 'button success tiny' %></li>
+              <% puts "#{@active_player} == #{game.owner}" %>
+              <% if @active_player == game.owner %>
+                <li><%= link_to 'Details', game, class: 'button  tiny' %></li>
+                <li><%= link_to 'Complete', edit_game_path(game), class: 'button secondary tiny' %></li>
+                <li><%= link_to 'Remove', game, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button warning tiny' %></li>
+              <% end %>
           </ul>
           </div>
         </div>

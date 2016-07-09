@@ -5,6 +5,7 @@ class GamesController < ActivePlayerController
   # GET /games.json
   def index
     @games = @active_player.games
+    puts @games.first.owner
   end
 
   # GET /games/1
