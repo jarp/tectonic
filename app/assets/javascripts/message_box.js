@@ -34,7 +34,7 @@ $(document).ready(function(){
 
       $('#message-box').fadeIn();
 
-      setTimeout("MessageBox.clear()", 4000);
+      setTimeout("MessageBox.clear()", Tectonic.getTimer());
       },
 
     clear: function(){

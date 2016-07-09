@@ -14,14 +14,25 @@ App.game = App.cable.subscriptions.create('GameChannel', {
         // console.log('turn off', cb.val());
         Plate.turnOff(cb);
         Plate.enable(cb);
-        Table.update_points(data.player, data.points);
-      }
+
+        setTimeout(function(){
+          Table.update_points(data.player, data.points)
+          }
+          , Tectonic.getTimer());
+          }
+
+
 
       else if (data.action == 'clear'){
         // console.log('turn ON', cb.val());
         Plate.turnOn(cb);
         Plate.enable(cb);
-        Table.update_points(data.player, data.points);
+        setTimeout(function(){
+          Table.update_points(data.player, data.points)
+          }
+          , Tectonic.getTimer());
+
+
       }
       else if ( data.action == 'lock') {
         Plate.disable(cb);

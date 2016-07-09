@@ -15,5 +15,9 @@ Tectonic = {
         alert(response.responseText);
       }
     }
+  },
+
+  getTimer: function(){
+    return 3000;
   }
 }
