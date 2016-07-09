@@ -28,10 +28,12 @@ App.game = App.cable.subscriptions.create('GameChannel', {
           , Tectonic.getTimer());
         }
       else if ( data.action == 'lock') {
+        console.log("disable: ", cb);
         Plate.disable(cb);
       }
 
       else if ( data.action == 'join') {
+        console.log("join: ", data);
         Table.join(data.player);
       }
     },
