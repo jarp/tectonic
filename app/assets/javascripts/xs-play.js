@@ -44,9 +44,9 @@ $(document).ready(function(){
         .success(function(response){
         })
         .error(function(response){
-          console.log("error response is ", response)
-          alert('An error occured')
-
+          Tectonic.handleError(response);
+          cb.find('span.owner').fadeOut();
+          cb.css('border', 'none');
         })
   }
 
@@ -68,8 +68,7 @@ $(document).ready(function(){
             console.log("error response is ", response)
             Plate.enable(cb);
             Plate.turnOn(cb);
-            alert('An error occured')
-
+            Tectonic.handleError(response);
           })
     }
 
@@ -82,12 +81,10 @@ $(document).ready(function(){
           data: { code: plate }
           })
           .success(function(response){
-            // console.log("success response is ", response)
             Plate.turnOn(cb)
           })
           .error(function(response){
-            console.log("error response is ", response)
-            alert('An error occured')
+            Tectonic.handleError(response);
             Plate.turnOff(cb)
           })
       }

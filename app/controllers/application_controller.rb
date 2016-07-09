@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    cookies[:return_to] = request.fullpath unless request.fullpath == '/logout'
+    cookies[:return_to] = request.fullpath if request.fullpath.include?('invite') || request.fullpath.include?('play')
     redirect_to login_path unless session[:player_id]
   end
 

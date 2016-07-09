@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require tectonic
 //= require avatars
 //= require table
 //= require message_box

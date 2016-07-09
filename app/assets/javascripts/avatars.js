@@ -3,7 +3,6 @@ Avatar = {
     plates.each(function(){
       var target = $(this).find('span.owner');
       var code = $(this).attr('plate_code');
-      // console.log("get avatar for ", code, target);
       Avatar.get(code,target);
     })
   },
@@ -32,7 +31,7 @@ get: function(code, target){
         target.fadeIn('slow', 1)
       })
       .error(function(response){
-        console.log("error response is ", response)
+        Tectonic.handleError(response);
       })
   },
 
@@ -41,7 +40,7 @@ get: function(code, target){
       var target = $(this).find('span.owner');
       var code = $(this).attr('plate_code');
 
-      target.css('background-image', 'url(/assets/preloader.gif)')
+      target.css('background-image', 'url(/assets/images/preloader.gif)')
       target.css('background-color', '')
       target.css('background-size', '36px')
       target.css('border', 'none')
@@ -49,6 +48,15 @@ get: function(code, target){
       target.css('display', 'block')
       target.fadeIn('slow', 1)
     })
-  }
+  },
 
+  preUnload: function(plates) {
+    plates.each(function(){
+      var target = $(this).find('span.owner');
+      var code = $(this).attr('plate_code');
+
+      target.css('background-image', 'none')
+
+    })
+  }
 }

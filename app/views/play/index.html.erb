@@ -3,9 +3,8 @@
   <%= render 'players' %>
 
   <div class="small-12 medium-9 large-8 columns">
-    <%= render 'layouts/messages' %>
     <h3>States</h3>
-    <ul class="small-block-grid-2 medium-block-grid-3">
+    <ul class="small-block-grid-2 large-block-grid-3">
       <% @plates.each do | plate | %>
         <li class="plate-card">
           <%= render partial: 'plate_card', locals: {plate: plate} %>

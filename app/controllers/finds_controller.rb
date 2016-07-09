@@ -35,6 +35,7 @@ class FindsController < ActivePlayerController
   # POST /finds.json
 
   def lock
+    # raise 'kanye says no'
     @plate = Plate.find_by_code(params[:code])
     ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
     #message: "#{@active_player.first_name} found the plate for  #{@plate.state}",

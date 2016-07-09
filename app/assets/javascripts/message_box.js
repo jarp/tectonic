@@ -10,7 +10,14 @@ $(document).ready(function(){
   }
 
   MessageBox = {
+
     set: function(msg, format){
+
+      $('html, body').animate({
+        scrollTop: $('html').offset().top
+        },
+      1000);
+
 
       if ( format == 'undefined'){
           format = 'normal';

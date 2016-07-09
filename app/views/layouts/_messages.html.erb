@@ -1,4 +1,5 @@
 <div class="row messages" id="message-box">
+  <span id="close-message-x" class="messages-close">X</span>
   <div class="small-12 columns text-center">
     <span id="message-text" class="message-text">
       <%= flash[:notice]  if flash[:notice] %>
@@ -7,6 +8,6 @@
       <%= flash[:alert]  if flash[:alert] %>
       <%=raw flash[:message_raw] if flash[:message_raw]%>
     </span>
-    <span id="close-message-x" class="messages-close">X</span>
+
   </div>
 </div>

@@ -18,16 +18,17 @@
     background-color: #000;
     color: #fff;
     border-radius: 8px;
-    padding: 20px;
-    top: 10%;
-    left: 10%;
-    right: 10%;
+    padding: 33px;
+    top: 230px;
+    left: 15%;
+    right: 15%;
     z-index: 1;
     opacity: .8;
-    box-shadow:1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
+    width: 70%;
 }
 .messages {display:none;
-  .messages-close {
+  #close-message-x {
     float:right;
     padding:2px 8px;
     color:#fff;
@@ -36,6 +37,8 @@
     cursor:pointer;
     font-weight:bold;
     box-shadow:1px 1px 3px #000;
+    margin-top: -40px;
+    margin-right: -40px;
   }
   .message-text {font-style:italic; color: #fff}
 }

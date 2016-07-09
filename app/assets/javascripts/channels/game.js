@@ -1,11 +1,9 @@
 App.game = App.cable.subscriptions.create('GameChannel', {
     connected: function(){
-      console.log('connected to game channel');
+      console.log('connected to game channel with');
     }
     ,
     received: function(data) {
-      //console.log('getting messages from ws', data);
-      //console.log($("#play").html());
       if (data.message !== undefined){
         MessageBox.set( this.renderMessage(data.message), 'html');
       }
@@ -34,18 +32,3 @@ App.game = App.cable.subscriptions.create('GameChannel', {
       return  message;
     }
   });
-
-  // function turnOn(cb){
-  //   cb.parent().fadeTo('slow', 1);
-  //   cb.parent().removeClass('visibilty-faded');
-  //   cb.prop('checked', false)
-  //   removeAvatars(cb.parent());
-  //
-  // }
-  //
-  // function turnOff(cb){
-  //   cb.parent().fadeTo('slow', .3);
-  //   cb.parent().addClass('visibilty-faded');
-  //   loadAvatars(cb.parent());
-  //   cb.attr('checked','checked')
-  // }
