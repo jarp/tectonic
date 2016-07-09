@@ -3,10 +3,15 @@ class PlayController < ActivePlayerController
   before_action :get_active_game, except: [:set]
 
   def index
+    puts "play.index"
     @game = Game.find(cookies[:current_game_id])
     @players = @game.players
     @plates = Plate.all
     @leaders = Table.new(@game).leaders
+
+    ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
+    player: @active_player,
+    action: "join"
   end
 
   def table
@@ -20,8 +25,6 @@ class PlayController < ActivePlayerController
         client_id: "<ENV['TECTONIC_CLIENT_ID'] %>",
         client_secret: "<ENV['TECTONIC_CLIENT_SECRET'] %>"
     )
-
-
     origins = []
     destinations = []
     matrix = gmaps.distance_matrix(origins, destinations,

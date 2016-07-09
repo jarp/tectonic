@@ -1,5 +1,18 @@
 
 Table = {
+
+
+
+  join: function(player){
+      if ( $("div.ranking[player_id='" + player.id + "']") ){
+        console.log("player is already there");
+      }
+
+      else {
+        console.log('Player needs to be added');
+      }
+  },
+
   update_points: function(player, points){
     current_points = $("div.ranking[player_id='" + player.id + "']").find(".player-points").text()
     Table.spin(

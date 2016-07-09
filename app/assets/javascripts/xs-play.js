@@ -1,4 +1,9 @@
+
+
 $(document).ready(function(){
+  if ( $("#play").length > 0 ){
+      console.log('xs-play js lib')
+
   Avatar.load( $('.plate.found') )
 
 
@@ -26,6 +31,7 @@ $(document).ready(function(){
           lng: position.coords.longitude
         }
         coord_as_string =  position.coords.latitude + "|" + position.coords.longitude
+        console.log('got location: coord_as_string', coord_as_string)
         post_update(plate, cb, coord_as_string)
       }
     )
@@ -99,4 +105,6 @@ $(document).ready(function(){
             return position.coords.latitude + "::" + position.coords.longitude
           }
         )};
+
+        }
 })

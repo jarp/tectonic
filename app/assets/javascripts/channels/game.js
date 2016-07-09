@@ -8,20 +8,15 @@ App.game = App.cable.subscriptions.create('GameChannel', {
         MessageBox.set( this.renderMessage(data.message), 'html');
       }
 
+      console.log("cabel data is ", data);
+
       cb = $("div[plate_code='"+ data.state + "']")
 
       if (data.action == 'find'){
-        // console.log('turn off', cb.val());
         Plate.turnOff(cb);
         Plate.enable(cb);
-
-        setTimeout(function(){
-          Table.update_points(data.player, data.points)
-          }
-          , Tectonic.getTimer());
-          }
-
-
+        setTimeout(function(){Table.update_points(data.player, data.points)}
+          , Tectonic.getTimer());}
 
       else if (data.action == 'clear'){
         // console.log('turn ON', cb.val());
@@ -31,11 +26,13 @@ App.game = App.cable.subscriptions.create('GameChannel', {
           Table.update_points(data.player, data.points)
           }
           , Tectonic.getTimer());
-
-
-      }
+        }
       else if ( data.action == 'lock') {
         Plate.disable(cb);
+      }
+
+      else if ( data.action == 'join') {
+        Table.join(data.player);
       }
     },
 

@@ -36,12 +36,13 @@ class FindsController < ActivePlayerController
 
   def lock
     # raise 'kanye says no'
+    puts ">>>>> Lock request has come in"
     @plate = Plate.find_by_code(params[:code])
+    puts ">>>>>> found plate #{@plate}"
     ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
     #message: "#{@active_player.first_name} found the plate for  #{@plate.state}",
     state: params[:code],
     action: "lock"
-
     render plain: "true"
   end
 
@@ -53,6 +54,7 @@ class FindsController < ActivePlayerController
   end
 
   def create
+    puts ">>>>>> creating find with #{params}"
     @find = Find.new()
     @find.game_id = cookies["current_game_id"]
     @find.player_id = session[:player_id]
@@ -66,15 +68,15 @@ class FindsController < ActivePlayerController
 
     respond_to do |format|
       if @find.save
-
+          puts ">>>>>>>> svaed find no to the cable"
           points = GameService.points(@game, @active_player)
           ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
-          message: "#{@active_player.first_name} found the plate for  #{@plate.state} for #{@find.points} points.",
-          state: params[:code],
-          player_name: @active_player.first_name,
-          player: @active_player,
-          points: points,
-          action: "find"
+            message: "#{@active_player.first_name} found the plate for  #{@plate.state} for #{@find.points} points.",
+            state: params[:code],
+            player_name: @active_player.first_name,
+            player: @active_player,
+            points: points,
+            action: "find"
         format.html { redirect_to @find, notice: 'Find was successfully created.' }
         format.json { render :show, status: :created, location: @find }
       else
