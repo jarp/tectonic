@@ -6,7 +6,7 @@ $(document).ready(function(){
     var plate = $(this).attr('plate_code');
 
     if( $(this).hasClass('found') ) {
-      Plate.turnOn($(this), $(this))
+      //Plate.turnOn($(this), $(this))
       delete_find(plate, $(this))
     }
     else{

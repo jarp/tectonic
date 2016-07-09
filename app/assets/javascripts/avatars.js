@@ -9,7 +9,7 @@ Avatar = {
 
 remove: function(plates){
   plates.each(function(){
-    var target = $(this).find('span');
+    var target = $(this).find('span.owner');
     var code = $(this).find('input').val();
     target.css('background-image', '')
     target.css('background-size', '')

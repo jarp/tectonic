@@ -1,5 +1,4 @@
 Plate = {
-
   disable: function(cb){
     cb.addClass('processing');
     Avatar.preload(cb);

@@ -5,7 +5,8 @@
   <li class="has-dropdown">
       <a>Games</a>
       <ul class="dropdown">
-        <li><a href="/play">Current Game</a></li>
+        <li><a href="/play">Play Current Game</a></li>
+        <li><a href="/games/<%= cookies[:current_game_id] %>/edit">Update Current Game</a></li>
         <li><a href="/games/new">New Game</a></li>
         <li><a href="/games">Go to Games</a></li>
 
