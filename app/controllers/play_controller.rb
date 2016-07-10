@@ -8,10 +8,10 @@ class PlayController < ActivePlayerController
     @players = @game.players
     @plates = Plate.all
     @leaders = Table.new(@game).leaders
-    # 
-    # ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
-    # player: @active_player,
-    # action: "join"
+
+    ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
+    player: @active_player,
+    action: "join"
   end
 
   def table

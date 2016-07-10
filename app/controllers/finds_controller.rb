@@ -41,7 +41,6 @@ class FindsController < ActivePlayerController
     puts ">>>>>> found plate #{@plate}"
     puts ">>>>>> sending message to actioncable on channel 'game_channel_#{cookies["current_game_id"]}'"
     ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
-    #message: "#{@active_player.first_name} found the plate for  #{@plate.state}",
     state: params[:code],
     action: "lock"
     render plain: "true"

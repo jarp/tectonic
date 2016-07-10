@@ -1,6 +1,6 @@
 App.game = App.cable.subscriptions.create('GameChannel', {
     connected: function(){
-      console.log('connected to game channel with');
+//      console.log('connected to game channel with');
     }
     ,
     received: function(data) {
@@ -8,7 +8,7 @@ App.game = App.cable.subscriptions.create('GameChannel', {
         MessageBox.set( this.renderMessage(data.message), 'html');
       }
 
-      console.log("cabel data is ", data);
+  //    console.log("cabel data is ", data);
 
       cb = $("div[plate_code='"+ data.state + "']")
 
@@ -28,12 +28,12 @@ App.game = App.cable.subscriptions.create('GameChannel', {
           , Tectonic.getTimer());
         }
       else if ( data.action == 'lock') {
-        console.log("disable: ", cb);
+    //    console.log("disable: ", cb);
         Plate.disable(cb);
       }
 
       else if ( data.action == 'join') {
-        console.log("join: ", data);
+      //  console.log("join: ", data);
         Table.join(data.player);
       }
     },
