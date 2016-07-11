@@ -1,0 +1,14 @@
+class NotifierMailer < ApplicationMailer
+
+  # Subject can be set in your I18n file at config/locales/en.yml
+  # with the following lookup:
+  #
+  #   en.notifier_mailer.invite.subject
+  #
+  def invite(player, invite)
+    @token = invite
+    @player = player
+
+    mail to: @player.email
+  end
+end

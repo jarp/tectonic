@@ -6,17 +6,17 @@ class InviteController < ActivePlayerController
     @game = @active_player.games.find(params[:invite][:game_id])
     @player = Player.where(email: params[:invite][:email]).first_or_create
     @game_player = GameService.add_player(@game, @player)
+    puts ">>> gp is #{@game_player.inspect}"
     send_invite
-
-    respond_to do |format|
-      if @game_player
-        format.html { redirect_to @game, notice: 'Invitation was successfully created.' }
+respond_to do |format|
+    if @game_player
+        format.html { redirect_to @game_player, notice: 'Invitation was successfully created.' }
         format.json { render :show, status: :created, location: @game_player }
-      else
-        format.html { render :new }
-        format.json { render json: @game_player.errors, status: :unprocessable_entity }
-      end
+    else
+      format.html { render :new }
+      format.json { render json: @game_player.errors, status: :unprocessable_entity }
     end
+end
   end
 
   def accept

@@ -13,6 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+
+//= require invite
+
 //= require tectonic
 //= require avatars
 //= require table

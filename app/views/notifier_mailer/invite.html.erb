@@ -1,0 +1,11 @@
+<h1>You have been invited!</h1>
+
+<p>You have been invited to play the best license plate game ever. To accept, click on the link blow.</p>
+<p>You will be asked to log in with a google account.</p>
+
+<p><%= link_to "https://plates.arpcentral.net/invite/#{@token}", "https://plates.arpcentral.net/invite/#{@token}" %></p>
+
+<p>If, for whatever reason, you have trouble, your invite code is <%= @token %>. You can accept the invitation by also going to
+  <%= link_to "https://plates.arpcentral.net/invite", "https://plates.arpcentral.net/invite" %> and submit it there.</p>
+
+<p>Thank you and good luck.</p>

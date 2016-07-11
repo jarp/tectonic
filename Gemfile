@@ -21,7 +21,7 @@ gem 'coffee-rails'
 
 gem 'redis'
 gem 'aws-ses'
-gem 'exception_notification'
+# gem 'exception_notification'
 
 gem 'google_maps_service'
 # Use jquery as the JavaScript library
