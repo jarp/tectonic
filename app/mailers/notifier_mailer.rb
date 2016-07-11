@@ -9,6 +9,6 @@ class NotifierMailer < ApplicationMailer
     @token = invite
     @player = player
 
-    mail to: @player.email
+    mail from: 'plates@arpcentral',  to: @player.email, subject: "You've been invited to play the best license plate game ever"
   end
 end
