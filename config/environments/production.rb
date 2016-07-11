@@ -3,12 +3,12 @@ Rails.application.configure do
 
 
   config.action_mailer.delivery_method = :ses
-  config.middleware.use ExceptionNotification::Rack,
-    :email => {
-      :email_prefix => "[UNACCEPTABLE!!!!] ",
-      :sender_address => %{"Earl of Lemongrab" < plates@arpcentral.net > },
-      :exception_recipients => %w{developer@arpcentral.com}
-    }
+  # config.middleware.use ExceptionNotification::Rack,
+  #   :email => {
+  #     :email_prefix => "[UNACCEPTABLE!!!!] ",
+  #     :sender_address => %{"Earl of Lemongrab" < plates@arpcentral.net > },
+  #     :exception_recipients => %w{developer@arpcentral.com}
+  #   }
   config.force_ssl = true
   # Code is not reloaded between requests.
   config.cache_classes = true
