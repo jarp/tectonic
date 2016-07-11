@@ -21,7 +21,7 @@ gem 'coffee-rails'
 
 gem 'redis'
 gem 'aws-ses'
-# gem 'exception_notification'
+gem 'exception_notification'
 
 gem 'google_maps_service'
 # Use jquery as the JavaScript library
@@ -29,9 +29,9 @@ gem 'google_maps_service'
 gem 'foundation-rails', '~> 5.5.2.1'
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+# gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder'\
+gem 'jbuilder'
 # bundle exec rake doc:rails generates the API under doc/api.
 
 # gem 'exception_notification'

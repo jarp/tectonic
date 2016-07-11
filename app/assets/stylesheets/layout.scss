@@ -9,10 +9,13 @@ header {
   background-color: #293e4f;
   text-align: center;
 }
-
-nav.top-bar{
+#top-bar-container{
   margin-bottom: 20px;
-      box-shadow: #000 0px 2px 60px;
+  box-shadow: #000 0px 2px 60px;
+  nav.top-bar{
+
+  }
+
 }
 
 main{

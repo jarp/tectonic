@@ -75,6 +75,9 @@ GEM
     diff-lcs (1.2.5)
     docile (1.1.5)
     erubis (2.7.0)
+    exception_notification (4.1.1)
+      actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
     execjs (2.7.0)
     factory_girl (4.7.0)
       activesupport (>= 3.0.0)
@@ -239,9 +242,6 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.5)
-    turbolinks (5.0.0)
-      turbolinks-source (~> 5)
-    turbolinks-source (5.0.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (3.0.0)
@@ -271,6 +271,7 @@ DEPENDENCIES
   byebug
   capybara
   coffee-rails
+  exception_notification
   factory_girl_rails (~> 4.0)
   faker
   font-awesome-rails
@@ -293,7 +294,6 @@ DEPENDENCIES
   sass-rails
   simplecov
   spring
-  turbolinks
   uglifier
   unicorn
   web-console (~> 2.0)

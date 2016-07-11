@@ -5,16 +5,13 @@
     <% @games.each do |game| %>
       <div class="game-list-item">
         <div class="row">
-          <div class="small-6 columns">
+          <div class="small-12 medium-4 columns">
             <h2><%= game.title %></h2>
           </div>
-          <div class="small-6 columns">
-            <%# game.game_type %>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="small-12 columns text-right">
+
+
+          <div class="small-12 medium-8 columns medium-text-right small-text-center">
             <ul class="button-group radius">
               <li><%= link_to 'Play', play_game_path(game), class: 'button success tiny' %></li>
               <% puts "#{@active_player} == #{game.owner}" %>
@@ -30,7 +27,7 @@
     <% end %>
 
 <div class="row">
-  <div class="small-6 columns">
-    <%= link_to 'New Game', new_game_path, class: 'button' %>
+  <div class="small-12 medium-offset-5 medium-2 columns">
+    <%= link_to 'New Game', new_game_path, class: 'expand button' %>
   </div>
 </div>

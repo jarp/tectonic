@@ -10,7 +10,7 @@ class InviteController < ActivePlayerController
 
     respond_to do |format|
       if @game_player
-        format.html { redirect_to @game, notice: 'Invitatio was successfully created.' }
+        format.html { redirect_to @game, notice: 'Invitation was successfully created.' }
         format.json { render :show, status: :created, location: @game_player }
       else
         format.html { render :new }
@@ -28,7 +28,7 @@ class InviteController < ActivePlayerController
   private
 
   def send_invite
-    # TODO send envite via email
+    NotifierMailer.invite(@game_player.player, @game_player.token).deliver_now
     puts "should send invite to #{params[:email]} with invite code of #{@game_player.token}"
   end
 

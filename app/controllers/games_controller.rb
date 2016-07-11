@@ -5,7 +5,6 @@ class GamesController < ActivePlayerController
   # GET /games.json
   def index
     @games = @active_player.games
-    puts @games.first.owner
   end
 
   # GET /games/1
@@ -26,6 +25,7 @@ class GamesController < ActivePlayerController
   # POST /games.json
   def create
     @game = Game.new(game_params)
+    @game.owner = @active_player
 
     respond_to do |format|
       if @game.save
