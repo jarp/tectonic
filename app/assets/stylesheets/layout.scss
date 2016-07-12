@@ -35,13 +35,14 @@ h1.site-header-text {
   border-radius: 6px;
   }
 
-  .completed-game-list-item {
-    font-size: .9em;
+  .sub-game-box {
+    background-color: #fbfbfb;
+    border: thin solid #efefef;
+    box-shadow: 2px 2px 9px #ccc;
+    margin: 0px 5px 5px 0px;
+    padding:5px
   }
 
-  .pending-game-list-item {
-    font-size: .9em;
-  }
 
 
   #header-plate {

@@ -13,31 +13,16 @@
     </div>
 
 
-        <% @games.each do |i| %>
-          <div class="game-list-item">
-            <div class="row">
-              <div class="small-12 medium-6 columns">
-                <p><%= i.game.title %></p>
-              </div>
-              <div class="small-12 medium-6 columns medium-text-right small-text-center">
-                <ul class="button-group radius">
-                  <li><%= link_to 'Play', play_game_path(i.game), class: 'button success tiny' %></li>
-                  
-                  <% if @active_player == i.game.owner %>
-                    <li><%= link_to 'Details', i.game, class: 'button  tiny' %></li>
-                    <li><%= link_to 'Complete', complete_game_path(i.game), class: 'button secondary tiny' %></li>
-                    <li><%= link_to 'Remove', i.game, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button warning tiny' %></li>
-                  <% end %>
-              </ul>
-              </div>
-            </div>
-          </div>
+        <% @games.each do |game| %>
+          <%= render partial: 'active_game', locals: {invite: game}  unless game.is_completed%>
         <% end %>
   </div>
 </div>
 
 <div class="row">
-  <div class="small-6 medium-6 columns">
+  <div class="small-12 medium-6 columns ">
+    <div class="sub-game-box">
+
     <h3>Pending Games</h3>
     <% @invitations.each do |i| %>
       <div class="pending-game-list-item">
@@ -51,12 +36,16 @@
         </div>
       </div>
     <% end %>
+    </div>
 
   </div>
 
-  <div class="small-6 medium-6 columns">
+  <div class="small-12 medium-6 columns ">
+    <div class="sub-game-box">
+
     <h3>Completed Games</h3>
     <% @completed_games.each do |game| %>
+
       <div class="completed-game-list-item">
         <div class="row">
           <div class="small-6 medium-6 columns">

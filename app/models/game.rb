@@ -12,6 +12,7 @@ class Game < ApplicationRecord
 
   scope :active,  -> { where(is_completed: false)}
   scope :completed, -> { where(is_completed: true).order(:completed_at)}
+
   def to_s
     "#{game_type} #{title}"
   end
