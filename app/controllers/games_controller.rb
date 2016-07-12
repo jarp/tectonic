@@ -4,7 +4,7 @@ class GamesController < ActivePlayerController
   # GET /games
   # GET /games.json
   def index
-    @games = @active_player.games.active
+    @games = @active_player.invitations.active
     @invitations = @active_player.invitations.pending
     @completed_games = @active_player.games.completed
   end

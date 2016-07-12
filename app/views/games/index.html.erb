@@ -13,20 +13,20 @@
     </div>
 
 
-        <% @games.each do |game| %>
+        <% @games.each do |i| %>
           <div class="game-list-item">
             <div class="row">
               <div class="small-12 medium-6 columns">
-                <p><%= game.title %></p>
+                <p><%= i.game.title %></p>
               </div>
               <div class="small-12 medium-6 columns medium-text-right small-text-center">
                 <ul class="button-group radius">
-                  <li><%= link_to 'Play', play_game_path(game), class: 'button success tiny' %></li>
-                  <% puts "#{@active_player} == #{game.owner}" %>
-                  <% if @active_player == game.owner %>
-                    <li><%= link_to 'Details', game, class: 'button  tiny' %></li>
-                    <li><%= link_to 'Complete', complete_game_path(game), class: 'button secondary tiny' %></li>
-                    <li><%= link_to 'Remove', game, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button warning tiny' %></li>
+                  <li><%= link_to 'Play', play_game_path(i.game), class: 'button success tiny' %></li>
+                  
+                  <% if @active_player == i.game.owner %>
+                    <li><%= link_to 'Details', i.game, class: 'button  tiny' %></li>
+                    <li><%= link_to 'Complete', complete_game_path(i.game), class: 'button secondary tiny' %></li>
+                    <li><%= link_to 'Remove', i.game, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button warning tiny' %></li>
                   <% end %>
               </ul>
               </div>
