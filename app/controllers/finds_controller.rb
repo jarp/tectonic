@@ -61,9 +61,9 @@ class FindsController < ActivePlayerController
     @plate = Plate.find_by_code(params[:code])
     @find.plate_id = @plate.id
     @find.current_coord = params[:current_location]
-    state_coords = get_target_coordinates(@plate.state)
+    state_coords = LocationService.lookup(@plate.state)
     @find.state_coord = "#{state_coords["lat"]}|#{state_coords["lng"]}"
-    distance=get_distance(params[:current_location],@plate.state)
+    distance=LocationService.distance(params[:current_location],@plate.state)
     @find.points=distance.gsub(',','').to_i / 100
 
     respond_to do |format|
@@ -138,28 +138,6 @@ class FindsController < ActivePlayerController
     # Never trust parameters from the scary internet, only allow the white list through.
     def find_params
       params.require(:find).permit(:plate_id)
-    end
-
-    def get_distance(origin, state)
-      endpoint = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=#{origin.gsub('|',',')}&destinations=State of #{state}&key=#{ENV['TECTONIC_API']}"
-      puts "endpoint is: #{endpoint}"
-      uri = URI(endpoint)
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE # You should use VERIFY_PEER in production
-      request = Net::HTTP::Get.new(uri.request_uri)
-      res = http.request(request)
-      puts "found distance matrix: #{JSON.parse(res.body)}"
-      return JSON.parse(res.body)["rows"][0]["elements"][0]["distance"]["text"]
-    end
-
-    def get_target_coordinates(state)
-      puts  "fetching target location from google"
-      uri = URI("http://maps.googleapis.com/maps/api/geocode/json?address=#{state}")
-      http = Net::HTTP.new(uri.host, uri.port)
-      request = Net::HTTP::Get.new(uri.request_uri)
-      res = http.request(request)
-      return JSON.parse(res.body)["results"][0]["geometry"]["location"]
     end
 
 end
