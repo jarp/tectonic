@@ -4,8 +4,9 @@ class GamePlayer < ApplicationRecord
   before_create :create_token
 
   scope :active, -> { where(accepted: true) }
+  scope :pending, -> { where(accepted: false)}  
   delegate :email, to: :player
-  
+
   def create_token
     self.token = SecureRandom.hex(4)
   end

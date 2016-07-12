@@ -1,15 +1,21 @@
 class GamesController < ActivePlayerController
-  before_action :set_game, only: [:show, :edit, :update, :destroy]
+  before_action :set_game, only: [:show, :edit, :complete, :results, :update, :destroy]
 
   # GET /games
   # GET /games.json
   def index
-    @games = @active_player.games
+    @games = @active_player.games.active
+    @invitations = @active_player.invitations.pending
+    @completed_games = @active_player.games.completed
   end
 
   # GET /games/1
   # GET /games/1.json
   def show
+  end
+
+  def results
+    @leaders = @leaders = Table.new(@game).leaders
   end
 
   # GET /games/new
@@ -54,6 +60,16 @@ class GamesController < ActivePlayerController
     end
   end
 
+
+def complete
+  if @game
+    @game.complete!
+    flash[:message] = 'Game was successfully completed'
+  else
+    flash[:message] = "You can't do that!"
+  end
+    redirect_to games_url
+end
   # DELETE /games/1
   # DELETE /games/1.json
   def destroy

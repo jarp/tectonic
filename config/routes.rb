@@ -34,7 +34,12 @@ Rails.application.routes.draw do
 
   resources :game_players
   resources :players
-  resources :games
+  resources :games do
+    member do
+      get 'complete' => 'games#complete', as: :complete
+      get 'results' => 'games#results', as: :results
+    end
+  end
   resources :plates
   resources :game_types
 

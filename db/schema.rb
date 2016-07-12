@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160709022843) do
+ActiveRecord::Schema.define(version: 20160712175535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,11 +50,13 @@ ActiveRecord::Schema.define(version: 20160709022843) do
   create_table "games", force: :cascade do |t|
     t.string   "title"
     t.integer  "game_type_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.string   "token"
     t.boolean  "use_images"
     t.integer  "player_id"
+    t.boolean  "is_completed", default: false
+    t.datetime "completed_at"
     t.index ["game_type_id"], name: "index_games_on_game_type_id", using: :btree
     t.index ["player_id"], name: "index_games_on_player_id", using: :btree
   end

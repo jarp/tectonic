@@ -111,14 +111,8 @@ $(document).ready(function(){
 </script>
 
 <div class="row">
-  <div class="small-12 columns text-right">
-    <%= link_to "Back to Game", current_game_path, class: 'button secondary small' %>
-  </div>
-</div>
-
-<div class="row">
   <div class="small-12 medium-8 columns right">
-    <div id="map" markers="<% @current_game.finds.each do | f | %>
+    <div id="map" markers="<% @game.finds.each do | f | %>
       <%= f.id %>:<%=raw f.player %>:<%= f.plate.state %>:<%= f.current_coord %>;<% end %>">
     </div>
   </div>

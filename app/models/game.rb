@@ -10,6 +10,8 @@ class Game < ApplicationRecord
 
   before_create :create_token
 
+  scope :active,  -> { where(is_completed: false)}
+  scope :completed, -> { where(is_completed: true).order(:completed_at)}
   def to_s
     "#{game_type} #{title}"
   end
@@ -20,5 +22,10 @@ class Game < ApplicationRecord
 
   def active_players
     game_players.active
+  end
+
+  def complete!
+    self.is_completed = true
+    save
   end
 end

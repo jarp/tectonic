@@ -1,6 +1,6 @@
 App.game = App.cable.subscriptions.create('GameChannel', {
     connected: function(){
-//      console.log('connected to game channel with');
+    console.log('connected to game channel with', this);
     }
     ,
     received: function(data) {
@@ -8,7 +8,7 @@ App.game = App.cable.subscriptions.create('GameChannel', {
         MessageBox.set( this.renderMessage(data.message), 'html');
       }
 
-  //    console.log("cabel data is ", data);
+      console.log("cabel data is ", data);
 
       cb = $("div[plate_code='"+ data.state + "']")
 

@@ -4,10 +4,10 @@ class PlayController < ActivePlayerController
 
   def index
     puts "play.index"
-    @game = Game.find(cookies[:current_game_id])
-    @players = @game.players
+    @current_game = Game.find(cookies[:current_game_id])
+    @players = @current_game.players
     @plates = Plate.all
-    @leaders = Table.new(@game).leaders
+    @leaders = Table.new(@current_game).leaders
 
     ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
     player: @active_player,
@@ -15,8 +15,8 @@ class PlayController < ActivePlayerController
   end
 
   def table
-    @game = Game.find(cookies[:current_game_id])
-    @leaders = Table.new(@game).leaders
+    @current_game = Game.find(cookies[:current_game_id])
+    @leaders = Table.new(@current_game).leaders
   end
 
   def map

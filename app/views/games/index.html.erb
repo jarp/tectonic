@@ -1,23 +1,71 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="small-12 columns">
 
-<h1>Games</h1>
 
-    <% @games.each do |game| %>
-      <div class="game-list-item">
-        <div class="row">
-          <div class="small-12 medium-4 columns">
-            <h2><%= game.title %></h2>
+
+    <div class="row">
+      <div class="small-8 columns">
+        <h2>Games</h2>
+      </div>
+      <div class="small-4 text-right columns">
+        <%= link_to 'New Game', new_game_path, class: 'expand small button' %>
+      </div>
+    </div>
+
+
+        <% @games.each do |game| %>
+          <div class="game-list-item">
+            <div class="row">
+              <div class="small-12 medium-6 columns">
+                <p><%= game.title %></p>
+              </div>
+              <div class="small-12 medium-6 columns medium-text-right small-text-center">
+                <ul class="button-group radius">
+                  <li><%= link_to 'Play', play_game_path(game), class: 'button success tiny' %></li>
+                  <% puts "#{@active_player} == #{game.owner}" %>
+                  <% if @active_player == game.owner %>
+                    <li><%= link_to 'Details', game, class: 'button  tiny' %></li>
+                    <li><%= link_to 'Complete', complete_game_path(game), class: 'button secondary tiny' %></li>
+                    <li><%= link_to 'Remove', game, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button warning tiny' %></li>
+                  <% end %>
+              </ul>
+              </div>
+            </div>
           </div>
+        <% end %>
+  </div>
+</div>
 
+<div class="row">
+  <div class="small-6 medium-6 columns">
+    <h3>Pending Games</h3>
+    <% @invitations.each do |i| %>
+      <div class="pending-game-list-item">
+        <div class="row">
+          <div class="small-6 medium-6 columns">
+            <p><%= i.game.title %></p>
+          </div>
+          <div class="small-6 medium-6 columns medium-text-right small-text-center">
+                <%= link_to 'Accept', accept_invite_path(i.token), class: 'button  tiny' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
 
+  </div>
 
-          <div class="small-12 medium-8 columns medium-text-right small-text-center">
+  <div class="small-6 medium-6 columns">
+    <h3>Completed Games</h3>
+    <% @completed_games.each do |game| %>
+      <div class="completed-game-list-item">
+        <div class="row">
+          <div class="small-6 medium-6 columns">
+            <p><%= game.title %></p>
+          </div>
+          <div class="small-6 medium-6 columns medium-text-right small-text-center">
             <ul class="button-group radius">
-              <li><%= link_to 'Play', play_game_path(game), class: 'button success tiny' %></li>
-              <% puts "#{@active_player} == #{game.owner}" %>
-              <% if @active_player == game.owner %>
                 <li><%= link_to 'Details', game, class: 'button  tiny' %></li>
-                <li><%= link_to 'Complete', edit_game_path(game), class: 'button secondary tiny' %></li>
+              <% if @active_player == game.owner %>
                 <li><%= link_to 'Remove', game, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button warning tiny' %></li>
               <% end %>
           </ul>
@@ -26,8 +74,5 @@
       </div>
     <% end %>
 
-<div class="row">
-  <div class="small-12 medium-offset-5 medium-2 columns">
-    <%= link_to 'New Game', new_game_path, class: 'expand button' %>
   </div>
-</div>
+  </div>

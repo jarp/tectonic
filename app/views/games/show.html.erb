@@ -20,7 +20,10 @@
 </div>
 
 <div class="row">
-  <div class="small-12 medium-offset-5 medium-2 columns">
-        <%= link_to 'Play', play_game_path(@game), class: 'expand button success' %>
+  <div class="small-6 medium-offset-2 medium-3 columns">
+    <%= link_to 'Play', play_game_path(@game), class: 'expand button success' %>
+  </div>
+  <div class="small-6 medium-3 columns end ">
+    <%= link_to 'Update Settings', edit_game_path(@game), class: 'expand button secondary' %>
   </div>
 </div>
