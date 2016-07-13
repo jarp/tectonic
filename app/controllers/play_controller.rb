@@ -1,12 +1,13 @@
 class PlayController < ActivePlayerController
-
+  layout 'play'
   before_action :get_active_game, except: [:set]
 
   def index
-    puts "play.index"
-    @current_game = Game.find(cookies[:current_game_id])
+    @current_game = Game.includes(:players, :finds).find(cookies[:current_game_id])
+    @current_plates = @current_game.plates
     @players = @current_game.players
     @plates = Plate.all
+    @finds = @current_game.finds
     @leaders = Table.new(@current_game).leaders
 
     ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",

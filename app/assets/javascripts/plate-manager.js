@@ -1,5 +1,6 @@
 Plate = {
   disable: function(cb){
+    console.log("Disable Plate", cb);
     cb.addClass('processing');
     Avatar.preload(cb);
   },

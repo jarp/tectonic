@@ -16,14 +16,7 @@
 
 //= require invite
 
-//= require tectonic
-//= require avatars
-//= require table
 //= require message_box
-//= require plate-manager
-//= require xs-play
-//= require cable
-//= require_tree ./channels
 
 $(document).on('ready page:load', function () {
   $(function(){ $(document).foundation(); });

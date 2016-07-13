@@ -2,8 +2,8 @@ Avatar = {
   load: function(plates) {
     plates.each(function(){
       var target = $(this).find('span.owner');
-      var code = $(this).attr('plate_code');
-      Avatar.get(code,target);
+      var id = $(this).attr('plate_id');
+      Avatar.get(id,target);
     })
   },
 
@@ -17,10 +17,10 @@ remove: function(plates){
   })
 },
 
-get: function(code, target){
+get: function(id, target){
   var jqxhr = $.ajax({
       type: "get",
-      url: '/finds/avatar/'+ code
+      url: '/finds/avatar/'+ id
       })
       .success(function(response){
         target.css('background-image', 'url('+ response + ')')

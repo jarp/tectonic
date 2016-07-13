@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   resources :finds do
     collection do
       post 'clear' => 'finds#clear', as: :clear
-      get 'avatar/:code' => 'finds#avatar', as: :avatar
+      get 'avatar/:plate_id' => 'finds#avatar', as: :avatar
 
     end
   end
