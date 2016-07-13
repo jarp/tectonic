@@ -11,7 +11,7 @@ class InviteController < ActivePlayerController
 respond_to do |format|
     if @game_player
         format.html { redirect_to @game_player, notice: 'Invitation was successfully created.' }
-        format.json { render :show, status: :created, location: @game_player }
+        format.json { render json: @game_player, status: :created }
     else
       format.html { render :new }
       format.json { render json: @game_player.errors, status: :unprocessable_entity }

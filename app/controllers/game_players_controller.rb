@@ -25,11 +25,13 @@ class GamePlayersController < ActivePlayerController
   # POST /game_players.json
   def create
     @game_player = GamePlayer.new(game_player_params)
-
+    system 'clear'
+    puts "create invite iwth #{params}"
     respond_to do |format|
       if @game_player.save
-        format.html { redirect_to @game_player, notice: 'Game player was successfully created.' }
-        format.json { render :show, status: :created, location: @game_player }
+        format.html {puts "proccessed as html";  redirect_to @game_player, notice: 'Game player was successfully created.' }
+        format.json {puts "proccessed as json"; render json: @game_player, status: :created }
+        format.js {puts "proccessed as json"; render json: @game_player, status: :created }
       else
         format.html { render :new }
         format.json { render json: @game_player.errors, status: :unprocessable_entity }

@@ -20,7 +20,7 @@ class GamesController < ActivePlayerController
 
   # GET /games/new
   def new
-    @game = Game.new
+    @game = Game.new(use_images: true)
   end
 
   # GET /games/1/edit
@@ -32,11 +32,18 @@ class GamesController < ActivePlayerController
   def create
     @game = Game.new(game_params)
     @game.owner = @active_player
+    @game.game_type_id = GameType.last.id
+
+
 
     respond_to do |format|
       if @game.save
+
+        create_bonuses(game_params[:bonus_count]) if game_params[:bonus_count].to_i >  0
+
         gp = GameService.add_player(@game, @active_player, true)
         gp.update(accepted: true)
+
         format.html { redirect_to @game, notice: 'Game was successfully created.' }
         format.json { render :show, status: :created, location: @game }
       else
@@ -51,6 +58,10 @@ class GamesController < ActivePlayerController
   def update
     respond_to do |format|
       if @game.update(game_params)
+        @game.bonuses = []
+
+        create_bonuses(game_params[:bonus_count]) if game_params[:bonus_count].to_i > 0
+
         format.html { redirect_to @game, notice: 'Game was successfully updated.' }
         format.json { render :show, status: :ok, location: @game }
       else
@@ -81,6 +92,10 @@ end
   end
 
   private
+
+    def create_bonuses(count)
+      Plate.all.sample(count.to_i).each { | p | @game.bonuses.create(plate_id: p.id) }
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_game
       @game = @active_player.games.find(params[:id])
@@ -88,6 +103,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:title, :game_type_id, :use_images)
+      params.require(:game).permit(:title, :game_type_id, :use_images, :bonus_count)
     end
 end

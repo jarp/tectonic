@@ -35,47 +35,56 @@ class FindsController < ActivePlayerController
   # POST /finds.json
 
   def lock
-    # raise 'kanye says no'
-    puts ">>>>> Lock request has come in"
     @plate = Plate.find_by_code(params[:code])
-    puts ">>>>>> found plate #{@plate}"
-    puts ">>>>>> sending message to actioncable on channel 'game_channel_#{cookies["current_game_id"]}'"
     ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
-    state: params[:code],
-    action: "lock"
+      state: params[:code],
+      action: "lock",
+      player: @active_player
     render plain: "true"
   end
 
   def unlock
     ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
-    state: params[:code],
-    action: "unlock"
+      state: params[:code],
+      action: "unlock"
     render text: "true"
   end
 
   def create
-    puts ">>>>>> creating find with #{params}"
     @find = Find.new()
-    @find.game_id = cookies["current_game_id"]
-    @find.player_id = session[:player_id]
+      @find.game_id = cookies["current_game_id"]
+      @find.player_id = session[:player_id]
     @plate = Plate.find_by_code(params[:code])
-    @find.plate_id = @plate.id
-    @find.current_coord = params[:current_location]
-    state_coords = LocationService.lookup(@plate.state)
-    @find.state_coord = "#{state_coords["lat"]}|#{state_coords["lng"]}"
-    distance=LocationService.distance(params[:current_location],@plate.state)
-    @find.points=distance.gsub(',','').to_i / 100
+
+    if @game.bonuses.map(&:plate_id).include?(@plate.id)
+      bonus = true
+      bonus_multiplier = 2
+    else
+      bonus = false
+      bonus_multiplier = 1
+    end
+
+      @find.plate_id = @plate.id
+      @find.current_coord = params[:current_location]
+
+    distance=LocationService.distance(params[:current_location],@plate.geocode)
+      @find.points= ( distance.gsub(',','').to_i / 100 ) * bonus_multiplier
+    if bonus
+      message = "BONUS points!!!  #{@active_player.first_name} found the plate for  #{@plate.state} for #{@find.points} points."
+    else
+      message = "#{@active_player.first_name} found the plate for  #{@plate.state} for #{@find.points} points."
+    end
 
     respond_to do |format|
       if @find.save
-          puts ">>>>>>>> svaed find no to the cable"
           points = GameService.points(@game, @active_player)
           ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
-            message: "#{@active_player.first_name} found the plate for  #{@plate.state} for #{@find.points} points.",
+            message: message,
             state: params[:code],
             player_name: @active_player.first_name,
             player: @active_player,
             points: points,
+            bonus: bonus,
             action: "find"
         format.html { redirect_to @find, notice: 'Find was successfully created.' }
         format.json { render :show, status: :created, location: @find }

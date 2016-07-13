@@ -1,6 +1,6 @@
 App.game = App.cable.subscriptions.create('GameChannel', {
     connected: function(){
-    console.log('connected to game channel with', this);
+    //console.log('connected to game channel with', this);
     }
     ,
     received: function(data) {
@@ -30,11 +30,12 @@ App.game = App.cable.subscriptions.create('GameChannel', {
       else if ( data.action == 'lock') {
     //    console.log("disable: ", cb);
         Plate.disable(cb);
+        Table.join(data.player)
       }
 
       else if ( data.action == 'join') {
       //  console.log("join: ", data);
-        Table.join(data.player);
+        //Table.join(data.player);
       }
     },
 

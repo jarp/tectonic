@@ -12,6 +12,9 @@
       </div>
     </div>
 
+        <% if @games.empty? %>
+          <p>You have no active games. <%= link_to 'Start One', new_game_path %> now.</p>
+        <% end %>
 
         <% @games.each do |game| %>
           <%= render partial: 'active_game', locals: {invite: game}  unless game.is_completed%>
@@ -24,6 +27,11 @@
     <div class="sub-game-box">
 
     <h3>Pending Games</h3>
+
+    <% if @invitations.empty? %>
+      <p>You have no invitations currently.</p>
+    <% end %>
+
     <% @invitations.each do |i| %>
       <div class="pending-game-list-item">
         <div class="row">
@@ -44,6 +52,11 @@
     <div class="sub-game-box">
 
     <h3>Completed Games</h3>
+
+    <% if @completed_games.empty? %>
+      <p>You have no completed games.</p>
+    <% end %>
+
     <% @completed_games.each do |game| %>
 
       <div class="completed-game-list-item">

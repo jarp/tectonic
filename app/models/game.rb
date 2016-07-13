@@ -1,5 +1,6 @@
 class Game < ApplicationRecord
   belongs_to :game_type
+
   has_many :game_players, dependent: :destroy
   has_many :players, through: :game_players
 
@@ -7,6 +8,7 @@ class Game < ApplicationRecord
   has_many :plates, through: :finds
 
   belongs_to :owner, class_name: "Player", foreign_key: "player_id"
+  has_many :bonuses, dependent: :destroy, class_name: 'Bonus'
 
   before_create :create_token
 

@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712175535) do
+ActiveRecord::Schema.define(version: 20160712223214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bonus", force: :cascade do |t|
+    t.integer  "game_id"
+    t.integer  "plate_id"
+    t.integer  "points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_bonus_on_game_id", using: :btree
+    t.index ["plate_id"], name: "index_bonus_on_plate_id", using: :btree
+  end
 
   create_table "finds", force: :cascade do |t|
     t.integer  "game_id"
@@ -32,7 +42,7 @@ ActiveRecord::Schema.define(version: 20160712175535) do
   create_table "game_players", force: :cascade do |t|
     t.integer  "game_id"
     t.integer  "player_id"
-    t.boolean  "accepted"
+    t.boolean  "accepted",   default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.boolean  "originator", default: false
@@ -57,6 +67,7 @@ ActiveRecord::Schema.define(version: 20160712175535) do
     t.integer  "player_id"
     t.boolean  "is_completed", default: false
     t.datetime "completed_at"
+    t.integer  "bonus_count"
     t.index ["game_type_id"], name: "index_games_on_game_type_id", using: :btree
     t.index ["player_id"], name: "index_games_on_player_id", using: :btree
   end
@@ -79,6 +90,8 @@ ActiveRecord::Schema.define(version: 20160712175535) do
     t.string   "image"
   end
 
+  add_foreign_key "bonus", "games"
+  add_foreign_key "bonus", "plates"
   add_foreign_key "finds", "games"
   add_foreign_key "finds", "plates"
   add_foreign_key "finds", "players"

@@ -22,24 +22,36 @@
 
   </div>
 
-
+<!--
   <div class="row">
     <div class="small-12 medium-2 medium-text-right columns">
     <%= f.label :game_type_id %>
 
     </div>
     <div class="small-12 medium-10 columns">
-    <%= f.collection_select :game_type_id, GameType.all, :id, :name, prompt: "Please select the type of game" %>
-
+      <%= f.collection_select :game_type_id, GameType.all, :id, :name, prompt: "Please select the type of game" %>
     </div>
-
   </div>
+-->
+
 
   <div class="row">
-      <div class="small-1 medium-1  medium-offset-2 columns">
-        <%= f.check_box :use_images %>
-      </div>
-      <div class="small-11  medium-9 columns">
+    <div class="small-12 medium-2 medium-text-right columns">
+    <%= f.label :bonus_count %>
+
+    </div>
+    <div class="small-4 medium-2 columns end">
+      <%= f.select :bonus_count, options_for_select(0..10) %>
+    </div>
+  </div>
+
+
+
+  <div class="row">
+      <div class="small-12  medium-10 medium-offset-2 columns end">
+
+        <%= f.check_box :use_images, class: 'inline' %>
+
         <%= f.label :use_images, "Use license plate images instead of boring blocks and stuff" %>
     </div>
   </div>
