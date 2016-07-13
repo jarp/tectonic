@@ -20,7 +20,7 @@ class GamesController < ActivePlayerController
 
   # GET /games/new
   def new
-    @game = Game.new(use_images: true)
+    @game = Game.new(use_images: true, bonus_count: 0)
   end
 
   # GET /games/1/edit
