@@ -26,7 +26,7 @@ class FindsController < ActivePlayerController
   end
 
   def avatar
-    @find = Find.find_by(game_id: cookies["current_game_id"], plate_id: params[:plate_id] )
+    @find = Find.includes(:player).find_by(game_id: cookies["current_game_id"], plate_id: params[:plate_id] )
     render plain: @find.nil? ? "" : @find.player.image
   end
 
