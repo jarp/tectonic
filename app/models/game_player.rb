@@ -4,7 +4,7 @@ class GamePlayer < ApplicationRecord
   before_create :create_token
 
   scope :active, -> { where(accepted: true) }
-  scope :pending, -> { where( 'accepted <> true')}
+  scope :pending, -> { where(accepted: false) }
 
   delegate :email, :first_name, :last_name, to: :player
   delegate :is_completed, :title,  to: :game

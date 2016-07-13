@@ -6,7 +6,7 @@ class InviteController < ActivePlayerController
     @game = @active_player.games.find(params[:invite][:game_id])
     @player = Player.where(email: params[:invite][:email]).first_or_create
     @game_player = GameService.add_player(@game, @player)
-    @game_player.accepted = false
+    @game_player.update(accepted: false)
 
     if @game_player.new_record?
       send_invite
