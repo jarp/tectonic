@@ -1,5 +1,36 @@
-<h2>The Worlds Best License Plate Game</h2>
+<div class="row">
+  <div class="small-12 columns">
+    <h2>The Worlds Best License Plate Game</h2>
+    <p>Battle others, friend and foe, on your trip to where ever.</p>
 
-<p>Donec sodales sagittis magna. In auctor lobortis lacus. Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus. Curabitur at lacus ac velit ornare lobortis.</p>
+    <h3>Setup</h3>
+    <ul>
+      <li>Create a new game</li>
+      <li>Choose the number of plates  (up to 10) to have a bonus value. Random plates will be marked and will be worth double points </li>
+      <li>Invite your travel mates (or anyone for that matter) to join your game using their gmail account</li>
+      <li>Click Play and start the competition</li>
+    </ul>
 
-<%= link_to "Create a Game", new_game_path %>
+    <h3>Playing</h3>
+    <ul>
+      <li>Once you see a plate, it's a race to click it. Whoever gets it first gets the points</li>
+      <li>Points are based on how far away the plate's state is from your current location. the further away the more points.</li>
+      <li>Once a plate is found, no one else can claim it.</li>
+      <li>Depending ont he setup, some plates may have a bonus double value. No one will know which plates those are.</li>
+      <li>When done with your trip the person with the most points wins.</li>
+    </ul>
+
+    <h3>After the Game</h3>
+    <ul>
+      <li>Once the game is over (and actually at any point), you can see the current points and what plates each player has found.</li>
+      <li>You can also see a map of your trip with pins for every plate found. The pin will show you where the plate was found. Click on the pin and see what plate and who found it.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-12 medium-4 medium-offset-4 columns end ">
+    <%= link_to "Create a Game", new_game_path, class: 'button large success expand' %>
+
+  </div>
+</div>
