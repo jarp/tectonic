@@ -17,13 +17,13 @@ header {
   }
 }
 
-.top-bar-section li:not(.has-form) a:not(.button) {
+.top-bar-section ul li {
     padding: 0 0.5375rem 0 0.5375rem;
     font-size: .95em;
 }
 
-.top-bar-section .dropdown li:not(.has-form):not(.active) > a:not(.button) {
-    font-size: 1.0em;
+.top-bar-section .dropdown li > a:not(.button) {
+    font-size: 1em;
 }
 
 .top-bar .name h1 {
