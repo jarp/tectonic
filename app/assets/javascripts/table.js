@@ -15,11 +15,16 @@ Table = {
         console.log('Player needs to be added');
         var rankings = $("#rankings-container");
 
-        html = '<div class="row collapse ranking" player_id="' + player.id + '">'
-            + '<div class="small-10 columns player-name">'
-            + '<img class="icon" width="64" src="' + player.image +'">'
-            + player.first_name
-            + '</div> <div class="small-2 columns player-points" player="' + player.first_name + ' ' + player.last_name + '">0</div> </div>'
+        html = '<li><div class="row collapse ranking" player_id="' + player.id + '">'
+          + '<div class="small-6 medium-4 columns player-image">'
+          + '<img class="icon" width="64" src="' + player.image +'">'
+          + '</div>'
+          + '<div class="small-6 columns medium-2 player-points right medium-text-right" player="' + player.first_name + ' ' + player.last_name + '">0</div>'
+          + '<div class="small-12 medium-6 columns player-name hide-for-small-only" player="' + player.first_name + ' ' + player.last_name + '">'
+          + player.first_name
+          + '</div>'
+          + '</div></li>'
+
             rankings.append(html);
       }
   },
@@ -82,7 +87,7 @@ Table = {
     rankings.html("");
 
     for(var i=0, len=store.length; i<len; i++){
-        rankings.append('<div class="row collapse ranking" player_id="' + store[i][1] + '">' + store[i][2] + '</div>');
+        rankings.append('<li><div class="row collapse ranking" player_id="' + store[i][1] + '">' + store[i][2] + '</div></li>');
     }
     store = null;
   }

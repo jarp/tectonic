@@ -1,67 +1,6 @@
-#play {
-
-  li.plate-card {
-    text-align: center;
-
-    span.owner {
-      width: 36px;
-      height: 36px;
-      
-      display: block;
-      margin-left: -24px;
-      margin-top: -24px;
-      border-radius: 12px;
-      display:none;
-      border: thin solid #000;
-
-    }
-    .plate {
-      padding: 16px;
-      border-radius: 6px;
-    }
-
-    .plate.basic {
-      background-color: #efefef;
-      border: thin solid #000066;
-      min-height: 65px;
-    }
-
-    .plate.with-image {
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-color: #fff;
-      width: 200px;
-      height: 100px;
-    }
-
-    .plate.processing {
-      border: 2px solid #cc0000
-    }
-
-    input.control-toggle {
-      font-size: 2em;
-      float: right;
-    }
-  }
-}
-
 
 .visibility-faded { opacity: .3 }
 
-#players {
-
-    // min-height: 600px;
-    // background-color: #f1f1f1;
-    padding: 6px;
-
-  .ranking{
-    border-bottom: thin solid #293e4f;
-    margin-bottom: 10px;
-
-    .icon{ width:64px; padding:4px; border-radius:8px }
-    .player-points { font-weight:bold; font-size: 1.6em; margin-top:10px }
-  }
-}
 
 #map{
   width:100%;

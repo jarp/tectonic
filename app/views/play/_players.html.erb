@@ -1,17 +1,14 @@
 
   <div id="players" class="small-12 medium-3 large-4 columns">
-
     <h2>Players</h2>
-    <div id="rankings-container">
+    <div>
+      <ul  id="rankings-container" class="small-block-grid-4 medium-block-grid-1">
       <% @leaders.each do | leader | %>
-      <div class="row collapse ranking" player_id="<%= leader[:player].id %>">
-        <div class="small-10 columns player-name">
-          <img class="icon" width="64" src='<%= image_path(leader[:player].image) %>'</img>
-          <%= leader[:player] %>
-        </div>
-        <div class="small-2 columns player-points" player="<%= leader[:player] %>"><%= leader[:total_points] %></div>
-      </div>
+      <li>
+        <%= render partial: 'player', locals: {player: leader[:player], points: leader[:total_points]} %>
+      </li>
       <% end %>
+      </ul>
     </div>
     </ul>
 </div>

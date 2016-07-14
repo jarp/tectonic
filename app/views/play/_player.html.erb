@@ -1,0 +1,12 @@
+
+<div class="row collapse ranking" player_id="<%= player.id %>">
+  <div class="small-6 medium-4 columns player-image small-text-center">
+    <img class="icon" width="64" src='<%= image_path(player.image) %>'</img>
+  </div>
+  <div class="small-6 columns medium-2 player-points right medium-text-right small-text-center" player="<%= player %>">
+    <%= points %>
+  </div>
+  <div class="small-12 medium-6 columns player-name hide-for-small-only" player="<%= player %>">
+    <%= player.first_name %>
+  </div>
+</div>

@@ -3,9 +3,10 @@
 
 <% if @current_game %>
   <li class="has-dropdown">
-      <a>Current Games</a>
+      <a>Current Game</a>
       <ul class="dropdown">
         <li><a href="/play">Play</a></li>
+        <li><a href="/games/<%= cookies[:current_game_id] %>">Invite Players</a></li>
         <li><a href="/play/table">Map and Table</a></li>
         <li><a href="/games/<%= @current_game.id %>/complete">Complete Game</a></li>
       </ul>

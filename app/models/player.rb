@@ -1,12 +1,12 @@
 class Player < ApplicationRecord
-  has_many :game_players
+  has_many :game_players, dependent: :destroy
   has_many :games, through: :game_players
   has_many :owned_games, class_name: "Game"
-  has_many :finds
+  has_many :finds, dependent: :destroy
 
-  has_many :invitations, class_name: 'GamePlayer', foreign_key: 'player_id'
+  has_many :invitations, class_name: 'GamePlayer', foreign_key: 'player_id', dependent: :destroy
 
-
+  validates :email, uniqueness: true
 
 
   def super?

@@ -1,0 +1,42 @@
+#players {
+
+  .ranking{
+    border-bottom: thin solid #293e4f;
+    margin-bottom: 10px;
+
+    .icon{ width:64px; padding:4px; border-radius:8px }
+    .player-name { margin-top:36px }
+    .player-points { font-weight:bold; font-size: 1.6em; margin-top:24px }
+  }
+}
+
+@media (max-width: 700px) {
+
+  #players{
+    .ranking{
+      .icon{ width:48px; padding:4px; border-radius:6px; margin-top:14px}
+
+    }
+  }
+}
+@media (max-width: 640px) {
+  #players{
+    #rankings-container {
+      background-color: #ECECEC;
+      padding-top: 20px;
+    }
+
+    .ranking{
+      border-bottom: none;
+      margin-bottom: 4px;
+      background-color: #fff;
+      border: thin solid #ccc;
+      border-radius: 6px;
+
+      .icon{ width:48px; padding:4px; border-radius:6px; margin-top:0px; }
+      .player-name { margin-top:36px }
+      .player-points { margin-top:10px }
+    }
+  }
+
+}
