@@ -1,5 +1,10 @@
 #players {
-
+  margin-top: 0px;
+  ul.small-block-grid-4 > li.ranking-items {
+    padding-bottom: 1px;
+  }
+  #rankings-container {
+    margin: 0px -15px 0px -15px;
   .ranking{
     border-bottom: thin solid #293e4f;
     margin-bottom: 10px;
@@ -13,6 +18,7 @@
       border-bottom: 2px solid #2B5C58;
     }
 
+  }
 }
 
 @media (max-width: 700px) {
@@ -20,20 +26,24 @@
   #players{
     .ranking{
       .icon{ width:48px; padding:4px; border-radius:6px; margin-top:14px}
-
     }
   }
 }
 @media (max-width: 640px) {
+
+  [class*="block-grid-"] > li {
+      padding: 0 0.625rem 0.25rem;
+  }
+
+
   #players{
     #rankings-container {
-      background-color: #ECECEC;
-      padding-top: 20px;
+      background-color: #dedede;
+      box-shadow: 0px 4px 24px #000;
     }
-
     .ranking{
       border-bottom: none;
-      margin-bottom: 4px;
+      margin: 6px 0px 4px 0px;
       background-color: #fff;
       border: thin solid #ccc;
       border-radius: 6px;

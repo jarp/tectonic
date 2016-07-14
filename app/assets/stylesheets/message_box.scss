@@ -11,22 +11,23 @@
 //   display:none
 // }
 
-
 #message-box {
-    display: none;
-    position: absolute;
+    position: fixed;
     background-color: #000;
     color: #fff;
-    border-radius: 8px;
-    padding: 33px;
-    top: 330px;
-    left: 15%;
-    right: 15%;
+    border-radius: 8px 8px 0px 0px;
+    padding: 20px;
     z-index: 1;
     opacity: .8;
     box-shadow: 1px 1px 3px #000;
-    width: 70%;
+    width: 96%;
+    height: 150px;
+    bottom: -150px;
+    left: 2%;
+    right: 2%;
 }
+
+
 .messages {display:none;
   #close-message-x {
     float:right;
@@ -37,14 +38,14 @@
     cursor:pointer;
     font-weight:bold;
     box-shadow:1px 1px 3px #000;
-    margin-top: -40px;
-    margin-right: -40px;
+    margin-top: -24px;
+    margin-right: -24px;
   }
   .message-text {font-style:italic; color: #fff}
 }
 
 @media (max-width: 640px) {
   #message-box {
-    top: 400px;
+
   }
 }
