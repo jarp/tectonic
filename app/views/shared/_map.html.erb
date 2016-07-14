@@ -1,0 +1,124 @@
+<!-- wat -->
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=<%= ENV['TECTONIC_API'] %>"></script>
+<script>
+$(document).ready(function(){
+  if ( document.getElementById('map') ){
+    // SETUP
+    ////////////////////////////////////////////////////////
+    var coordinates = $('#map').attr('markers').split(";")
+    var ndCords = new google.maps.LatLng(41.705572,-86.235339);
+
+    var defaultPin = new google.maps.MarkerImage("//chart.googleapis.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|53697e",
+        new google.maps.Size(42, 42),
+        new google.maps.Point(0,0),
+        new google.maps.Point(10, 34));
+
+    var pinShadow = new google.maps.MarkerImage("//chart.googleapis.com/chart?chst=d_map_pin_shadow",
+        new google.maps.Size(68, 37),
+        new google.maps.Point(0, 0),
+        new google.maps.Point(12, 35));
+
+    var userPin = new google.maps.MarkerImage("//chart.googleapis.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|95555F",
+        new google.maps.Size(32, 34),
+        new google.maps.Point(0,0),
+        new google.maps.Point(10, 34));
+
+    var map = new google.maps.Map(document.getElementById('map'), {center: ndCords});
+    var bounds = new google.maps.LatLngBounds();
+        bounds.extend(ndCords);
+
+    // FUNCTIONS
+    ////////////////////////////////////////////////////////
+    function initialize() {
+      // console.log('coords: ', coordinates)
+      // console.log('coord count:' , coordinates.length)
+      $.each(coordinates, function( index, value ) {  
+        console.log("getting ifno on " , value)
+          var find = {
+              id: value.split("~")[0],
+              player: value.split("~")[1],
+              state: value.split("~")[2],
+              coords: value.split("~")[3],
+              plate_url: value.split("~")[4],
+              image: value.split("~")[5],
+              points: value.split("~")[6]
+            }
+
+        if ( find.coords !== undefined && find.coords !== ',' ){
+          // console.log("adding info window", find)
+          var infowindow = new google.maps.InfoWindow({
+            content: writetInfoWindowHTML(find)
+          });
+
+          var lat_lng = new google.maps.LatLng(find.coords.split('|')[0], find.coords.split('|')[1]  )
+          var marker = new google.maps.Marker({
+            position: lat_lng,
+            map: map,
+            icon: defaultPin,
+            shadow: pinShadow,
+            animation: google.maps.Animation.DROP
+          });
+
+          bounds.extend(lat_lng);
+
+          google.maps.event.addListener(marker, 'click', function() {
+             infowindow.open(map,marker);
+           });
+
+          };
+      });
+
+      //map.fitBounds(bounds);
+
+    }
+
+    function writetInfoWindowHTML(find){
+      console.log(find);
+      html = '<div class="map-container">'
+        + '<div class="plate-container">'
+          + '<img class="image" src="' + find.plate_url +'" style="height:48px">'
+        + '</div>'
+        + '<div class="content">'
+        +  '<p><img class="image" src="' + find.image  +'">'
+        + find.player + ' found ' + find.state + ' for ' + find.points + ' points</p>'
+        + '</div>'
+        + '</div>'
+        return html
+      }
+
+    function locationHandler(pos) {
+      var crd = pos.coords;
+      var lat_lng = new google.maps.LatLng(crd.latitude, crd.longitude)
+
+      var marker = new google.maps.Marker({
+        position: lat_lng,
+        map: map,
+        icon: userPin,
+        animation: google.maps.Animation.DROP
+      });
+
+      var infowindow = new google.maps.InfoWindow({
+        content: "You!"
+      });
+
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.open(map,marker);
+      });
+
+      bounds.extend(lat_lng);
+      map.fitBounds(bounds);
+    };
+
+    function locationError(err) {
+      console.warn('ERROR(' + err.code + '): ' + err.message);
+    };
+
+
+  initialize();
+
+  }
+});
+</script>
+
+    <div id="map" class="map-full" style="width:100%" markers="<% game.finds.each do | f | %><%= f.id %>~<%= f.player.first_name %>~<%= f.plate.state %>~<%= f.current_coord %>~<%= image_path("plates/#{f.plate.code.downcase}.jpg") %>~<%= f.player.image %>~<%= f.points %>;<% end %>">
+    </div>

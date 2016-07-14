@@ -1,0 +1,26 @@
+.map-container{
+  .plate-container {
+    float:left;
+    width:100%;
+    padding: 4px;
+    text-align:center;
+    border-top: thin solid #000;
+    border-bottom: thin solid #000;
+    .image {
+
+    }
+  }
+
+
+  .content{
+    padding: 15px;
+    float: left;
+    width: 100%;
+    text-align: center;
+    .image {
+      height:36px;
+      margin-right: 10px;
+    }
+
+  }
+}

@@ -35,10 +35,10 @@
     <% @invitations.each do |i| %>
       <div class="pending-game-list-item">
         <div class="row">
-          <div class="small-6 medium-6 columns">
+          <div class="small-6 medium-4 columns">
             <p><%= i.game.title %></p>
           </div>
-          <div class="small-6 medium-6 columns medium-text-right small-text-center">
+          <div class="small-6 medium-8 columns medium-text-right small-text-center">
                 <%= link_to 'Accept', accept_invite_path(i.token), class: 'button  tiny' %>
           </div>
         </div>
