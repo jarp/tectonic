@@ -22,8 +22,11 @@ header {
     font-size: .95em;
 }
 
-.top-bar-section .dropdown li > a:not(.button) {
-    font-size: 1em;
+.top-bar-section ul li > a {
+    font-size: 1.2em;
+    background: #333333;
+    line-height: 2.8125rem;
+    padding: 0px 0 0px 0.9375rem;
 }
 
 .top-bar .name h1 {
