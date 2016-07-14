@@ -1,0 +1,120 @@
+<!-- wat -->
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=<%= ENV['TECTONIC_API'] %>"></script>
+<script>
+$(document).ready(function(){
+  if ( document.getElementById('map') ){
+    // SETUP
+    ////////////////////////////////////////////////////////
+    var coordinates = $('#map').attr('markers').split(";")
+    var ndCords = new google.maps.LatLng(41.705572,-86.235339);
+
+    var defaultPin = new google.maps.MarkerImage("//chart.googleapis.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|53697e",
+        new google.maps.Size(42, 42),
+        new google.maps.Point(0,0),
+        new google.maps.Point(10, 34));
+
+    var pinShadow = new google.maps.MarkerImage("//chart.googleapis.com/chart?chst=d_map_pin_shadow",
+        new google.maps.Size(68, 37),
+        new google.maps.Point(0, 0),
+        new google.maps.Point(12, 35));
+
+    var userPin = new google.maps.MarkerImage("//chart.googleapis.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|95555F",
+        new google.maps.Size(32, 34),
+        new google.maps.Point(0,0),
+        new google.maps.Point(10, 34));
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: ndCords,
+      zoom: 4
+    });
+    var bounds = new google.maps.LatLngBounds();
+
+
+    // FUNCTIONS
+    ////////////////////////////////////////////////////////
+    function initialize() {
+      console.log('init')
+      $.each(coordinates, function( index, value ) {  
+          console.log('coords ', value)
+          var find = {
+              state: value.split("~")[0],
+              coords: value.split("~")[1],
+              plate_url: value.split("~")[2],
+              count: value.split("~")[3]
+            }
+
+        if ( find.coords !== undefined && find.coords !== ',' ){
+          console.log('create window')
+          var infowindow = new google.maps.InfoWindow({
+            content: writetInfoWindowHTML(find)
+          });
+
+          var lat_lng = new google.maps.LatLng(find.coords.split('|')[0], find.coords.split('|')[1]  )
+          var marker = new google.maps.Marker({
+            position: lat_lng,
+            map: map,
+            icon: defaultPin,
+            shadow: pinShadow,
+            animation: google.maps.Animation.DROP
+          });
+
+          bounds.extend(lat_lng);
+
+          google.maps.event.addListener(marker, 'click', function() {
+             infowindow.open(map,marker);
+           });
+
+          };
+      });
+
+
+    }
+
+    function writetInfoWindowHTML(find){
+      console.log(find);
+      html = '<div class="map-container">'
+        + '<div class="plate-container">'
+          + '<img class="image" src="' + find.plate_url +'" style="height:48px">'
+        + '</div>'
+        + '<div class="content">'
+        +  '<p>' +  find.state + '<br>' + find.count+ '</p>'
+        + '</div>'
+        + '</div>'
+        return html
+      }
+
+    function locationHandler(pos) {
+      var crd = pos.coords;
+      var lat_lng = new google.maps.LatLng(crd.latitude, crd.longitude)
+
+      var marker = new google.maps.Marker({
+        position: lat_lng,
+        map: map,
+        icon: userPin,
+        animation: google.maps.Animation.DROP
+      });
+
+      var infowindow = new google.maps.InfoWindow({
+        content: "You!"
+      });
+
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.open(map,marker);
+      });
+
+      bounds.extend(lat_lng);
+      map.fitBounds(bounds);
+    };
+
+    function locationError(err) {
+      console.warn('ERROR(' + err.code + '): ' + err.message);
+    };
+
+
+  initialize();
+
+  }
+});
+</script>
+
+<div id="map" class="map-full" style="width:100%; height: 600px" markers="<% @plates.each do | f | %><%= f.state %>~<%= f.geocode %>~<%= image_path("plates/#{f.code.downcase}.jpg") %>~<%= f.finds.count %>;<% end %>"></div>

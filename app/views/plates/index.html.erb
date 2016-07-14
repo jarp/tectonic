@@ -1,11 +1,18 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="small-8 columns">
+    <h2>Plates</h2>
+  </div>
+  <div class="small-4 columns text-right">
+    <%= link_to 'New Plate', new_plate_path, class: 'success button' %>
+  </div>
+</div>
 
-<h1>Plates</h1>
 
-<table>
+<table class="display">
   <thead>
     <tr>
       <th>State</th>
+      <th>Code</th>
       <th>Geocode</th>
       <th colspan="3"></th>
     </tr>
@@ -15,15 +22,12 @@
     <% @plates.each do |plate| %>
       <tr>
         <td><%= plate.state %></td>
+        <td><%= plate.code %></td>
         <td><%= plate.geocode %></td>
-        <td><%= link_to 'Show', plate %></td>
-        <td><%= link_to 'Edit', edit_plate_path(plate) %></td>
-        <td><%= link_to 'Destroy', plate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+        <%= link_to 'Edit', edit_plate_path(plate) %> |
+        <%= link_to 'Remove', plate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Plate', new_plate_path %>

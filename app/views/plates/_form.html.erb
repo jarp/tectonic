@@ -11,17 +11,47 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :state %>
-    <%= f.text_field :state %>
+  <div class="row">
+
   </div>
 
-  <div class="field">
-    <%= f.label :geocode %>
-    <%= f.text_field :geocode %>
+
+    <div class="row">
+      <div class="small-12 medium-2 columns text-right">
+        <%= f.label :state, class: 'inline' %>
+      </div>
+      <div class="small-12 medium-10 columns">
+        <%= f.text_field :state %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-12 medium-2 columns text-right">
+        <%= f.label :code, class: 'inline' %>
+      </div>
+      <div class="small-4 medium-2 columns end">
+        <%= f.text_field :code %>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="small-12 medium-2 columns text-right">
+        <%= f.label :geocode %>
+      </div>
+      <div class="small-12 medium-10 columns">
+        <%= f.text_field :geocode %>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="small-12 medium-10 medium-offset-2 columns">
+        <%= f.submit class: 'button ' %>
+        <%= link_to 'Back', plates_path, class: 'button secondary' %>
+      </div>
+    </div>
+
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

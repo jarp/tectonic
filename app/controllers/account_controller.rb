@@ -2,7 +2,7 @@ class AccountController < ApplicationController
   #before_action :require_login, except: [:login, :process_login, :callback]
 
   def index
-
+    redirect_to '/auth/google'
   end
 
   def login
@@ -78,7 +78,6 @@ class AccountController < ApplicationController
 
   def logout
     session[:player_id] = nil
-    flash[:notice] = "You have been logged out"
-    redirect_to login_path
+    redirect_to 'https://accounts.google.com/Logout'
   end
 end

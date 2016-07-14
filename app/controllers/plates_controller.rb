@@ -1,4 +1,4 @@
-class PlatesController < ApplicationController
+class PlatesController < AdministratorController
   before_action :set_plate, only: [:show, :edit, :update, :destroy]
 
   # GET /plates

@@ -9,15 +9,26 @@ header {
   background-color: #293e4f;
   text-align: center;
 }
+
 #top-bar-container{
   margin-bottom: 20px;
   box-shadow: #000 0px 2px 60px;
   nav.top-bar{
-
   }
-
 }
 
+.top-bar-section li:not(.has-form) a:not(.button) {
+    padding: 0 0.5375rem 0 0.5375rem;
+    font-size: .95em;
+}
+
+.top-bar-section .dropdown li:not(.has-form):not(.active) > a:not(.button) {
+    font-size: 1.0em;
+}
+
+.top-bar .name h1 {
+  color: #7F8F9B;
+}
 main{
 
 }
@@ -43,8 +54,6 @@ h1.site-header-text {
     padding:5px
   }
 
-
-
   #header-plate {
       display: inline-block;
       vertical-align: middle;
@@ -53,7 +62,10 @@ h1.site-header-text {
   }
 
 
-
+table.display {
+  width: 100%;
+  border-spacing: 0px;
+}
 
 footer{
   width:100%;

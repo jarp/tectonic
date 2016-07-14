@@ -28,12 +28,11 @@
 
   <% if @active_player.super? %>
     <li class="has-dropdown">
-      <a href="#">Administers</a>
+      <a href="#">Admin</a>
         <ul class="dropdown">
           <li><a href="/manage">Dashboard</a></li>
-          <li><a href="/manage/players">Manage players</a></li>
-          <li><a href="/manage/stories/all">Manage Games</a></li>
-          <li><a href="/manage/stories/all">Manage Plates</a></li>
+          <li><a href="/players">Manage players</a></li>
+          <li><a href="/plates">Manage Plates</a></li>
         </ul>
     </li>
     <% end %>

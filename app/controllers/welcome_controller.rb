@@ -6,4 +6,8 @@ class WelcomeController < ApplicationController
 
   def about
   end
+
+  def map
+    @plates = Plate.includes(:finds).all
+  end
 end

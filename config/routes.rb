@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/play' => 'play#index', as: :current_game
 
   root 'welcome#index'
+  get '/map/' => 'welcome#map'
   get 'about' => 'welcome#about'
   get 'invite' => 'invite#index', as: :invites
   post 'invite' => 'invite#create', as: :send_invite
