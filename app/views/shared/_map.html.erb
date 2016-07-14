@@ -30,10 +30,9 @@ $(document).ready(function(){
     // FUNCTIONS
     ////////////////////////////////////////////////////////
     function initialize() {
-      // console.log('coords: ', coordinates)
-      // console.log('coord count:' , coordinates.length)
+      console.log('init')
       $.each(coordinates, function( index, value ) {  
-        console.log("getting ifno on " , value)
+          console.log('coords ', value)
           var find = {
               id: value.split("~")[0],
               player: value.split("~")[1],
@@ -45,7 +44,7 @@ $(document).ready(function(){
             }
 
         if ( find.coords !== undefined && find.coords !== ',' ){
-          // console.log("adding info window", find)
+          console.log('create window')
           var infowindow = new google.maps.InfoWindow({
             content: writetInfoWindowHTML(find)
           });
@@ -69,7 +68,7 @@ $(document).ready(function(){
       });
 
       //map.fitBounds(bounds);
-
+navigator.geolocation.getCurrentPosition(locationHandler, locationError, { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
     }
 
     function writetInfoWindowHTML(find){
