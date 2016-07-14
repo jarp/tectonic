@@ -1,18 +1,12 @@
 
 Table = {
 
-
-
   join: function(player){
-      console.log("checking if player needs to be added:", player)
 
       if ( $("div.ranking[player_id='" + player.id + "']").length ){
-        console.log("player is already there");
-        console.log($("div.ranking[player_id='" + player.id + "']"));
       }
 
       else {
-        console.log('Player needs to be added');
         var rankings = $("#rankings-container");
 
         html = '<li><div class="row collapse ranking" player_id="' + player.id + '">'
@@ -30,11 +24,9 @@ Table = {
   },
 
   update_points: function(player, points){
-    console.log('update points to ', points);
     current_points = $("div.ranking[player_id='" + player.id + "']").find(".player-points").text()
 
     if ( points == null ){
-      console.log('cant remove points');
       points = 0
     }
 
@@ -47,8 +39,25 @@ Table = {
   },
 
   spin: function(target, start_at, end_at){
+
+    if ( start_at < end_at ){
+      var dir = 'up'
+
+    }
+    else {
+      var dir = 'down'
+    }
+
+
       target.each(function () {
         var $this = $(this);
+        if ( dir == 'up'){
+          $this.addClass('going-up');
+        }
+        else{
+          $this.addClass('going-down');
+        }
+
         jQuery({ Counter: start_at }).animate({ Counter: end_at }, {
           duration: 2000,
           easing: 'swing',
@@ -56,7 +65,6 @@ Table = {
             $this.text(Math.ceil(this.Counter));
           },
           complete: function(){
-            console.log('call table reorder');
             Table.reorder()
           }
         });
@@ -65,7 +73,6 @@ Table = {
   },
 
   reorder: function(){
-    console.log("table.reorder on its own called");
     var rankings = $("#rankings-container");
     var store = [];
 
@@ -73,8 +80,6 @@ Table = {
         var row = $(this);
         var player_id = row.attr('player_id')
         var sortnr = parseFloat(row.find(".player-points").text());
-        // console.log('storing indie row',  player_id, row.html());
-        // console.log("sorter nubmer is ", sortnr);
         if(!isNaN(sortnr)){
           store.push([sortnr, player_id, row.html()]);
         }
@@ -89,6 +94,9 @@ Table = {
     for(var i=0, len=store.length; i<len; i++){
         rankings.append('<li><div class="row collapse ranking" player_id="' + store[i][1] + '">' + store[i][2] + '</div></li>');
     }
+
+    $('.going-up').removeClass('going-up');
+    $('.going-down').removeClass('going-down');
     store = null;
   }
 }

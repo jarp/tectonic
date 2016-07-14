@@ -19,7 +19,7 @@
     color: #fff;
     border-radius: 8px;
     padding: 33px;
-    top: 230px;
+    top: 330px;
     left: 15%;
     right: 15%;
     z-index: 1;
@@ -41,4 +41,10 @@
     margin-right: -40px;
   }
   .message-text {font-style:italic; color: #fff}
+}
+
+@media (max-width: 640px) {
+  #message-box {
+    top: 400px;
+  }
 }

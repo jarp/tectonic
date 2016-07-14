@@ -1,5 +1,5 @@
 
-<div class="row collapse ranking" player_id="<%= player.id %>">
+<div class="row collapse ranking <%= 'me' if player.id == session[:player_id] %>" player_id="<%= player.id %>">
   <div class="small-6 medium-4 columns player-image small-text-center">
     <img class="icon" width="64" src='<%= image_path(player.image) %>'</img>
   </div>
