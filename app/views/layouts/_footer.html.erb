@@ -1,22 +1,18 @@
 <footer>
   <div class="row">
-    <div class="small-12 columns text-center">
-
-    <p>Copyright <%= Time.now.year %> | Arpcentral.net
+    <div class="small-6 columns ">
+      <p>Copyright <%= Time.now.year %> | Arpcentral.net
+      </p>
+    </div>
+    <div class="small-6 columns text-right">
       <% if @active_player %>
-        <br/>
-        Logged in as <%= @active_player.email %> | <%= link_to 'Logout', logout_path %>
-        <% end -%>
-    </p>
+        <p>Logged in as <%= @active_player.email %> | <%= link_to 'Logout', logout_path %></p>
+
+        <% if @active_player.super? %>
+          <p>Manage: <%= link_to 'Plates', plates_path %> | <%= link_to 'Players', players_path %></p>
+        <% end %>
+      <% end -%>
     </div>
+
   </div>
-
-  <div class="row">
-    <div class="small-12 columns">
-
-    </div>
-  </div>
-
-
-
 </footer>
