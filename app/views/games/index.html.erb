@@ -68,7 +68,7 @@
             <ul class="button-group radius">
                 <li><%= link_to 'Results', results_game_path(game), class: 'button  tiny' %></li>
               <% if @active_player == game.owner %>
-                <li><%= link_to 'Remove', game, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button warning tiny' %></li>
+                <li><%= link_to 'Remove', game, method: :delete, data: { confirm: 'Are you sure you want to delete this permanently?' }, class: 'button warning tiny' %></li>
               <% end %>
           </ul>
           </div>

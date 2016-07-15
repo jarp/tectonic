@@ -9,7 +9,7 @@
         <p>Logged in as <%= @active_player.email %> | <%= link_to 'Logout', logout_path %></p>
 
         <% if @active_player.super? %>
-          <p>Manage: <%= link_to 'Plates', plates_path %> | <%= link_to 'Players', players_path %></p>
+          <p><%= link_to 'Dashboard', dashboard_path %>: <%= link_to 'Plates', plates_path %> | <%= link_to 'Players', players_path %></p>
         <% end %>
       <% end -%>
     </div>

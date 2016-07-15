@@ -19,7 +19,7 @@ class AccountController < ApplicationController
     end
 
     puts "looking up user"
-    @player = Player.where(email: info[:email]).first_or_initialize
+    @player = Player.where(email: info[:email].downcase).first_or_initialize
     new_record = @player.new_record?
     puts "looking up user:: #{@player}"
 

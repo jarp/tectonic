@@ -2,11 +2,13 @@
 
 <h1>Players</h1>
 
-<table>
+<table class="display">
   <thead>
     <tr>
       <th>Email</th>
-      <th colspan="3"></th>
+      <th>Owned Games</th>
+      <th>Games</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -14,14 +16,14 @@
     <% @players.each do |player| %>
       <tr>
         <td><%= player.email %></td>
-        <td><%= link_to 'Show', player %></td>
-        <td><%= link_to 'Edit', edit_player_path(player) %></td>
-        <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= player.owned_games.count %></td>
+        <td><%= player.games.count %></td>
+        <td>
+          <%= link_to 'Show', player %> |
+          <%= link_to 'Edit', edit_player_path(player) %> |
+          <%= link_to 'Delete', player, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Player', new_player_path %>

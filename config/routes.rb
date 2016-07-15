@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get '/play/:id' => 'play#set', as: :play_game
   get '/play' => 'play#index', as: :current_game
 
+  get '/dashboard' => 'administrator#index', as: :dashboard
+
   root 'welcome#index'
   get '/map/' => 'welcome#map'
   get 'about' => 'welcome#about'

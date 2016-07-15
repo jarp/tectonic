@@ -10,7 +10,7 @@
         <% if @active_player == invite.game.owner %>
           <li><%= link_to 'Details', invite.game, class: 'button  tiny' %></li>
           <li><%= link_to 'Complete', complete_game_path(invite.game), class: 'button secondary tiny' %></li>
-          <li><%= link_to 'Remove', invite.game, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button warning tiny' %></li>
+          <li><%= link_to 'Remove', invite.game, method: :delete, data: { confirm: 'Are you sure you want to delete this?' }, class: 'button warning tiny' %></li>
         <% end %>
     </ul>
     </div>
