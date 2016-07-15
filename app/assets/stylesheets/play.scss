@@ -1,13 +1,12 @@
-
-.visibility-faded { opacity: .3 }
-
-
 #map{
   width:100%;
   min-height: 400px;
   background-color: #ccc;
 }
 
+#plate-list{
+  margin-top:20px
+}
 .going-up {
   color: green;
 }

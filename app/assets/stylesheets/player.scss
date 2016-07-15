@@ -1,15 +1,19 @@
+.fixed-width {width: 30%}
+
 #players {
   margin-top: 0px;
   ul.small-block-grid-4 > li.ranking-items {
     padding-bottom: 1px;
   }
   #rankings-container {
-    margin: 0px -15px 0px -15px;
+    margin: -4px -15px 0px -15px;
   .ranking{
     border-bottom: thin solid #293e4f;
     margin-bottom: 10px;
 
-    .icon{ width:64px; padding:4px; border-radius:8px }
+    .icon{ width:64px; padding:4px;
+      border-radius: 36px;
+      }
     .player-name { margin-top:36px }
     .player-points { font-weight:bold; font-size: 1.6em; margin-top:24px }
 
@@ -25,10 +29,11 @@
 
   #players{
     .ranking{
-      .icon{ width:48px; padding:4px; border-radius:6px; margin-top:14px}
+      .icon{ width:48px; }
     }
   }
 }
+
 @media (max-width: 640px) {
 
   [class*="block-grid-"] > li {
@@ -40,7 +45,6 @@
     #rankings-container {
       background-color: #dedede;
       box-shadow: 0px 4px 24px #000;
-    }
     .ranking{
       border-bottom: none;
       margin: 6px 0px 4px 0px;
@@ -48,13 +52,15 @@
       border: thin solid #ccc;
       border-radius: 6px;
 
-      .icon{ width:48px; padding:4px; border-radius:6px; margin-top:0px; }
+      .icon{ width:36px;  }
       .player-name { margin-top:36px }
       .player-points { margin-top:10px; font-size: 1em;}
     }
     .ranking.me {
       border: 2px solid #2B5C58;
+      background-color: #fff;
     }
   }
 
+    }
 }

@@ -12,14 +12,14 @@ $(document).ready(function(){
   MessageBox = {
 
     set: function(msg, format){
-      $('#message-box').css('bottom', '-150px');
+      $('#message-box').css('bottom', '-125px');
       /*
       $('html, body').animate({
         scrollTop: $('html').offset().top
         },
       1000);
       */
-      
+
       if ( format == 'undefined'){
           format = 'normal';
         }
@@ -33,7 +33,7 @@ $(document).ready(function(){
         $('#message-box #message-text').text(msg);
       }
       $('#message-box').show();
-      $("#message-box").animate({ "bottom": "+=100px" }, 900);
+      $("#message-box").animate({ "bottom": "+=60px" }, 900);
 
       setTimeout("MessageBox.clear()", Tectonic.getTimer());
       },

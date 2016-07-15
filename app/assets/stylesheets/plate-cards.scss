@@ -1,5 +1,7 @@
 #play {
 
+.visibility-faded { opacity: .3 }
+
   li.plate-card {
     text-align: center;
 
@@ -44,4 +46,17 @@
       float: right;
     }
   }
+}
+
+
+@media (max-width: 430px) {
+
+  #play li.plate-card .plate.with-image {
+
+    width: 170px;
+    height: 85px;
+  }
+
+
+
 }

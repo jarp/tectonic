@@ -2,14 +2,16 @@
 
   <%= render 'players' %>
 
-  <div class="small-12 medium-9 large-8 columns">
-    <h2>States</h2>
-    <ul class="small-block-grid-2 large-block-grid-3">
+  <div class="small-12 medium-8 large-9 columns">
+
+
+    <ul id="plate-list" class="small-block-grid-2 large-block-grid-3">
       <% @plates.each do | plate | %>
         <li class="plate-card">
           <%= render partial: 'plate_card', locals: {plate: plate} %>
         </li>
       <% end %>
     </ul>
+
   </div>
 </div>
