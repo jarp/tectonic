@@ -8,8 +8,11 @@ class InviteController < ActivePlayerController
     @game_player = GameService.add_player(@game, @player)
     @game_player.update(accepted: false)
 
-    if @game_player.new_record?
+    if @game_player
+      puts "send invite"
       send_invite
+    else
+      puts  "not new"
     end
 
     respond_to do |format|
