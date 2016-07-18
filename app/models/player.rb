@@ -5,7 +5,7 @@ class Player < ApplicationRecord
   has_many :finds, dependent: :destroy
 
   has_many :invitations, class_name: 'GamePlayer', foreign_key: 'player_id', dependent: :destroy
-
+  has_many :tours, dependent: :destroy
   validates :email, uniqueness: true
 
 

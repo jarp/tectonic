@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712223214) do
+ActiveRecord::Schema.define(version: 20160718165932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,8 +68,10 @@ ActiveRecord::Schema.define(version: 20160712223214) do
     t.boolean  "is_completed", default: false
     t.datetime "completed_at"
     t.integer  "bonus_count"
+    t.integer  "tour_id"
     t.index ["game_type_id"], name: "index_games_on_game_type_id", using: :btree
     t.index ["player_id"], name: "index_games_on_player_id", using: :btree
+    t.index ["tour_id"], name: "index_games_on_tour_id", using: :btree
   end
 
   create_table "plates", force: :cascade do |t|
@@ -90,6 +92,16 @@ ActiveRecord::Schema.define(version: 20160712223214) do
     t.string   "image"
   end
 
+  create_table "tours", force: :cascade do |t|
+    t.string   "name"
+    t.date     "start_on"
+    t.date     "end_on"
+    t.integer  "player_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_tours_on_player_id", using: :btree
+  end
+
   add_foreign_key "bonus", "games"
   add_foreign_key "bonus", "plates"
   add_foreign_key "finds", "games"
@@ -99,4 +111,6 @@ ActiveRecord::Schema.define(version: 20160712223214) do
   add_foreign_key "game_players", "players"
   add_foreign_key "games", "game_types"
   add_foreign_key "games", "players"
+  add_foreign_key "games", "tours"
+  add_foreign_key "tours", "players"
 end

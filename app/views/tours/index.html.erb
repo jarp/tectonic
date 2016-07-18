@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tours</h1>
+
+<table class="display">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Start on</th>
+      <th>End on</th>
+      <th>Player</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tours.each do |tour| %>
+      <tr>
+        <td><%= tour.name %></td>
+        <td><%= tour.start_on %></td>
+        <td><%= tour.end_on %></td>
+        <td><%= tour.player %></td>
+        <td><%= link_to 'Show', tour %> |
+        <%= link_to 'Edit', edit_tour_path(tour) %> |
+        <%= link_to 'Delete', tour, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tour', new_tour_path %>

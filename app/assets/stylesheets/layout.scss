@@ -33,7 +33,7 @@ header {
   color: #7F8F9B;
 }
 main{
-
+  #map { width:100%}
 }
 
 h1.site-header-text {
@@ -84,6 +84,12 @@ header {
 }
 
 @media (max-width: 640px) {
+  main{
+    #map { width:92%; margin: 0% 4% 0% 4%; border: thin solid #000;}
+  }
+
+
+
   #top-bar-container{
     margin-bottom: 0px;
     box-shadow: #000 0px 2px 60px;

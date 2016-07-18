@@ -7,7 +7,7 @@
 
 <div class="row">
   <div class="small-12 medium-8 columns right">
-    <%= render partial: 'shared/map', locals: { game: @current_game } %>
+    <%= render partial: 'shared/map', locals: { finds: @current_game.finds } %>
   </div>
     <div class="small-12 medium-4 columns left">
       <% @leaders.each do | leader | %>

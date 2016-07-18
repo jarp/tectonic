@@ -119,5 +119,5 @@ navigator.geolocation.getCurrentPosition(locationHandler, locationError, { enabl
 });
 </script>
 
-    <div id="map" class="map-full" style="width:100%" markers="<% game.finds.each do | f | %><%= f.id %>~<%= f.player.first_name %>~<%= f.plate.state %>~<%= f.current_coord %>~<%= image_path("plates/#{f.plate.code.downcase}.jpg") %>~<%= f.player.image %>~<%= f.points %>;<% end %>">
+    <div id="map" class="map-full" markers="<% finds.each do | f | %><%= f.id %>~<%= f.player.first_name %>~<%= f.plate.state %>~<%= f.current_coord %>~<%= image_path("plates/#{f.plate.code.downcase}.jpg") %>~<%= f.player.image %>~<%= f.points %>;<% end %>">
     </div>

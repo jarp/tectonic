@@ -1,0 +1,8 @@
+<% leaders.each do | leader | %>
+  <h3><%= leader[:player] %>: <%= leader[:total_points] %></h3>
+  <ul class="small-block-grid-3 medium-block-grid-2">
+    <% leader[:states].each do | state | %>
+      <li><%= state[:state] %> - <%= state[:points] %>pts</li>
+      <% end %>
+  </ul>
+<% end %>

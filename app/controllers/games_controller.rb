@@ -20,11 +20,13 @@ class GamesController < ActivePlayerController
 
   # GET /games/new
   def new
+    @tours = @active_player.tours
     @game = Game.new(use_images: true, bonus_count: 0)
   end
 
   # GET /games/1/edit
   def edit
+    @tours = @active_player.tours
   end
 
   # POST /games
@@ -103,6 +105,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:title, :game_type_id, :use_images, :bonus_count)
+      params.require(:game).permit(:title, :game_type_id, :use_images, :bonus_count, :tour_id)
     end
 end

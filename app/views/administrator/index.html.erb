@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="small-12 medium-4 columns">
+      <h3>Players</h3>
+      <p>There are <%= @players.count %> players.</p>
+      <h4>Top scorers</h4>
+      <ol>
+        <% @players.first(10).each do | player | %>
+          <li><%= player %>: <%= player.finds.sum(:points) %></li>
+        <% end %>
+      </ol>
+  </div>
+  <div class="small-12 medium-4 columns">
+    <h3>Plates</h3>
+    <p>There are <%= @plates.count %> plates.
+
+      <h4>Most Found</h4>
+      <ol>
+        <% @plates.first(10).each do | plate | %>
+          <li><%= plate.state %>: <%= plate.finds.count %></li>
+        <% end %>
+      </ol>
+
+  </div>
+  <div class="small-12 medium-4 columns">
+    <h3>Games</h3>
+    <p>There are <%= @games.count %> games.
+
+      <h4>Top scoring</h4>
+      <ol>
+        <% @games.each do | game | %>
+          <li><%= game.title %>: <%= game.finds.sum(:points) %></li>
+        <% end %>
+      </ol>
+  </div>
+</div>

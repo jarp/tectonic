@@ -7,7 +7,7 @@ gem 'rails', '~> 5.0'
 gem 'pg'
 gem 'unicorn'
 gem 'puma'
-
+gem 'chronic'
 # Use SCSS for stylesheets
 gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
@@ -28,6 +28,7 @@ gem 'google_maps_service'
 
 gem 'foundation-rails', '~> 5.5.2.1'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

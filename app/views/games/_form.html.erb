@@ -10,14 +10,23 @@
     </div>
   <% end %>
 
+
   <div class="row">
     <div class="small-12 medium-2 medium-text-right columns">
-    <%= f.label :title %>
+    <%= f.label :tour_id %>
 
     </div>
     <div class="small-12 medium-10 columns">
-    <%= f.text_field :title %>
+      <%= f.collection_select :tour_id, @tours, :id, :name, prompt: "This is a standalone game" %>
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="small-12 medium-2 medium-text-right columns">
+      <%= f.label :title %>
+    </div>
+    <div class="small-12 medium-10 columns">
+      <%= f.text_field :title %>
     </div>
 
   </div>

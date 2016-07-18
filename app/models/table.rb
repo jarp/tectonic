@@ -1,7 +1,7 @@
 class Table
-  def initialize(game)
+  def initialize(game, method='finds')
     @game = game
-    @table = @game.finds.group_by { |f| f.player }
+    @table = @game.send(method).group_by { |f| f.player }
   end
 
   def leaders

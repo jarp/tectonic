@@ -12,12 +12,15 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui/datepicker
 //= require foundation
 
 //= require invite
-
 //= require message_box
 
 $(document).on('ready page:load', function () {
   $(function(){ $(document).foundation(); });
 });
+
+
+$('.datepicker').datepicker();

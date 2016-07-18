@@ -1,0 +1,10 @@
+<h2><%= @tour.name %></h2>
+<p>From <%= @tour.start_on %> to <%= @tour.end_on %> </p>
+
+<p><%= @tour.games.count %> combined games.</p>
+<p><%= @tour.finds.count %> combined finds and <%= @tour.unique_finds.count %> unique finds.</p>
+
+<%= render partial: 'shared/map', locals: {finds: @tour.unique_finds } %>
+<%= render partial: 'shared/leaders', locals: {leaders: @leaders } %>
+
+<%= link_to 'Back', tours_path %>

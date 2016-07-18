@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :tours
   # Serve websocket cable requests in-process
   mount ActionCable.server => '/cable'
 

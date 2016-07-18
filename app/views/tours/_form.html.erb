@@ -1,0 +1,57 @@
+<%= form_for(tour) do |f| %>
+<div class="row">
+  <div class="small-12 medium-offset-2 medium-10 columns">
+    <% if tour.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(tour.errors.count, "error") %> prohibited this tour from being saved:</h2>
+
+        <ul>
+        <% tour.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="small-12 medium-2 columns  medium-text-right">
+    <%= f.label :name, class: ''%>
+  </div>
+  <div class="small-12 medium-10 columns">
+    <%= f.text_field :name %>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="small-12 medium-2 columns medium-text-right">
+    <%= f.label :start_on %>
+  </div>
+
+  <div class="small-12 medium-3 columns">
+    <%= f.text_field :start_on, class: "datepicker" %>
+  </div>
+
+  <div class="small-12 medium-2 columns medium-text-right">
+    <%= f.label :end_on %>
+  </div>
+
+  <div class="small-12 medium-3 columns end">
+    <%= f.text_field :end_on, class: "datepicker" %>
+  </div>
+
+</div>
+
+<div class="row">
+
+    <div class="small-12 medium-offset-2 medium-10 columns">
+    <%= f.submit class: 'button' %>
+    <%= link_to 'Back', tours_path, class: "button secondary" %>
+    </div>
+</div>
+
+<% end %>
