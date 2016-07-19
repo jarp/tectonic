@@ -14,3 +14,30 @@
 .going-down {
   color: red;
 }
+
+div#team-points {
+    background-color: #fff;
+    width: 60px;
+    float: right;
+    text-align: center;
+    border: thin solid #ccc;
+    font-size: 1.2em;
+    margin: 8px;
+    border-radius: 22px;
+    padding: 8px;
+}
+
+
+@media (max-width: 640px) {
+
+    img.icon{
+      background-color: #fff;
+      width:48px;
+      padding:4px;
+      border-radius: 36px;
+      margin-top: 10px
+    }
+
+  div#team-points {
+    }
+}

@@ -3,6 +3,8 @@ class GamePlayer < ApplicationRecord
   belongs_to :player
   before_create :create_token
 
+  validates :player, uniqueness: { scope: :game_id }
+
   scope :active, -> { where(accepted: true) }
   scope :pending, -> { where(accepted: false) }
 

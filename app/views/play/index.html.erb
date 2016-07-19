@@ -1,6 +1,9 @@
 <div id="play" class="row" game_id="<%= @current_game.id %>" player_id="<%= @active_player_id %>">
-
-  <%= render 'players' %>
+  <% if @current_game.collaborative? %>
+    <%= render 'team' %>
+  <% else %>
+    <%= render 'players' %>
+  <% end %>
 
   <div class="small-12 medium-8 large-9 columns">
 

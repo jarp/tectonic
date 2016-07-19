@@ -5,10 +5,16 @@ class Tour < ApplicationRecord
   has_many :games
   has_many :finds, through: :games
 
+  has_many :players, through: :games
+
   def unique_finds
     all_finds = finds.order(:created_at)
     unique_finds = []
     all_finds.each { | f | unique_finds << f unless unique_finds.map(&:plate).include?(f.plate) }
     return unique_finds
+  end
+
+  def to_s
+    name
   end
 end

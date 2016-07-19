@@ -13,7 +13,9 @@
       <h3>Current Players</h3>
       <ul id="player-list">
         <% @game.game_players.each do | player | %>
-          <li class="player"><%= player.player %> [<%= player.token %>]</li>
+          <li class="player">
+            <%= player.player %> | <%= player.token %> | <%= player.accepted? ? "Accepted" : "Waiting" %>
+          </li>
         <% end %>
       </ul>
 

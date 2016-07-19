@@ -1,33 +1,28 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="small-8 medium-8 columns">
+    <h2>Tours</h2>
+  </div>
+  <div class="small-4 medium-4 columns">
+    <%= link_to 'New Tour', new_tour_path, class: 'button success' %>
+  </div>
+</div>
 
-<h1>Tours</h1>
+<div class="row">
+  <div class="small-12 columns">
+    <p>Tours allow you to play multiple games within a larger one. For instance, if you are on a week long vacation, you can play many
+    smaller competitive games over the week but also have a single game that comprises the entire week. All the rules still apply,
+    whoever finds the plate first gets the points.</p>
 
-<table class="display">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Start on</th>
-      <th>End on</th>
-      <th>Player</th>
-      <th></th>
-    </tr>
-  </thead>
+    <p>When you create new pages as part of a tour, all the players will already be added to the new game.</p>
+  </div>
+</div>
 
-  <tbody>
+
+
+<div class="row">
+  <div class="small-12 columns">
     <% @tours.each do |tour| %>
-      <tr>
-        <td><%= tour.name %></td>
-        <td><%= tour.start_on %></td>
-        <td><%= tour.end_on %></td>
-        <td><%= tour.player %></td>
-        <td><%= link_to 'Show', tour %> |
-        <%= link_to 'Edit', edit_tour_path(tour) %> |
-        <%= link_to 'Delete', tour, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <%= render tour %>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Tour', new_tour_path %>
+  </div>
+</div>

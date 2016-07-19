@@ -1,0 +1,21 @@
+<div id="players" class="small-12 medium-4 large-3 columns">
+
+  <div id="team-container" class="row">
+
+    <div class="small-6 columns">
+      <ul   class="inline-list">
+      <% @leaders.each do | leader | %>
+      <li>
+        <img class="icon" width="64" src='<%= image_path(leader[:player].image) %>'</img>
+      </li>
+      <% end %>
+      </ul>
+    </div>
+
+    <div class="small-6 columns text-right">
+      <div id="team-points">
+        <%= @current_game.total_points %>
+      </div>
+    </div>
+  </div>
+</div>

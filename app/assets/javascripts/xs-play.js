@@ -1,8 +1,4 @@
 $(document).ready(function(){
-
-
-
-
 // media query event handler
 if (matchMedia) {
   //The same value of $small-range
@@ -13,45 +9,41 @@ if (matchMedia) {
 
 // media query change
 function WidthChange(mq) {
-var w = $('#players').width();
-console.log(w);
-if (mq.matches) {
+  var w = $('#players').width();
+  console.log(w);
+  if (mq.matches) {
 
-  if( $(document.body).hasClass('f-topbar-fixed') ) {
-    //console.log('1');
-  }
-  else {
-    //console.log('opriginal load');
-  }
-w = $('#players').width();
-  $( window ).scroll(function() {
-
-
-    if($(document.body).hasClass('f-topbar-fixed')) {
-      console.log(w);
-      $('#players').css('position', 'fixed')
-      $('#players').css('top', '60px')
-      $('#players').css('width', w + 20)
+    if( $(document.body).hasClass('f-topbar-fixed') ) {
+      //console.log('1');
     }
     else {
-
-      if( !$(document.body).hasClass('f-topbar-fixed') ) {
-        console.log('remove fixed');
-        $('#players').css('position', 'relative')
-        $('#players').css('top', '')
-        $('#players').removeClass('fixed-width')
-      }
+      //console.log('opriginal load');
     }
-  });
+    w = $('#players').width();
+    $( window ).scroll(function() {
+      if($(document.body).hasClass('f-topbar-fixed')) {
+        console.log(w);
+        $('#players').css('position', 'fixed')
+        $('#players').css('top', '60px')
+        $('#players').css('width', w + 20)
+      }
+      else {
 
-  }
-  else {
-      $( window ).scroll(function() {
-          //console.log(5);
+        if( !$(document.body).hasClass('f-topbar-fixed') ) {
+          console.log('remove fixed');
+          $('#players').css('position', 'relative')
+          $('#players').css('top', '')
+          $('#players').removeClass('fixed-width')
         }
-    );
+      }
+    });
   }
-
+else {
+  $( window ).scroll(function() {
+      //console.log(5);
+    }
+  );
+  }
 }
 
 
@@ -139,20 +131,31 @@ w = $('#players').width();
         }
 
       function delete_find(plate, cb){
-        var jqxhr = $.ajax({
-          type: "POST",
-          url: '/finds/clear',
-          dataType: 'JSON',
-          data: { code: plate }
-          })
-          .success(function(response){
-            Plate.turnOn(cb)
-          })
-          .error(function(response){
-            Tectonic.handleError(response);
-            Plate.turnOff(cb)
-          })
+        console.log('remove find?');
+
+
+        if (confirm("Are you sure you wan to remove this amazing find?")){
+          var jqxhr = $.ajax({
+            type: "POST",
+            url: '/finds/clear',
+            dataType: 'JSON',
+            data: { code: plate }
+            })
+            .success(function(response){
+              Plate.turnOn(cb)
+            })
+            .error(function(response){
+              Tectonic.handleError(response);
+              Plate.turnOff(cb)
+            })
         }
+
+        else{
+          console.log('false alarm');
+        }
+
+
+      }
 
         function getLocation(){
           navigator.geolocation.getCurrentPosition( function(position) {

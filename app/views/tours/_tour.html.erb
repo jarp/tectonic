@@ -1,0 +1,35 @@
+<div class="sub-game-box">
+  <div class="row">
+    <div class="small-12 medium-6 columns">
+      <h3><%= tour.name %></h3>
+      <p>From <%= tour.start_on %> to <%= tour.end_on %></p>
+    </div>
+
+    <div class="small-12 medium-6 text-right columns small-text-center">
+      <ul class="button-group">
+      <li><%= link_to 'Details', tour, class: 'button tiny secondary' %></li>
+      <li><%= link_to 'Edit', edit_tour_path(tour), class: 'button primary tiny' %></li>
+      <li><%= link_to 'Delete', tour, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button alert tiny' %></li>
+
+      </ul>
+    </div>
+
+
+  </div>
+  <div class="row">
+    <div class="small-6 columns">
+      <ul>
+        <% tour.games.each do | game | %>
+        <li><%= game.title %> / <%= game.created_at %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="small-6 columns">
+      <ul>
+        <% tour.players.each do | player | %>
+        <li><%= player %> </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

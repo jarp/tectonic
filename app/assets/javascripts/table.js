@@ -25,6 +25,10 @@ Table = {
 
   update_points: function(player, points){
     current_points = $("div.ranking[player_id='" + player.id + "']").find(".player-points").text()
+    current_team_points = $("div#team-points").text()
+
+    console.log("CURRENT TO POINTS",current_points, points);
+    console.log("team to points", current_team_points, points);
 
     if ( points == null ){
       points = 0
@@ -33,6 +37,12 @@ Table = {
     Table.spin(
       $("div.ranking[player_id='" + player.id + "']").find(".player-points"),
       current_points,
+      points
+    );
+
+    Table.spin(
+      $("div#team-points"),
+      current_team_points,
       points
     );
 

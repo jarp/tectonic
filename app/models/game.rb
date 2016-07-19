@@ -21,6 +21,18 @@ class Game < ApplicationRecord
     "#{game_type} #{title}"
   end
 
+  def part_of_tour?
+    return tour ? true : false
+  end
+
+  def collaborative?
+    return true if game_type_id == 1
+  end
+
+  def combatitive?
+    return true if game_type_id == 2
+  end
+
   def create_token
     self.token = SecureRandom.hex(4)
   end
@@ -32,5 +44,9 @@ class Game < ApplicationRecord
   def complete!
     self.is_completed = true
     save
+  end
+
+  def total_points
+    finds.sum(:points)
   end
 end

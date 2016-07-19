@@ -91,9 +91,12 @@ header {
 
 
   #top-bar-container{
-    margin-bottom: 0px;
     box-shadow: #000 0px 2px 60px;
-    nav.top-bar{
+  }
+
+  body#play {
+    #top-bar-container{
+      margin-bottom: 0px;
     }
   }
 }

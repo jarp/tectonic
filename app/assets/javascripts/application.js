@@ -18,9 +18,6 @@
 //= require invite
 //= require message_box
 
-$(document).on('ready page:load', function () {
-  $(function(){ $(document).foundation(); });
-});
 
-
+$(function(){ $(document).foundation(); });
 $('.datepicker').datepicker();

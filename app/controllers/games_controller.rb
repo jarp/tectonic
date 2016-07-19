@@ -43,8 +43,13 @@ class GamesController < ActivePlayerController
 
         create_bonuses(game_params[:bonus_count]) if game_params[:bonus_count].to_i >  0
 
-        gp = GameService.add_player(@game, @active_player, true)
-        gp.update(accepted: true)
+        gp = GameService.add_player(@game, @active_player, true, true)
+
+        if @game.part_of_tour?
+          @game.tour.players.each do | p |
+            gp = GameService.add_player(@game, p, false, true)
+          end
+        end
 
         format.html { redirect_to @game, notice: 'Game was successfully created.' }
         format.json { render :show, status: :created, location: @game }

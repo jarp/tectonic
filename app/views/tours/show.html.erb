@@ -1,10 +1,36 @@
-<h2><%= @tour.name %></h2>
-<p>From <%= @tour.start_on %> to <%= @tour.end_on %> </p>
+<div class="row">
+  <div class="small-8 medium-10 columns">
+  <h2><%= @tour.name %></h2>
+  </div>
 
-<p><%= @tour.games.count %> combined games.</p>
-<p><%= @tour.finds.count %> combined finds and <%= @tour.unique_finds.count %> unique finds.</p>
+  <div class="small-4 medium-2 columns">
+    <%= link_to 'Back', tours_path, class: 'button secondary' %>
+  </div>
+</div>
 
-<%= render partial: 'shared/map', locals: {finds: @tour.unique_finds } %>
-<%= render partial: 'shared/leaders', locals: {leaders: @leaders } %>
 
-<%= link_to 'Back', tours_path %>
+<div class="row">
+  <div class="small-12 medium-12 columns">
+    <p>From <%= @tour.start_on %> to <%= @tour.end_on %> </p>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="small-12 medium-12 columns">
+      <p><%= @tour.games.count %> combined games.</p>
+      <p><%= @tour.finds.count %> combined finds and <%= @tour.unique_finds.count %> unique finds.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-12 medium-12 columns">
+    <%= render partial: 'shared/map', locals: {finds: @tour.unique_finds } %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-12 medium-12 columns">
+    <%= render partial: 'shared/leaders', locals: {leaders: @leaders } %>
+  </div>
+</div>

@@ -8,7 +8,8 @@ class PlayController < ActivePlayerController
     @players = @current_game.players
     @plates = Plate.all
     @finds = @current_game.finds
-    @leaders = Table.new(@current_game).leaders
+    @table = Table.new(@current_game)
+    @leaders = @table.leaders
 
     ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
     player: @active_player,

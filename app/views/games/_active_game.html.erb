@@ -1,7 +1,7 @@
 <div class="game-list-item">
   <div class="row">
     <div class="small-12 medium-6 columns">
-      <p><%= invite.title %></p>
+      <p><%= invite.title %> <%= "(#{invite.game.tour})" if invite.game.part_of_tour? %></p>
     </div>
     <div class="small-12 medium-6 columns medium-text-right small-text-center">
       <ul class="button-group radius">
