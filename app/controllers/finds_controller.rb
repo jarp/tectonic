@@ -3,7 +3,7 @@ require 'openssl'
 
 class FindsController < ActivePlayerController
   before_action :set_find, only: [:show, :edit, :update, :destroy]
-  before_action :set_game, only: [:create, :clear]
+  before_action :set_current_game, only: [:create, :clear]
 
   # GET /finds
   # GET /finds.json
@@ -50,14 +50,14 @@ class FindsController < ActivePlayerController
   end
 
   def create
-    puts ">> create find iwth #{params}"
+
     @find = Find.new()
       @find.game_id = cookies["current_game_id"]
       @find.player_id = get_player_id
 
     @plate = Plate.find_by_code(params[:code])
 
-    if @game.bonuses.map(&:plate_id).include?(@plate.id)
+    if @current_game.bonuses.map(&:plate_id).include?(@plate.id)
       bonus = true
       bonus_multiplier = 2
     else
@@ -80,12 +80,12 @@ class FindsController < ActivePlayerController
 
     respond_to do |format|
       if @find.save
-          if @game.combatitive?
-            points = GameService.points(@game, @find.player)
+          if @current_game.combatitive?
+            points = GameService.points(@current_game, @find.player)
           else
-            points = GameService.points(@game)
+            points = GameService.points(@current_game)
           end
-
+          Timeline.create!(game: @current_game, message: message)
           ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
             message: message,
             state: params[:code],
@@ -105,7 +105,7 @@ class FindsController < ActivePlayerController
 
   def clear
     @plate = Plate.find_by(code:params[:code])
-    if @game.allow_player_switching?
+    if @current_game.allow_player_switching?
       @find = Find.find_by(game_id: cookies["current_game_id"], plate_id: @plate.id )
     else
       @find = @active_player.finds.find_by(game_id: cookies["current_game_id"], plate_id: @plate.id )
@@ -113,14 +113,17 @@ class FindsController < ActivePlayerController
 
     if @find
       @find.destroy
-      if @game.combatitive?
-        points = GameService.points(@game, @find.player)
+      if @current_game.combatitive?
+        points = GameService.points(@current_game, @find.player)
       else
-        points = GameService.points(@game)
+        points = GameService.points(@current_game)
       end
 
+      message = "Apparently #{@find.player.first_name} didn't find the plate for  #{@plate.state}"
+
+      Timeline.create!(game: @current_game, message: message)
       ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
-      message: "Apparently #{@active_player.first_name} didn't find the plate for  #{@plate.state}",
+      message: message,
       state: params[:code],
       points: points,
       player_name: @find.player.first_name,
@@ -158,12 +161,12 @@ class FindsController < ActivePlayerController
     end
 
     def get_player_id
-      return session[:player_id] unless @game.allow_player_switching
+      return session[:player_id] unless @current_game.allow_player_switching
       return params[:player_id] || session[:player_id]
     end
 
-    def set_game
-      @game = Game.find(cookies[:current_game_id])
+    def set_current_game
+      @current_game = Game.find(cookies[:current_game_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

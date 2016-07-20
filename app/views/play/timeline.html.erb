@@ -1,0 +1,14 @@
+<h2>Timeline</h2>
+
+<div id="timeline" class="row">
+
+<% @timeline.each do | entry | %>
+  <div class="small-12 columns">
+    <p class="timeline-entry">
+      <span class="ts"><%= entry.created_at.strftime('%D %H:%m %P') %></span>
+      <span class="message"><%= entry.message %></span>
+    </p>
+  </div>
+<% end %>
+
+</div>

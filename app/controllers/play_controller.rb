@@ -1,6 +1,6 @@
 class PlayController < ActivePlayerController
   layout 'play'
-  before_action :get_active_game, except: [:set]
+  before_action :get_current_game, except: [:set]
 
   def index
     @current_game = Game.includes(:players, :finds).find(cookies[:current_game_id])
@@ -21,8 +21,13 @@ class PlayController < ActivePlayerController
     @leaders = Table.new(@current_game).leaders
   end
 
+  def timeline
+    @timeline = Timeline.where(game: @current_game)
+    puts @timeline.inspect
+  end
+
   def map
-    @game = Game.find(cookies[:current_game_id])
+    @current_game = Game.find(cookies[:current_game_id])
     gmaps = GoogleMapsService::Client.new(
         client_id: "<ENV['TECTONIC_CLIENT_ID'] %>",
         client_secret: "<ENV['TECTONIC_CLIENT_SECRET'] %>"
@@ -45,9 +50,9 @@ class PlayController < ActivePlayerController
 
   private
 
-  def get_active_game
+  def get_current_game
     if cookies[:current_game_id]
-      @game = Game.find(cookies[:current_game_id])
+      @current_game = Game.find(cookies[:current_game_id])
     else
       flash[:message] = "You need to be part of an active game..."
       redirect_to games_path
