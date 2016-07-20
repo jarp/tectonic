@@ -2,11 +2,10 @@ $(document).ready(function(){
 
   if ( $("#play").length > 0 ){
 
-
-
     Avatar.load( $('.plate.found') )
 
-    $('.player-image').on('click', function(){
+    $(document).on('click', '.player-image', function(){
+      console.log('selecting player ' +  $(this).closest('.select-player').attr('player_id'));
       if ( $(this).closest('.select-player').hasClass('active-player') ) {
         $(this).closest('.select-player').removeClass('active-player')
       }
@@ -70,7 +69,8 @@ $(document).ready(function(){
 
       function post_update(plate, plate_id, cb, coords){
         var url = '/finds/'
-        if ( $('.active-player').text().length ) {
+        console.log($('.active-player'), $('.active-player').attr('player_id'));
+        if ( $('.active-player').length ) {
             url = '/finds/' + $('.active-player').attr('player_id')
         }
 

@@ -4,6 +4,10 @@
   background-color: #ccc;
 }
 
+.select-player {
+  padding: 4px;
+}
+
 #plate-list{
   margin-top:20px
 }
@@ -17,8 +21,7 @@
 
 div#team-points {
     background-color: #fff;
-    width: 60px;
-    float: right;
+    widows: 100%;
     text-align: center;
     border: thin solid #ccc;
     font-size: 1.2em;
@@ -31,13 +34,29 @@ div#team-points {
 @media (max-width: 640px) {
 
     img.icon{
+
+    }
+
+    .select-player {
       background-color: #fff;
       width:48px;
       padding:4px;
       border-radius: 36px;
-      margin-top: 4px
+      margin-top: 10px;   
+      background-color: #fff;
+      border-radius: 24px; }
+
+
+    #team-container {
+      img.icon{
+        width:36px;
+        padding: 4px;
+
+      }
     }
 
   div#team-points {
+    float: right;
+    width: 60px;
     }
 }

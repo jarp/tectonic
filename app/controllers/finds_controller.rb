@@ -50,9 +50,11 @@ class FindsController < ActivePlayerController
   end
 
   def create
+    puts ">> create find iwth #{params}"
     @find = Find.new()
       @find.game_id = cookies["current_game_id"]
       @find.player_id = get_player_id
+
     @plate = Plate.find_by_code(params[:code])
 
     if @game.bonuses.map(&:plate_id).include?(@plate.id)
@@ -63,11 +65,13 @@ class FindsController < ActivePlayerController
       bonus_multiplier = 1
     end
 
-      @find.plate_id = @plate.id
-      @find.current_coord = params[:current_location]
+    @find.plate_id = @plate.id
+    @find.current_coord = params[:current_location]
 
     distance=LocationService.distance(params[:current_location],@plate.geocode)
-      @find.points= ( distance.gsub(',','').to_i / 100 ) * bonus_multiplier
+
+    @find.points= ( distance.gsub(',','').to_i / 100 ) * bonus_multiplier
+
     if bonus
       message = "BONUS points!!!  #{@active_player.first_name} found the plate for  #{@plate.state} for #{@find.points} points."
     else
@@ -76,7 +80,12 @@ class FindsController < ActivePlayerController
 
     respond_to do |format|
       if @find.save
-          points = GameService.points(@game, @active_player)
+          if @game.combatitive?
+            points = GameService.points(@game, @find.player)
+          else
+            points = GameService.points(@game)
+          end
+
           ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
             message: message,
             state: params[:code],
@@ -96,17 +105,26 @@ class FindsController < ActivePlayerController
 
   def clear
     @plate = Plate.find_by(code:params[:code])
-    @find = @active_player.finds.find_by(game_id: cookies["current_game_id"], plate_id: @plate.id ) # if @active_player.finds.any?
+    if @game.allow_player_switching?
+      @find = Find.find_by(game_id: cookies["current_game_id"], plate_id: @plate.id )
+    else
+      @find = @active_player.finds.find_by(game_id: cookies["current_game_id"], plate_id: @plate.id )
+    end
 
     if @find
       @find.destroy
-      points = GameService.points(@game, @active_player)
+      if @game.combatitive?
+        points = GameService.points(@game, @find.player)
+      else
+        points = GameService.points(@game)
+      end
+
       ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
       message: "Apparently #{@active_player.first_name} didn't find the plate for  #{@plate.state}",
       state: params[:code],
       points: points,
-      player_name: @active_player.first_name,
-      player: @active_player,
+      player_name: @find.player.first_name,
+      player: @find.player,
       action: "clear"
 
 

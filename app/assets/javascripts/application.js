@@ -19,5 +19,7 @@
 //= require message_box
 
 
-$(function(){ $(document).foundation(); });
+$(document).on('ready page:load', function () {
+  $(function(){ $(document).foundation(); });
+});
 $('.datepicker').datepicker();

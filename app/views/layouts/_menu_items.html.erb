@@ -3,11 +3,12 @@
 
 <% if @current_game %>
   <li class="has-dropdown">
-      <a>Current Game</a>
+      <a href="#">Current Game</a>
       <ul class="dropdown">
         <li><a href="/play">Play</a></li>
         <li><a href="/games/<%= cookies[:current_game_id] %>">Invite Players</a></li>
         <li><a href="/play/table">Map and Table</a></li>
+        <li><a href="/games/<%= cookies[:current_game_id] %>/edit">Update Current Game</a></li>
         <li><a href="/games/<%= @current_game.id %>/complete">Complete Game</a></li>
       </ul>
   </li>
@@ -16,11 +17,10 @@
 
 <% if @active_player %>
   <li class="has-dropdown">
-      <a>Games</a>
+      <a href="#">Games</a>
       <ul class="dropdown">
         <li><a href="/play">Play Current Game</a></li>
         <li><a href="/games">Go to Games</a></li>
-        <li><a href="/games/<%= cookies[:current_game_id] %>/edit">Update Current Game</a></li>
         <li><a href="/games/new">New Game</a></li>
         <li><a href="/tours">Tours</a></li>
 

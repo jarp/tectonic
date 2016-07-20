@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160720164339) do
+ActiveRecord::Schema.define(version: 20160720212424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,18 @@ ActiveRecord::Schema.define(version: 20160720164339) do
     t.string   "image"
   end
 
+  create_table "timelines", force: :cascade do |t|
+    t.integer  "game_id"
+    t.integer  "player_id"
+    t.integer  "plate_id"
+    t.text     "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_timelines_on_game_id", using: :btree
+    t.index ["plate_id"], name: "index_timelines_on_plate_id", using: :btree
+    t.index ["player_id"], name: "index_timelines_on_player_id", using: :btree
+  end
+
   create_table "tours", force: :cascade do |t|
     t.string   "name"
     t.date     "start_on"
@@ -113,5 +125,8 @@ ActiveRecord::Schema.define(version: 20160720164339) do
   add_foreign_key "games", "game_types"
   add_foreign_key "games", "players"
   add_foreign_key "games", "tours"
+  add_foreign_key "timelines", "games"
+  add_foreign_key "timelines", "plates"
+  add_foreign_key "timelines", "players"
   add_foreign_key "tours", "players"
 end

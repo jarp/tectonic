@@ -1,7 +1,7 @@
 
-<div class="row collapse ranking select-player" <%= 'me' if player.id == session[:player_id] %> player_id="<%= player.id %>">
-  <div class="small-6 medium-4 columns player-image small-text-center">
-    <img class="icon player-icon" width="64" src='<%= image_path(player.image) %>'</img>
+<div class="row collapse ranking" <%= 'me' if player.id == session[:player_id] %> player_id="<%= player.id %>">
+  <div class="small-6 medium-4 columns small-text-center">
+    <img class="icon player-icon player-image select-player"  player_id="<%= player.id %>" width="64" src='<%= image_path(player.image) %>'</img>
   </div>
   <div class="small-6 columns medium-2 player-points right medium-text-right small-text-center" player="<%= player %>">
     <%= points %>
