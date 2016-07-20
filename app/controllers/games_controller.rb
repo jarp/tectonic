@@ -110,6 +110,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:title, :game_type_id, :use_images, :bonus_count, :tour_id)
+      params.require(:game).permit(:title, :game_type_id, :use_images, :bonus_count, :tour_id, :allow_player_switching)
     end
 end

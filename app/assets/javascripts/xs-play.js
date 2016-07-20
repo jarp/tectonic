@@ -1,61 +1,21 @@
 $(document).ready(function(){
-// media query event handler
-if (matchMedia) {
-  //The same value of $small-range
-  var mq = window.matchMedia("(min-width: 640px)");
-  mq.addListener(WidthChange);
-  WidthChange(mq);
-}
-
-// media query change
-function WidthChange(mq) {
-  var w = $('#players').width();
-  console.log(w);
-  if (mq.matches) {
-
-    if( $(document.body).hasClass('f-topbar-fixed') ) {
-      //console.log('1');
-    }
-    else {
-      //console.log('opriginal load');
-    }
-    w = $('#players').width();
-    $( window ).scroll(function() {
-      if($(document.body).hasClass('f-topbar-fixed')) {
-        console.log(w);
-        $('#players').css('position', 'fixed')
-        $('#players').css('top', '60px')
-        $('#players').css('width', w + 20)
-      }
-      else {
-
-        if( !$(document.body).hasClass('f-topbar-fixed') ) {
-          console.log('remove fixed');
-          $('#players').css('position', 'relative')
-          $('#players').css('top', '')
-          $('#players').removeClass('fixed-width')
-        }
-      }
-    });
-  }
-else {
-  $( window ).scroll(function() {
-      //console.log(5);
-    }
-  );
-  }
-}
-
-
-
-  var mq = window.matchMedia( "(max-width: 640px)" );
-
-  if (mq.matches){
-    $('#players').addClass('sticky')
-  }
 
   if ( $("#play").length > 0 ){
+
+
+
     Avatar.load( $('.plate.found') )
+
+    $('.player-image').on('click', function(){
+      if ( $(this).closest('.select-player').hasClass('active-player') ) {
+        $(this).closest('.select-player').removeClass('active-player')
+      }
+      else {
+        $('.active-player').removeClass('active-player')
+        $(this).closest('.select-player').addClass('active-player')
+      }
+    });
+
     $('.plate').on('click', function(){
       var plate = $(this).attr('plate_code');
       var plate_id = $(this).attr('plate_id');
@@ -109,9 +69,14 @@ else {
       }
 
       function post_update(plate, plate_id, cb, coords){
+        var url = '/finds/'
+        if ( $('.active-player').text().length ) {
+            url = '/finds/' + $('.active-player').attr('player_id')
+        }
+
         var jqxhr = $.ajax({
           type: "POST",
-          url: '/finds/',
+          url: url,
           dataType: 'JSON',
           data: {
             code: plate,
@@ -167,4 +132,61 @@ else {
           }
       )};
     }
+
+
+    // media query event handler
+if (matchMedia) {
+  //The same value of $small-range
+  var mq = window.matchMedia("(min-width: 640px)");
+  mq.addListener(WidthChange);
+  WidthChange(mq);
+}
+
+// media query change
+function WidthChange(mq) {
+  var w = $('#players').width();
+  console.log(w);
+  if (mq.matches) {
+
+    if( $(document.body).hasClass('f-topbar-fixed') ) {
+      //console.log('1');
+    }
+    else {
+      //console.log('opriginal load');
+    }
+    w = $('#players').width();
+    $( window ).scroll(function() {
+      if($(document.body).hasClass('f-topbar-fixed')) {
+        console.log(w);
+        $('#players').css('position', 'fixed')
+        $('#players').css('top', '60px')
+        $('#players').css('width', w + 20)
+      }
+      else {
+
+        if( !$(document.body).hasClass('f-topbar-fixed') ) {
+          console.log('remove fixed');
+          $('#players').css('position', 'relative')
+          $('#players').css('top', '')
+          $('#players').removeClass('fixed-width')
+        }
+      }
+    });
+  }
+else {
+  $( window ).scroll(function() {
+      //console.log(5);
+    }
+  );
+  }
+}
+
+
+
+  var mq = window.matchMedia( "(max-width: 640px)" );
+
+  if (mq.matches){
+    $('#players').addClass('sticky')
+  }
+
 })

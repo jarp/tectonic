@@ -32,9 +32,10 @@ Rails.application.routes.draw do
     collection do
       post 'clear' => 'finds#clear', as: :clear
       get 'avatar/:plate_id' => 'finds#avatar', as: :avatar
-
     end
-  end
+
+end
+  post 'finds/:player_id' => 'finds#create'
 
   resources :game_players
   resources :players

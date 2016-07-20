@@ -52,7 +52,7 @@ class FindsController < ActivePlayerController
   def create
     @find = Find.new()
       @find.game_id = cookies["current_game_id"]
-      @find.player_id = session[:player_id]
+      @find.player_id = get_player_id
     @plate = Plate.find_by_code(params[:code])
 
     if @game.bonuses.map(&:plate_id).include?(@plate.id)
@@ -80,8 +80,8 @@ class FindsController < ActivePlayerController
           ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
             message: message,
             state: params[:code],
-            player_name: @active_player.first_name,
-            player: @active_player,
+            player_name: @find.player.first_name,
+            player: @find.player,
             points: points,
             bonus: bonus,
             action: "find"
@@ -137,6 +137,11 @@ class FindsController < ActivePlayerController
     # Use callbacks to share common setup or constraints between actions.
     def set_find
       @find = Find.find(params[:id])
+    end
+
+    def get_player_id
+      return session[:player_id] unless @game.allow_player_switching
+      return params[:player_id] || session[:player_id]
     end
 
     def set_game

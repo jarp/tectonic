@@ -54,20 +54,22 @@
     </div>
   </div>
 
-
-
   <div class="row">
-      <div class="small-12  medium-10 medium-offset-2 columns end">
-
-        <%= f.check_box :use_images, class: 'inline' %>
-
-        <%= f.label :use_images, "Use license plate images instead of boring blocks and stuff" %>
+    <div class="small-12  medium-10 medium-offset-2 columns end">
+      <%= f.check_box :use_images, class: 'inline' %>
+      <%= f.label :use_images, "Use license plate images instead of boring blocks and stuff" %>
     </div>
   </div>
 
   <div class="row">
+    <div class="small-12  medium-10 medium-offset-2 columns end">
+      <%= f.check_box :allow_player_switching, class: 'inline' %>
+      <%= f.label :allow_player_switching, "Allow players to select active players from within the game" %>
+    </div>
+  </div>
 
 
+  <div class="row">
     <div class="small-12 medium-2 medium-offset-2 columns">
       <%= f.submit "Save", class: 'button expand' %>
     </div>

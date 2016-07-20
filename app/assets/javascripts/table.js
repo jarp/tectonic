@@ -9,9 +9,9 @@ Table = {
       else {
         var rankings = $("#rankings-container");
 
-        html = '<li><div class="row collapse ranking" player_id="' + player.id + '">'
+        html = '<li><div class="row collapse ranking select-player" player_id="' + player.id + '">'
           + '<div class="small-6 medium-4 columns player-image">'
-          + '<img class="icon" width="64" src="' + player.image +'">'
+          + '<img class="icon player-icon" width="64" src="' + player.image +'">'
           + '</div>'
           + '<div class="small-6 columns medium-2 player-points right medium-text-right" player="' + player.first_name + ' ' + player.last_name + '">0</div>'
           + '<div class="small-12 medium-6 columns player-name hide-for-small-only" player="' + player.first_name + ' ' + player.last_name + '">'
@@ -102,7 +102,7 @@ Table = {
     rankings.html("");
 
     for(var i=0, len=store.length; i<len; i++){
-        rankings.append('<li><div class="row collapse ranking" player_id="' + store[i][1] + '">' + store[i][2] + '</div></li>');
+        rankings.append('<li><div class="row collapse ranking select-player" player_id="' + store[i][1] + '">' + store[i][2] + '</div></li>');
     }
 
     $('.going-up').removeClass('going-up');

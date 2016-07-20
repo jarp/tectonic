@@ -5,7 +5,7 @@
     <div class="small-6 columns">
       <ul   class="inline-list">
       <% @leaders.each do | leader | %>
-      <li>
+      <li player_id="<%= leader[:player].id %>" class="select-player">
         <img class="icon" width="64" src='<%= image_path(leader[:player].image) %>'</img>
       </li>
       <% end %>
