@@ -73,9 +73,9 @@ class FindsController < ActivePlayerController
     @find.points= ( distance.gsub(',','').to_i / 100 ) * bonus_multiplier
 
     if bonus
-      message = "BONUS points!!!  #{@active_player.first_name} found the plate for  #{@plate.state} for #{@find.points} points."
+      message = "BONUS points!!!  #{@find.player.first_name} found the plate for  #{@plate.state} for #{@find.points} points."
     else
-      message = "#{@active_player.first_name} found the plate for  #{@plate.state} for #{@find.points} points."
+      message = "#{@find.player.first_name} found the plate for  #{@plate.state} for #{@find.points} points."
     end
 
     respond_to do |format|
