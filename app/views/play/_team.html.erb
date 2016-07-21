@@ -7,7 +7,7 @@
       <% @leaders.each do | leader | %>
       <li >
 
-          <img class="icon player-image select-player" player_id="<%= leader[:player].id %>" width="64" src='<%= leader[:player].image.nil? "" : image_path(leader[:player].image) %>'</img>
+          <img class="icon player-image select-player" player_id="<%= leader[:player].id %>" width="64" src='<%= image_path(leader[:player].avatar) %>'</img>
 
       </li>
       <% end %>

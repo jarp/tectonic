@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.action_mailer.delivery_method = :ses
+  # config.action_mailer.delivery_method = :ses
   # config.middleware.use ExceptionNotification::Rack,
   #   :email => {
   #     :email_prefix => "[UNACCEPTABLE!!!!] ",

@@ -13,6 +13,11 @@ class Player < ApplicationRecord
     is_super ? true : false
   end
 
+  def avatar
+    return image if image
+    return "/assets/missing_avatar.jpg"
+  end
+
   def to_s
     return "#{first_name} #{last_name}" unless first_name.blank?
     return email

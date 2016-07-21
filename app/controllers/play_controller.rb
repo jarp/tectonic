@@ -10,6 +10,9 @@ class PlayController < ActivePlayerController
     @finds = @current_game.finds
     @table = Table.new(@current_game)
     @leaders = @table.leaders
+    @percent_done = ((@finds.count.to_f / @plates.count.to_f) * 100).round
+    puts ">>>>>>>>>>>>>>>> #{@percent_done}"
+
 
     ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
     player: @active_player,

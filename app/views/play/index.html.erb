@@ -1,4 +1,6 @@
 <div id="play" class="row" game_id="<%= @current_game.id %>" player_id="<%= @active_player_id %>">
+
+
   <% if @current_game.collaborative? %>
     <%= render 'team' %>
   <% else %>
