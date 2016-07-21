@@ -1,0 +1,46 @@
+html {height: 100%}
+body {
+  margin:0;
+  height: 100%;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-color: #000;
+  color: #2E2F30;
+  text-align: center;
+  font-family: arial, sans-serif;
+  margin: 0;
+}
+
+div.message {
+    background-color: #545454;
+    border: 5px solid #2e2f30;
+    opacity: .8;
+    color: #fff;
+    border-radius: 8px;
+    float: left;
+    padding: 10px;
+    width: 80%;
+    margin-top: 400px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+@media only screen and (max-width: 500px) {
+  body {
+    background-image: url('/img/sorta-unacceptable.png');
+  }
+
+  div.message {
+
+    width: 80%;
+    margin-left: 4%;
+    margin-right: 4%;
+  }
+}
+
+@media only screen and (min-width: 501px) {
+  body {
+    background-image: url('/img/very-unacceptable.png');
+  }
+
+}
