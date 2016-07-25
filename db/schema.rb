@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160720212424) do
+ActiveRecord::Schema.define(version: 20160725180724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20160720212424) do
     t.string   "last_name"
     t.string   "is_super"
     t.string   "image"
+    t.string   "api_key"
   end
 
   create_table "timelines", force: :cascade do |t|

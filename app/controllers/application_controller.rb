@@ -4,14 +4,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def active_player
-    if session[:player_id]
-      @active_player || @active_player = Player.find(session[:player_id])
-    end
+
+      return @active_player || @active_player = Player.find(session[:player_id]) if session[:player_id]
+      return @active_player || @active_player = Player.find_by(api_key: params[:api_key]) if params[:api_key]
+
   end
 
   def require_login
+    puts "require login"
     cookies[:return_to] = request.fullpath if request.fullpath.include?('invite') || request.fullpath.include?('play')
-    redirect_to login_path unless session[:player_id]
+    redirect_to login_path unless session[:player_id] || params[:api_key]
   end
 
   def require_super_player_login
