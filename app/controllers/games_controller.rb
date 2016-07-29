@@ -1,5 +1,5 @@
 class GamesController < ActivePlayerController
-  before_action :set_game, only: [:show, :edit, :complete, :results, :update, :destroy]
+  before_action :set_game, only: [:show, :edit, :complete, :results, :update, :destroy, :players, :plates]
 
   # GET /games
   # GET /games.json
@@ -96,6 +96,14 @@ end
       format.html { redirect_to games_url, notice: 'Game was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def players
+    render json: @game.players
+  end
+
+  def plates
+    render json: Plate.all
   end
 
   private

@@ -44,6 +44,8 @@ end
     member do
       get 'complete' => 'games#complete', as: :complete
       get 'results' => 'games#results', as: :results
+      get 'players' => 'games#players', as: :game_players
+      get 'plates' => 'games#plates', as: :game_plates
     end
   end
   resources :plates
