@@ -99,7 +99,7 @@ end
   end
 
   def players
-    render json: @game.players
+    @players = @game.players
   end
 
   def plates
