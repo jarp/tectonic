@@ -1,8 +1,10 @@
 <div class="sub-game-box">
   <div class="row">
+
     <div class="small-12 medium-6 columns">
       <h3><%= tour.name %></h3>
       <p>From <%= tour.start_on %> to <%= tour.end_on %></p>
+      <p>From <%= tour.unique_finds.count %> of <%= Plate.count %> plates found</p>
     </div>
 
     <div class="small-12 medium-6 text-right columns small-text-center">

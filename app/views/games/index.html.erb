@@ -47,7 +47,7 @@
   </div>
 <% end %>
 
-  <div class="small-12 medium-6 columns ">
+  <div class="small-12 medium-<%=  @invitations.any? ? "6" : "12" %> columns ">
     <div class="sub-game-box">
 
     <h3>Completed Games</h3>
@@ -60,9 +60,14 @@
 
       <div class="completed-game-list-item">
         <div class="row">
-          <div class="small-6 medium-6 columns">
+          <div class="small-4 medium-4 columns">
             <p><%= game.title %> <%= "(#{game.tour})" if game.part_of_tour? %></p>
           </div>
+
+          <div class="small-2 medium-2 columns">
+            <p><%= game.finds.count %>/<%= Plate.count %></p>
+          </div>
+
           <div class="small-6 medium-6 columns medium-text-right small-text-center">
             <ul class="button-group radius">
                 <li><%= link_to 'Results', results_game_path(game), class: 'button  tiny' %></li>

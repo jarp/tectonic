@@ -1,6 +1,7 @@
 class PlayController < ActivePlayerController
   layout 'play'
   before_action :get_current_game, except: [:set]
+  force_ssl if Rails.env.production?
 
   def index
     @current_game = Game.includes(:players, :finds).find(cookies[:current_game_id])

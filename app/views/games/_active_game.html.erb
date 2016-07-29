@@ -1,8 +1,13 @@
 <div class="game-list-item">
   <div class="row">
-    <div class="small-12 medium-6 columns">
-      <p><%= invite.title %> <%= "(#{invite.game.tour})" if invite.game.part_of_tour? %></p>
+    <div class="small-10 medium-4 columns">
+      <p class="active-game"><%= invite.title %> <%=raw "( Tour: #{link_to invite.game.tour,  tour_path(invite.game.tour)} )" if invite.game.part_of_tour? %></p>
     </div>
+
+    <div class="small-2 medium-2 columns">
+      <p><%= invite.game.finds.count %>/<%= Plate.count %></p>
+    </div>
+
     <div class="small-12 medium-6 columns medium-text-right small-text-center">
       <ul class="button-group radius">
         <li><%= link_to 'Play', play_game_path(invite.game), class: 'button success tiny' %></li>
