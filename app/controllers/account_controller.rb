@@ -53,6 +53,8 @@ class AccountController < ApplicationController
   end
 
   def info_from_the_google
+    puts request.env["omniauth.auth"].inspect
+    puts request.env["omniauth.auth"][:info].inspect
     {
       email: request.env["omniauth.auth"][:info][:email],
       first_name: request.env["omniauth.auth"][:info][:first_name],

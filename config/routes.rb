@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :api do
+    get 'player/lookup'
+  end
+
   resources :tours
   # Serve websocket cable requests in-process
   mount ActionCable.server => '/cable'
