@@ -3,7 +3,7 @@ class Api::PlayerController < RemoteController
 
   def lookup
     @player = Player.where(email: params[:email].downcase).first_or_create
-    render text: @player.api_key
+    render text: "{value: #{@player.api_key}}"
   end
 
 end
