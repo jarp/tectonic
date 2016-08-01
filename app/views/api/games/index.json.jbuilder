@@ -1,3 +1,4 @@
+json.key_format! camelize: :lower
 json.array!(@games) do |game|
   json.extract! game, :id, :title, :created_at, :updated_at, :is_completed
   json.total_finds game.plates.count
