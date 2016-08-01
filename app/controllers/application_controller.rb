@@ -4,9 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def active_player
-
-      return @active_player || @active_player = Player.find(session[:player_id]) if session[:player_id]
+      puts "get active player"
       return @active_player || @active_player = Player.find_by(api_key: params[:api_key]) if params[:api_key]
+      return @active_player || @active_player = Player.find(session[:player_id]) if session[:player_id]
 
   end
 

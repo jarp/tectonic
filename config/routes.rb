@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
 
   namespace :api do
+    get 'games/index'
+  end
+
+  namespace :api do
+    get 'games/show'
+  end
+
+  namespace :api do
     get 'player/lookup'
   end
 
