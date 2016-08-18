@@ -13,7 +13,7 @@ class PlayController < ActivePlayerController
     @percent_done = ((@finds.count.to_f / @plates.count.to_f) * 100).round
     puts ">>>>>>>>>>>>>>>> #{@percent_done}"
 
-
+    # When a user hits the current page, announce their arrival.
     ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
     player: @active_player,
     action: "join"

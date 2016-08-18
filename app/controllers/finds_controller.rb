@@ -85,7 +85,12 @@ class FindsController < ActivePlayerController
           else
             points = GameService.points(@current_game)
           end
+
           Timeline.create!(game: @current_game, message: message)
+
+          # Rails server sends message to WS that will then be syndicated to all listening clients
+          # action cable takes to attrs - the channel to send the message to (indentified by game id) and a hash of things
+          # Each of these attrs (message, state, points... ) will be keys to a javascript hash
           ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
             message: message,
             state: params[:code],
@@ -94,6 +99,7 @@ class FindsController < ActivePlayerController
             points: points,
             bonus: bonus,
             action: "find"
+
         format.html { redirect_to @find, notice: 'Find was successfully created.' }
         format.json { render :show, status: :created, location: @find }
       else
@@ -122,6 +128,8 @@ class FindsController < ActivePlayerController
       message = "Apparently #{@find.player.first_name} didn't find the plate for  #{@plate.state}"
 
       Timeline.create!(game: @current_game, message: message)
+
+      # Rails server sends message to WS that will then be syndicated to all listening clients
       ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
       message: message,
       state: params[:code],
@@ -129,8 +137,6 @@ class FindsController < ActivePlayerController
       player_name: @find.player.first_name,
       player: @find.player,
       action: "clear"
-
-
 
       respond_to do |format|
         format.html { redirect_to finds_url, notice: 'Find was successfully cleared.' }

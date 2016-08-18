@@ -10,6 +10,8 @@ class Game < ApplicationRecord
   belongs_to :owner, class_name: "Player", foreign_key: "player_id"
   has_many :bonuses, dependent: :destroy, class_name: 'Bonus'
 
+  has_many :timelines, dependent: :destroy
+
   belongs_to :tour
 
   before_create :create_token

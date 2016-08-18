@@ -1,3 +1,10 @@
+/*
+  this js file handles the messages being sent to client from WS server
+  connected, disconnected, and received are all standard methods this object should implement (there are others)
+
+  #received is the primary method you work with to respond to WS messages
+*/
+
 App.game = App.cable.subscriptions.create('GameChannel', {
   connected: function(){
     console.log("Channel connected ::> ", this);

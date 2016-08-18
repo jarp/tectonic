@@ -1,7 +1,6 @@
 $(document).ready(function(){
 
   if ( $("#play").length > 0 ){
-
     Avatar.load( $('.plate.found') )
 
     $(document).on('click', '.player-image', function(){
@@ -67,80 +66,76 @@ $(document).ready(function(){
         })
       }
 
-      function post_update(plate, plate_id, cb, coords){
-        var url = '/finds/'
-        console.log($('.active-player'), $('.active-player').attr('player_id'));
-        if ( $('.active-player').length ) {
-            url = '/finds/' + $('.active-player').attr('player_id')
-        }
-
-        var jqxhr = $.ajax({
-          type: "POST",
-          url: url,
-          dataType: 'JSON',
-          data: {
-            code: plate,
-            plate_id: plate_id,
-            current_location: coords
-            }
-          })
-          .success(function(response){
-            Plate.enable(cb);
-            Plate.turnOff(cb);
-          })
-          .error(function(response){
-            Plate.enable(cb);
-            Plate.turnOn(cb);
-            Tectonic.handleError(response);
-          })
-        }
-
-      function delete_find(plate, cb){
-        console.log('remove find?');
-
-
-        if (confirm("Are you sure you wan to remove this amazing find?")){
-          var jqxhr = $.ajax({
-            type: "POST",
-            url: '/finds/clear',
-            dataType: 'JSON',
-            data: { code: plate }
-            })
-            .success(function(response){
-              Plate.turnOn(cb)
-            })
-            .error(function(response){
-              Tectonic.handleError(response);
-              Plate.turnOff(cb)
-            })
-        }
-
-        else{
-          console.log('false alarm');
-        }
-
-
+    function post_update(plate, plate_id, cb, coords){
+      var url = '/finds/'
+      console.log($('.active-player'), $('.active-player').attr('player_id'));
+      if ( $('.active-player').length ) {
+          url = '/finds/' + $('.active-player').attr('player_id')
       }
 
-        function getLocation(){
-          navigator.geolocation.getCurrentPosition( function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            }
-            return position.coords.latitude + "::" + position.coords.longitude
+      var jqxhr = $.ajax({
+        type: "POST",
+        url: url,
+        dataType: 'JSON',
+        data: {
+          code: plate,
+          plate_id: plate_id,
+          current_location: coords
           }
-      )};
+        })
+        .success(function(response){
+          Plate.enable(cb);
+          Plate.turnOff(cb);
+        })
+        .error(function(response){
+          Plate.enable(cb);
+          Plate.turnOn(cb);
+          Tectonic.handleError(response);
+        })
+      }
+
+    function delete_find(plate, cb){
+      console.log('remove find?');
+      if (confirm("Are you sure you wan to remove this amazing find?")){
+        var jqxhr = $.ajax({
+          type: "POST",
+          url: '/finds/clear',
+          dataType: 'JSON',
+          data: { code: plate }
+          })
+          .success(function(response){
+            Plate.turnOn(cb)
+          })
+          .error(function(response){
+            Tectonic.handleError(response);
+            Plate.turnOff(cb)
+          })
+      }
+
+      else{
+        console.log('false alarm');
+      }
+    }
+
+    function getLocation(){
+      navigator.geolocation.getCurrentPosition( function(position) {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        }
+        return position.coords.latitude + "::" + position.coords.longitude
+      }
+    )};
     }
 
 
     // media query event handler
-if (matchMedia) {
-  //The same value of $small-range
-  var mq = window.matchMedia("(min-width: 640px)");
-  mq.addListener(WidthChange);
-  WidthChange(mq);
-}
+  if (matchMedia) {
+    //The same value of $small-range
+    var mq = window.matchMedia("(min-width: 640px)");
+    mq.addListener(WidthChange);
+    WidthChange(mq);
+  }
 
 // media query change
 function WidthChange(mq) {
@@ -181,12 +176,10 @@ else {
   }
 }
 
+var mq = window.matchMedia( "(max-width: 640px)" );
 
-
-  var mq = window.matchMedia( "(max-width: 640px)" );
-
-  if (mq.matches){
-    $('#players').addClass('sticky')
-  }
+if (mq.matches){
+  $('#players').addClass('sticky')
+}
 
 })
