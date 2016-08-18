@@ -32,6 +32,7 @@ class GamesController < ActivePlayerController
   # POST /games
   # POST /games.json
   def create
+    puts ">> Hitting up game controller with #{params.inspect}"
     @game = Game.new(game_params)
     @game.owner = @active_player
     @game.game_type_id = GameType.last.id
