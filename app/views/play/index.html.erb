@@ -11,9 +11,9 @@
 <ul id="plate-list" class="small-block-grid-2 large-block-grid-3">
 <% @plates.each do | plate | %>
 
-<li class="plate-card">
-  <%= render partial: 'plate_card', locals: {plate: plate} %>
-</li>
+  <li class="plate-card">
+    <%= render partial: 'plate_card', locals: {plate: plate} %>
+  </li>
 
 <% end %>
   </ul>
