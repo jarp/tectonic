@@ -1,16 +1,16 @@
 <% if @current_game.use_images? %>
-  <div  class="plate with-image <%= "visibility-faded found" if @current_plates.include?(plate) %>"
-        plate_code="<%= plate.code %>" plate_id="<%= plate.id %>"
-        style="background-image: url(<%= image_path("plates/#{plate.code.downcase}.jpg") %>);">
-        <span class="owner"></span>
-        <span class="plate-name"><%= plate unless @current_game.use_images? %></span>
+
+  <div  class="plate with-image plate-image-for-<%= plate.code.downcase %> <%= "visibility-faded found" if @current_plates.include?(plate) %>" plate_code="<%= plate.code %>" plate_id="<%= plate.id %>">
+    <span class="owner"></span>
+    <span class="plate-name"><%= plate unless @current_game.use_images? %></span>
   </div>
+
   <span class="plate-name"><%= plate %></span>
 <% else %>
-  <div  class="plate basic <%= "visibility-faded found" if @current_plates.include?(plate) %>"
-        plate_code="<%= plate.code %>" plate_id="<%= plate.id %>">
 
-        <span class="owner"></span>
-        <span class="plate-name"><%= plate %></span>
-  </div>
+<div  class="plate basic <%= "visibility-faded found" if @current_plates.include?(plate) %>" plate_code="<%= plate.code %>" plate_id="<%= plate.id %>">
+  <span class="owner"></span>
+  <span class="plate-name"><%= plate %></span>
+</div>
+
 <% end %>

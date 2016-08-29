@@ -1,22 +1,21 @@
 <div id="play" class="row" game_id="<%= @current_game.id %>" player_id="<%= @active_player_id %>">
 
 
-  <% if @current_game.collaborative? %>
-    <%= render 'team' %>
-  <% else %>
-    <%= render 'players' %>
-  <% end %>
+<% if @current_game.collaborative? %>
+  <%= render 'team' %>
+<% else %>
+  <%= render 'players' %>
+<% end %>
 
-  <div class="small-12 medium-8 large-9 columns">
+<div class="small-12 medium-8 large-9 columns">
+<ul id="plate-list" class="small-block-grid-2 large-block-grid-3">
+<% @plates.each do | plate | %>
 
+<li class="plate-card">
+  <%= render partial: 'plate_card', locals: {plate: plate} %>
+</li>
 
-    <ul id="plate-list" class="small-block-grid-2 large-block-grid-3">
-      <% @plates.each do | plate | %>
-        <li class="plate-card">
-          <%= render partial: 'plate_card', locals: {plate: plate} %>
-        </li>
-      <% end %>
-    </ul>
-
-  </div>
+<% end %>
+  </ul>
+</div>
 </div>
