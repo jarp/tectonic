@@ -23,3 +23,10 @@ $(document).on('ready page:load', function () {
   $(function(){ $(document).foundation(); });
 });
 $('.datepicker').datepicker();
+
+
+if ('serviceWorker' in navigator) {
+ navigator.serviceWorker
+          .register('./service-worker.js')
+          .then(function() { console.log('Service Worker Registered'); });
+}

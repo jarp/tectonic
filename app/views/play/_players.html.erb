@@ -1,12 +1,12 @@
-  <div id="players" class="small-12 medium-4 large-3 columns">
-    <div>
-      <ul  id="rankings-container" class="small-block-grid-4 medium-block-grid-1">
-      <% @leaders.each do | leader | %>
-      <li>
-        <%= render partial: 'player', locals: {player: leader[:player], points: leader[:total_points]} %>
-      </li>
-      <% end %>
-      </ul>
+      <div id="players" class="small-12 medium-4 large-3 columns">
+        <div>
+          <ul  id="rankings-container" class="small-block-grid-4 medium-block-grid-1">
+          <% @leaders.each do | leader | %>
+          <li>
+              <%= render partial: 'player', locals: {player: leader[:player], points: leader[:total_points]} %>
+          </li>
+          <% end %>
+          </ul>
+        </div>
+        </ul>
     </div>
-    </ul>
-</div>

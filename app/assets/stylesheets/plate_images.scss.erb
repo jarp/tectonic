@@ -1,0 +1,6 @@
+/* this is for plate images*/
+  <% Plate.all.each do | plate | %>
+    .plate-image-for-<%= plate.code.downcase %> {
+        background-image: url(<%= image_path("plates/#{plate.code.downcase}.jpg") %>);
+    }
+  <% end %>
