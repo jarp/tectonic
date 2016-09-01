@@ -17,7 +17,6 @@ gem 'coffee-rails'
 # gem 'therubyracer', platforms: :ruby
 
 # gem 'draper'
-
 gem 'redis'
 gem 'aws-ses'
 gem 'exception_notification'
@@ -28,6 +27,7 @@ gem 'google_maps_service'
 gem 'foundation-rails', '~> 5.5.2.1'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'serviceworker-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
