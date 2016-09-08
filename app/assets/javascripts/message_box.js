@@ -13,12 +13,6 @@ $(document).ready(function(){
 
     set: function(msg, format){
       $('#message-box').css('bottom', '-125px');
-      /*
-      $('html, body').animate({
-        scrollTop: $('html').offset().top
-        },
-      1000);
-      */
 
       if ( format == 'undefined'){
           format = 'normal';
