@@ -21,4 +21,8 @@ class ApplicationController < ActionController::Base
   def show_404
     render text: File.read(Rails.root.join('public/404.html')), status: 404
   end
+
+  def letsencrypt
+    render text: "XyzBBPZ5jxO-u6Nw9KrheM3SHuqMKQXsQ13XXl1vP94.XUyJ9oW_LVu5HKzY4G2w2sx3dsOI73mXDxLZ6_Ymk1Q"
+  end
 end

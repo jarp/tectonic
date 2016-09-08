@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :tours
   # Serve websocket cable requests in-process
   mount ActionCable.server => '/cable'
-
+  get '/.well-known/acme-challenge/:id' => 'application#letsencrypt'
   get 'play/map' => 'play#map', as: :map
   get 'play/table' => 'play#table', as: :current_table
   get 'play/timeline' => 'play#timeline', as: :timeline
