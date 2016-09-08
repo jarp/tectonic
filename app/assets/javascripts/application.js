@@ -26,8 +26,8 @@ $(document).on('ready page:load', function () {
 $('.datepicker').datepicker();
 
 
-if ('serviceWorker' in navigator) {
- navigator.serviceWorker
-          .register('./service_worker.js')
-          .then(function() { console.log('Service Worker Registered'); });
-}
+// if ('serviceWorker' in navigator) {
+//  navigator.serviceWorker
+//           .register('./service_worker.js')
+//           .then(function() { console.log('Service Worker Registered'); });
+// }
