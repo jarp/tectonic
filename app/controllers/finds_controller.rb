@@ -50,7 +50,6 @@ class FindsController < ActivePlayerController
   end
 
   def create
-
     @find = Find.new()
       @find.game_id = cookies["current_game_id"]
       @find.player_id = get_player_id
