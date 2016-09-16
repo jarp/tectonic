@@ -7,7 +7,26 @@ RSpec.describe Game, :type => :model do
     @game = FactoryGirl.build(:game, game_type: @game_type)
   end
 
-  it 'should be a game' do
-    expect(@game).to be_kind_of Game
+  describe 'tokens' do
+    it 'creates a token on create' do
+      game = FactoryGirl.build(:game)
+      expect(game.token).to be_nil
+      game.save
+      game.reload
+      expect(game.token).to_not be_nil
+    end
   end
+
+  describe 'methods' do
+    it 'should return true if part of a tour' do
+
+    end
+
+    it 'should return false if not part of a tour' do
+
+    end
+
+  end
+
+
 end
