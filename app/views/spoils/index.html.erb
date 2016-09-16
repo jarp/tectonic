@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Spoils</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Game</th>
+      <th>Player</th>
+      <th>Plate</th>
+      <th>Points</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @spoils.each do |spoil| %>
+      <tr>
+        <td><%= spoil.game %></td>
+        <td><%= spoil.player %></td>
+        <td><%= spoil.plate %></td>
+        <td><%= spoil.points %></td>
+        <td><%= link_to 'Show', spoil %></td>
+        <td><%= link_to 'Edit', edit_spoil_path(spoil) %></td>
+        <td><%= link_to 'Destroy', spoil, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Spoil', new_spoil_path %>

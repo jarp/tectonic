@@ -21,7 +21,7 @@ App.game = App.cable.subscriptions.create('GameChannel', {
 
     cb = $("div[plate_code='"+ data.state + "']")
 
-    if (data.action == 'find'){
+    if (data.action == 'spoil'){
       Plate.turnOff(cb);
       Plate.enable(cb);
       setTimeout(function(){Table.update_points(data.player, data.points)}

@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20160720212424) do
     t.index ["plate_id"], name: "index_bonus_on_plate_id", using: :btree
   end
 
-  create_table "finds", force: :cascade do |t|
+  create_table "spoils", force: :cascade do |t|
     t.integer  "game_id"
     t.integer  "player_id"
     t.integer  "plate_id"
@@ -34,9 +34,9 @@ ActiveRecord::Schema.define(version: 20160720212424) do
     t.datetime "updated_at",    null: false
     t.string   "current_coord"
     t.string   "state_coord"
-    t.index ["game_id"], name: "index_finds_on_game_id", using: :btree
-    t.index ["plate_id"], name: "index_finds_on_plate_id", using: :btree
-    t.index ["player_id"], name: "index_finds_on_player_id", using: :btree
+    t.index ["game_id"], name: "index_spoils_on_game_id", using: :btree
+    t.index ["plate_id"], name: "index_spoils_on_plate_id", using: :btree
+    t.index ["player_id"], name: "index_spoils_on_player_id", using: :btree
   end
 
   create_table "game_players", force: :cascade do |t|
@@ -117,9 +117,9 @@ ActiveRecord::Schema.define(version: 20160720212424) do
 
   add_foreign_key "bonus", "games"
   add_foreign_key "bonus", "plates"
-  add_foreign_key "finds", "games"
-  add_foreign_key "finds", "plates"
-  add_foreign_key "finds", "players"
+  add_foreign_key "spoils", "games"
+  add_foreign_key "spoils", "plates"
+  add_foreign_key "spoils", "players"
   add_foreign_key "game_players", "games"
   add_foreign_key "game_players", "players"
   add_foreign_key "games", "game_types"

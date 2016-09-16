@@ -62,8 +62,9 @@ group :test do
   gem 'ruby-prof'
   gem 'capybara'
   gem 'launchy'
+  gem 'rails-controller-testing'
   gem 'rspec-activemodel-mocks'
-  gem "factory_girl_rails", "~> 4.0"
+  gem "factory_girl_rails"
   gem 'faker'
   gem 'rspec-rails'
   gem 'simplecov'

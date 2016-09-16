@@ -33,7 +33,7 @@ $(document).ready(function(){
       console.log('init')
       $.each(coordinates, function( index, value ) {  
           console.log('coords ', value)
-          var find = {
+          var spoil = {
               id: value.split("~")[0],
               player: value.split("~")[1],
               state: value.split("~")[2],
@@ -43,13 +43,13 @@ $(document).ready(function(){
               points: value.split("~")[6]
             }
 
-        if ( find.coords !== undefined && find.coords !== ',' ){
+        if ( spoil.coords !== undefined && spoil.coords !== ',' ){
           console.log('create window')
           var infowindow = new google.maps.InfoWindow({
-            content: writetInfoWindowHTML(find)
+            content: writetInfoWindowHTML(spoil)
           });
 
-          var lat_lng = new google.maps.LatLng(find.coords.split('|')[0], find.coords.split('|')[1]  )
+          var lat_lng = new google.maps.LatLng(spoil.coords.split('|')[0], spoil.coords.split('|')[1]  )
           var marker = new google.maps.Marker({
             position: lat_lng,
             map: map,
@@ -71,15 +71,15 @@ $(document).ready(function(){
 navigator.geolocation.getCurrentPosition(locationHandler, locationError, { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
     }
 
-    function writetInfoWindowHTML(find){
-      console.log(find);
+    function writetInfoWindowHTML(spoil){
+      console.log(spoil);
       html = '<div class="map-container">'
         + '<div class="plate-container">'
-          + '<img class="image" src="' + find.plate_url +'" style="height:48px">'
+          + '<img class="image" src="' + spoil.plate_url +'" style="height:48px">'
         + '</div>'
         + '<div class="content">'
-        +  '<p><img class="image" src="' + find.image  +'">'
-        + find.player + ' found ' + find.state + ' for ' + find.points + ' points</p>'
+        +  '<p><img class="image" src="' + spoil.image  +'">'
+        + spoil.player + ' found ' + spoil.state + ' for ' + spoil.points + ' points</p>'
         + '</div>'
         + '</div>'
         return html
@@ -119,5 +119,5 @@ navigator.geolocation.getCurrentPosition(locationHandler, locationError, { enabl
 });
 </script>
 
-    <div id="map" class="map-full" markers="<% finds.each do | f | %><%= f.id %>~<%= f.player.first_name %>~<%= f.plate.state %>~<%= f.current_coord %>~<%= image_path("plates/#{f.plate.code.downcase}.jpg") %>~<%= f.player.image %>~<%= f.points %>;<% end %>">
+    <div id="map" class="map-full" markers="<% spoils.each do | f | %><%= f.id %>~<%= f.player.first_name %>~<%= f.plate.state %>~<%= f.current_coord %>~<%= image_path("plates/#{f.plate.code.downcase}.jpg") %>~<%= f.player.image %>~<%= f.points %>;<% end %>">
     </div>

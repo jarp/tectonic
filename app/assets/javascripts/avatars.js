@@ -20,7 +20,7 @@ remove: function(plates){
 get: function(id, target){
   var jqxhr = $.ajax({
       type: "get",
-      url: '/finds/avatar/'+ id
+      url: '/spoils/avatar/'+ id
       })
       .success(function(response){
         target.css('background-image', 'url('+ response + ')')

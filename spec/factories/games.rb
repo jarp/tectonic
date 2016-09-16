@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :game do
-    title "MyString"
-    game_type nil
+    title "Test Game"
+    game_type_id GameType.first.id || GameType.create!(name: 'Combative')
   end
 end

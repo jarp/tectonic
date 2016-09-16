@@ -19,7 +19,7 @@ $(document).ready(function(){
       var plate_id = $(this).attr('plate_id');
 
       if( $(this).hasClass('found') ) {
-        delete_find(plate, $(this))
+        delete_spoil(plate, $(this))
       }
       else{
         lock(plate, $(this));
@@ -52,7 +52,7 @@ $(document).ready(function(){
     function lock(plate, cb){
       var jqxhr = $.ajax({
         type: "POST",
-        url: '/finds/lock',
+        url: '/spoils/lock',
         dataType: 'JSON',
         data: {
           code: plate
@@ -67,10 +67,10 @@ $(document).ready(function(){
       }
 
     function post_update(plate, plate_id, cb, coords){
-      var url = '/finds/'
+      var url = '/spoils/'
       console.log($('.active-player'), $('.active-player').attr('player_id'));
       if ( $('.active-player').length ) {
-          url = '/finds/' + $('.active-player').attr('player_id')
+          url = '/spoils/' + $('.active-player').attr('player_id')
       }
 
       var jqxhr = $.ajax({
@@ -94,12 +94,12 @@ $(document).ready(function(){
         })
       }
 
-    function delete_find(plate, cb){
-      console.log('remove find?');
-      if (confirm("Are you sure you wan to remove this amazing find?")){
+    function delete_spoil(plate, cb){
+      console.log('remove spoil?');
+      if (confirm("Are you sure you wan to remove this amazing spoil?")){
         var jqxhr = $.ajax({
           type: "POST",
-          url: '/finds/clear',
+          url: '/spoils/clear',
           dataType: 'JSON',
           data: { code: plate }
           })

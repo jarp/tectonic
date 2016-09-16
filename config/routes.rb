@@ -26,17 +26,17 @@ Rails.application.routes.draw do
   get '/auth/google'
   get '/auth/:provider/callback', to: 'account#callback'
 
-  post 'finds/lock/' => 'finds#lock', as: :lock
-  delete 'finds/lock/:code' => 'finds#unlock', as: :unlock
+  post 'spoils/lock/' => 'spoils#lock', as: :lock
+  delete 'spoils/lock/:code' => 'spoils#unlock', as: :unlock
 
-  resources :finds do
+  resources :spoils do
     collection do
-      post 'clear' => 'finds#clear', as: :clear
-      get 'avatar/:plate_id' => 'finds#avatar', as: :avatar
+      post 'clear' => 'spoils#clear', as: :clear
+      get 'avatar/:plate_id' => 'spoils#avatar', as: :avatar
     end
 
 end
-  post 'finds/:player_id' => 'finds#create'
+  post 'spoils/:player_id' => 'spoils#create'
 
   resources :game_players
   resources :players

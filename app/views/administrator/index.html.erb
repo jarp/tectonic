@@ -5,7 +5,7 @@
       <h4>Top scorers</h4>
       <ol>
         <% @players.first(10).each do | player | %>
-          <li><%= player %>: <%= player.finds.sum(:points) %></li>
+          <li><%= player %>: <%= player.spoils.sum(:points) %></li>
         <% end %>
       </ol>
   </div>
@@ -16,7 +16,7 @@
       <h4>Most Found</h4>
       <ol>
         <% @plates.first(10).each do | plate | %>
-          <li><%= plate.state %>: <%= plate.finds.count %></li>
+          <li><%= plate.state %>: <%= plate.spoils.count %></li>
         <% end %>
       </ol>
 
@@ -28,7 +28,7 @@
       <h4>Top scoring</h4>
       <ol>
         <% @games.each do | game | %>
-          <li><%= game.title %>: <%= game.finds.sum(:points) %></li>
+          <li><%= game.title %>: <%= game.spoils.sum(:points) %></li>
         <% end %>
       </ol>
   </div>

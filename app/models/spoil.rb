@@ -1,4 +1,5 @@
-class Find < ApplicationRecord
+class Spoil < ActiveRecord::Base
+  self.table_name = 'finds'
   belongs_to :game
   belongs_to :player
   belongs_to :plate

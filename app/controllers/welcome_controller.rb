@@ -8,6 +8,6 @@ class WelcomeController < ApplicationController
   end
 
   def map
-    @plates = Plate.includes(:finds).all
+    @plates = Plate.includes(:spoils).all
   end
 end

@@ -6,10 +6,10 @@ class PlayController < ActivePlayerController
     @current_plates = @current_game.plates
     @players = @current_game.players
     @plates = Plate.all
-    @finds = @current_game.finds
+    @spoils = @current_game.spoils
     @table = Table.new(@current_game)
     @leaders = @table.leaders
-    @percent_done = ((@finds.count.to_f / @plates.count.to_f) * 100).round
+    @percent_done = ((@spoils.count.to_f / @plates.count.to_f) * 100).round
 
     # When a user hits the current page, announce their arrival.
     ActionCable.server.broadcast "game_channel_#{cookies["current_game_id"]}",
@@ -35,7 +35,7 @@ class PlayController < ActivePlayerController
 
   def get_current_game
     if cookies[:current_game_id]
-      @current_game = Game.includes(:players, :finds).find(cookies[:current_game_id])
+      @current_game = Game.includes(:players, :spoils).find(cookies[:current_game_id])
     else
       flash[:message] = "You need to be part of an active game..."
       redirect_to games_path

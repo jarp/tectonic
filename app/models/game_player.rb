@@ -1,4 +1,4 @@
-class GamePlayer < ApplicationRecord
+class GamePlayer < ActiveRecord::Base
   belongs_to :game
   belongs_to :player
   before_create :create_token

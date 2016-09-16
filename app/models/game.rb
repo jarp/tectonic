@@ -1,11 +1,11 @@
-class Game < ApplicationRecord
+class Game < ActiveRecord::Base
   belongs_to :game_type
 
   has_many :game_players, dependent: :destroy
   has_many :players, through: :game_players
 
-  has_many :finds, dependent: :destroy
-  has_many :plates, through: :finds
+  has_many :spoils, dependent: :destroy
+  has_many :plates, through: :spoils
 
   belongs_to :owner, class_name: "Player", foreign_key: "player_id"
   has_many :bonuses, dependent: :destroy, class_name: 'Bonus'
@@ -49,6 +49,6 @@ class Game < ApplicationRecord
   end
 
   def total_points
-    finds.sum(:points)
+    spoils.sum(:points)
   end
 end

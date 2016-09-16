@@ -31,7 +31,7 @@ Mount WS Server as a route
 ## Using ActionCable in Controllers
 Rails Controllers
 
-  finds#create
+  spoils#create
     sends what plate was found, who found it, the points it's worth, and a message
-  finds#clear
-    sends what plate was not found, who didn't find it, the points it's worth, and a message
+  spoils#clear
+    sends what plate was not found, who didn't spoil it, the points it's worth, and a message
