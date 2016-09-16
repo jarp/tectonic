@@ -6,9 +6,12 @@ RSpec.describe SpoilsController, :type => :controller do
   include_context "sessions"
   include_context "current_game"
 
+  let (:valid_params) {
+    {code: Plate.first.code, id: Plate.first.id, current_location: '41.704812499999996|-86.2334759'}
+  }
+
   before(:each) do
-    session[:player_id] = @player.id
-    cookies[:current_game_id] = @current_game.id
+  login_as(@player)
   end
 
   describe "GET index" do
@@ -54,21 +57,48 @@ RSpec.describe SpoilsController, :type => :controller do
   describe 'POST create' do
 
     before(:each) do
-      #post :create, params: {code: Plate.first.code, id: Plate.first.id, current_location: '41.704812499999996|-86.2334759'}
+      request.accept = "application/json"
+
     end
 
     it 'should be successful' do
-      request.accept = "application/json"
       post :create, params: {code: Plate.first.code, id: Plate.first.id, current_location: '41.704812499999996|-86.2334759'}
       expect(response.response_code).to eq 201
       expect(response).to be_successful
     end
 
     it 'should create a spoil' do
-      request.accept = "application/json"
       post :create, params: {code: Plate.first.code, id: Plate.first.id, current_location: '41.704812499999996|-86.2334759'}
       expect(assigns(:spoil)).to_not be_nil
     end
+
+    it 'should broadcast a message' do
+      allow(ActionCable.server).to receive(:broadcast).with( "game_channel_#{cookies["current_game_id"]}",
+        {
+          message: "Tester found the plate for  #{Plate.first.state} for 7 points.",
+          state: Plate.first.code,
+          player_name: 'Tester',
+          player: @player,
+          points: 7,
+          bonus: false,
+          action: "spoil"
+        }
+        )
+        post :create, params: {code: Plate.first.code, id: Plate.first.id, current_location: '41.704812499999996|-86.2334759'}
+    end
+
+    it 'should award double bonus if state is found as a bonus' do
+      Bonus.create!(game: @current_game, plate: Plate.first)
+      post :create, params: valid_params
+      expect(assigns(:spoil).points).to eq 14
+    end
+
+    it 'should crate a timeline entry' do
+      expect {
+        post :create, params: valid_params
+      }.to change(Timeline, :count).by(1)
+    end
+
   end
 
   describe 'GET avatar' do
