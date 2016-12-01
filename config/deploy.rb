@@ -14,7 +14,7 @@ set :repo_url, 'git@github.com:ndwebgroup/find-app.git'
  set :deploy_to, '/apps/tectonic'
 
  set :repo_url, 'git@github.com:j-arp/tectonic.git' # Edit this to match your repository
- set :branch, 'capfix'
+ set :branch, :master
  set :deploy_to, '/apps/tectonic'
  set :pty, true
  set :linked_files, %w{config/database.yml config/application.yml}
