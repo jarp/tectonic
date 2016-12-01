@@ -42,6 +42,13 @@ gem 'omniauth'
 gem "omniauth-google-oauth2"
 
 group :development do
+  gem "capistrano", "~> 3.4.0"
+  gem 'capistrano-rails', '~> 1.1.1'
+  gem 'capistrano3-puma'
+  gem 'capistrano3-nginx', '~> 2.0'
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rvm'
+
   gem 'better_errors'
   gem 'meta_request'
 
