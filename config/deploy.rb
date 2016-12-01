@@ -5,8 +5,6 @@ set :application, 'tectonic'
 set :stages, %w(production staging vagrant)
 set :default_stage, "staging"
 
-set :repo_url, 'git@github.com:ndwebgroup/find-app.git'
-
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
