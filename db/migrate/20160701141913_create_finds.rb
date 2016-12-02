@@ -1,4 +1,4 @@
-class CreateSpoils < ActiveRecord::Migration[5.0]
+class CreateFinds < ActiveRecord::Migration[5.0]
   def change
     create_table :finds do |t|
       t.references :game, foreign_key: true
