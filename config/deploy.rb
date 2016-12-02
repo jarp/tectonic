@@ -4,16 +4,15 @@ lock '3.4.1'
 set :application, 'tectonic'
 set :stages, %w(production staging vagrant)
 set :default_stage, "staging"
+set :repo_url, 'git@github.com:j-arp/tectonic.git' # Edit this to match your repository
+set :branch, :master
+set :deploy_to, '/apps/tectonic'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app
- set :deploy_to, '/apps/tectonic'
 
- set :repo_url, 'git@github.com:j-arp/tectonic.git' # Edit this to match your repository
- set :branch, :master
- set :deploy_to, '/apps/tectonic'
  set :pty, true
  set :linked_files, %w{config/database.yml config/application.yml}
  set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
