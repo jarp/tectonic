@@ -1,6 +1,6 @@
 production:
   adapter: redis
-  url: <%= ENV['REDIS_URL'] %>
+  url: 'tectonica.arpcentral.net'
 
 development:
   adapter: async
