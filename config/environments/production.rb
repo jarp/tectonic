@@ -86,6 +86,6 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  config.web_socket_server_url = "wss://tectonic-license-plate-game.herokuapp.com/cable"
-  config.action_cable.allowed_request_origins = ['https://tectonic-license-plate-game.herokuapp.com', 'http://tectonic-license-plate-game.herokuapp.com', 'http://game.arpcentral.net', 'https://game.arpcentral.net', 'http://plates.arpcentral.net', 'https://plates.arpcentral.net']
+  config.web_socket_server_url = "wss://localhost/cable"
+  config.action_cable.allowed_request_origins = ['http://tectonica.arpcentral.net','https://tectonica.arpcentral.net', 'http://plates.arpcentral.net', 'https://plates.arpcentral.net']
 end
