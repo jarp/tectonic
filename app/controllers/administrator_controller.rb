@@ -8,8 +8,8 @@ class AdministratorController < ApplicationController
 
 
   def index
-    @players = Player.all.includes(:spoils).sort_by { |p| p.spoils.sum('spoils.points') }.reverse
-    @games = Game.all.includes(:spoils)  .sort_by { | g | g.spoils.sum('spoils.points') }.reverse
+    @players = Player.all.includes(:spoils).sort_by { |p| p.spoils.sum('finds.points') }.reverse
+    @games = Game.all.includes(:spoils)  .sort_by { | g | g.spoils.sum('finds.points') }.reverse
     @plates = Plate.all.includes(:spoils).sort_by { |p| p.spoils.sum('spoils.points') }.reverse
   end
 end
