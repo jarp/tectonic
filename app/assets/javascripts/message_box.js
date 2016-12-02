@@ -43,6 +43,8 @@ $(document).ready(function(){
         $('#message-box').css('bottom', '-150px');
       });
       $('#message-box #message-text').text("");
+      $('#celebration').removeAttr('class');
+      $('#celebration').attr('class', '');
 
       },
 

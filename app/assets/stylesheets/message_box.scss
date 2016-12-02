@@ -11,6 +11,49 @@
 //   display:none
 // }
 
+#celebration.fireworks{
+  background-repeat: no-repeat;
+  background-size: 400px;
+  width: 100%;
+  height: 600px;
+  position: relative;
+  top: -360px;
+  left: 44%;
+}
+
+#celebration.fireworks.pony{
+  background-image: url('/img/pony.gif');
+}
+
+#celebration.fireworks.airbender{
+  background-image: url('/img/airbender.gif');
+}
+
+#celebration.fireworks.dancer{
+  background-image: url('/img/dancer.gif');
+}
+
+
+#celebration.fireworks.leftshark{
+  background-image: url('/img/leftshark.gif');
+  top: -256px;
+}
+
+
+#celebration.fireworks.squirrel{
+  background-image: url('/img/squirrel.gif');
+}
+
+
+#celebration.fireworks.stitch{
+  background-image: url('/img/stitch.gif');
+}
+
+#celebration.fireworks.unicorn{
+  background-image: url('/img/unicorn.gif');
+  left: 33%;
+}
+
 #message-box {
     position: fixed;
     background-color: #000;
