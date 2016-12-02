@@ -86,6 +86,6 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  config.web_socket_server_url = "wss://localhost/cable"
+  config.web_socket_server_url = "wss://tectonica.arpcentral.net/cable"
   config.action_cable.allowed_request_origins = ['http://tectonica.arpcentral.net','https://tectonica.arpcentral.net', 'http://plates.arpcentral.net', 'https://plates.arpcentral.net']
 end
