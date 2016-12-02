@@ -133,7 +133,6 @@ GEM
       railties (>= 3.2.16)
     json (2.0.2)
     jwt (1.5.6)
-    kgio (2.10.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     loofah (2.0.3)
@@ -215,7 +214,6 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rainbow (2.1.0)
-    raindrops (0.17.0)
     rake (11.3.0)
     redis (3.3.2)
     retriable (2.1.0)
@@ -280,9 +278,6 @@ GEM
     uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.1.1)
-    unicorn (5.2.0)
-      kgio (~> 2.6)
-      raindrops (~> 0.7)
     web-console (2.3.0)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
@@ -337,8 +332,10 @@ DEPENDENCIES
   simplecov
   spring
   uglifier
-  unicorn
   web-console (~> 2.0)
+
+RUBY VERSION
+   ruby 2.2.4p230
 
 BUNDLED WITH
    1.13.1

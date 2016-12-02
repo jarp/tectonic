@@ -4,7 +4,7 @@ ruby '2.2.4'
 gem 'rails', '~> 5.0'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
-gem 'unicorn'
+#gem 'unicorn'
 gem 'puma'
 gem 'chronic'
 # Use SCSS for stylesheets
