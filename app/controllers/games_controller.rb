@@ -35,7 +35,7 @@ class GamesController < ActivePlayerController
     @game = Game.new(game_params)
     @game.owner = @active_player
     @game.game_type_id = GameType.last.id
-
+    @game.use_images = true
 
 
     respond_to do |format|
@@ -100,8 +100,12 @@ end
 
   private
 
+    def random_image
+      %w(airbender dancer leftshark pony squirrel stitch unicorn).shuffle.first.to_s
+    end
+
     def create_bonuses(count)
-      Plate.all.sample(count.to_i).each { | p | @game.bonuses.create(plate_id: p.id) }
+      Plate.all.sample(count.to_i).each { | p | @game.bonuses.create(plate_id: p.id, image: random_image) }
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_game
@@ -110,6 +114,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:title, :game_type_id, :use_images, :bonus_count, :tour_id, :allow_player_switching)
+      params.require(:game).permit(:title, :game_type_id, :bonus_count, :tour_id, :allow_player_switching)
     end
 end

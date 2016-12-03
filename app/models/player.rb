@@ -1,8 +1,8 @@
-class Player < ApplicationRecord
+class Player < ActiveRecord::Base
   has_many :game_players, dependent: :destroy
   has_many :games, through: :game_players
   has_many :owned_games, class_name: "Game"
-  has_many :finds, dependent: :destroy
+  has_many :spoils, dependent: :destroy
 
   has_many :invitations, class_name: 'GamePlayer', foreign_key: 'player_id', dependent: :destroy
   has_many :tours, dependent: :destroy

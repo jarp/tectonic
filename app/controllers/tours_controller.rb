@@ -11,7 +11,7 @@ class ToursController < ActivePlayerController
   # GET /tours/1
   # GET /tours/1.json
   def show
-    @leaders = Table.new(@tour, 'unique_finds').leaders
+    @leaders = Table.new(@tour, 'unique_spoils').leaders
   end
 
   # GET /tours/new

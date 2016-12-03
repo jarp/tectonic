@@ -1,4 +1,4 @@
-class GameType < ApplicationRecord
+class GameType < ActiveRecord::Base
 
   def to_s
     name

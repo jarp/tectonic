@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Game:</strong>
+  <%= @spoil.game %>
+</p>
+
+<p>
+  <strong>Player:</strong>
+  <%= @spoil.player %>
+</p>
+
+<p>
+  <strong>Plate:</strong>
+  <%= @spoil.plate %>
+</p>
+
+<p>
+  <strong>Points:</strong>
+  <%= @spoil.points %>
+</p>
+
+<%= link_to 'Edit', edit_spoil_path(@spoil) %> |
+<%= link_to 'Back', spoils_path %>

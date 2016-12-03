@@ -20,7 +20,7 @@ remove: function(plates){
 get: function(id, target){
   var jqxhr = $.ajax({
       type: "get",
-      url: '/finds/avatar/'+ id
+      url: '/spoils/avatar/'+ id
       })
       .success(function(response){
         target.css('background-image', 'url('+ response + ')')
@@ -40,7 +40,7 @@ get: function(id, target){
       var target = $(this).find('span.owner');
       var code = $(this).attr('plate_code');
 
-      target.css('background-image', 'url(/assets/images/preloader.gif)')
+      target.css('background-image', 'url(/img/preloader.gif)')
       target.css('background-color', '')
       target.css('background-size', '36px')
       target.css('border', 'none')

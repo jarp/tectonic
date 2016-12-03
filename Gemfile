@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
-
+ruby '2.2.4'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
-gem 'unicorn'
+#gem 'unicorn'
 gem 'puma'
 gem 'chronic'
 # Use SCSS for stylesheets
@@ -42,6 +42,13 @@ gem 'omniauth'
 gem "omniauth-google-oauth2"
 
 group :development do
+  gem "capistrano", "~> 3.4.0"
+  gem 'capistrano-rails', '~> 1.1.1'
+  gem 'capistrano3-puma'
+  gem 'capistrano3-nginx', '~> 2.0'
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rvm'
+
   gem 'better_errors'
   gem 'meta_request'
 
@@ -62,8 +69,9 @@ group :test do
   gem 'ruby-prof'
   gem 'capybara'
   gem 'launchy'
+  gem 'rails-controller-testing'
   gem 'rspec-activemodel-mocks'
-  gem "factory_girl_rails", "~> 4.0"
+  gem "factory_girl_rails"
   gem 'faker'
   gem 'rspec-rails'
   gem 'simplecov'

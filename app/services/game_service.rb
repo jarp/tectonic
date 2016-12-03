@@ -1,17 +1,17 @@
 class GameService
 
-  def self.add_player(game,player, originator=false, accepted=false)
+  def self.add_player(game, player, originator=false, accepted=false)
     return GamePlayer.where(game: game, player:player, originator: originator, accepted: accepted).first_or_create
   end
 
   def self.points(game, player=nil)
-    puts "finding points for player #{player} for game #{game}"
+    puts "spoiling points for player #{player} for game #{game}"
     if player
-      finds = Find.where(player_id: player.id, game_id: game.id)
+      spoils = Spoil.where(player_id: player.id, game_id: game.id)
     else
-      finds = Find.where(game_id: game.id)
+      spoils = Spoil.where(game_id: game.id)
     end
-    puts finds.inspect
-    return finds.map(&:points).inject(:+)
+    puts spoils.inspect
+    return spoils.map(&:points).inject(:+)
   end
 end

@@ -5,8 +5,16 @@ Plate = {
     Avatar.preload(cb);
   },
 
-  enable: function(cb){
+  enable: function(cb, image){
     cb.removeClass('processing');
+    if (image !== '') {
+      console.log("its a bonus");
+      $('#celebration').addClass(image)
+      $('#celebration').addClass('fireworks')
+    }
+    else{
+      console.log('not a bonus');
+    }
   },
 
   turnOn: function(cb){

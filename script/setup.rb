@@ -10,6 +10,7 @@ CSV.foreach("script/states.csv") do |row|
 end
 
 # create basic table data
+GameType.destroy_all
 GameType.create!(name: "Collaborate")
 GameType.create!(name: "Combat")
 

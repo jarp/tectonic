@@ -21,9 +21,10 @@ App.game = App.cable.subscriptions.create('GameChannel', {
 
     cb = $("div[plate_code='"+ data.state + "']")
 
-    if (data.action == 'find'){
+    if (data.action == 'spoil'){
+      console.log("bonus?",data.bonus);
       Plate.turnOff(cb);
-      Plate.enable(cb);
+      Plate.enable(cb, data.image);
       setTimeout(function(){Table.update_points(data.player, data.points)}
         , Tectonic.getTimer());}
 

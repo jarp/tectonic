@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160720212424) do
+ActiveRecord::Schema.define(version: 20161202204237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,11 +21,12 @@ ActiveRecord::Schema.define(version: 20160720212424) do
     t.integer  "points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "image"
     t.index ["game_id"], name: "index_bonus_on_game_id", using: :btree
     t.index ["plate_id"], name: "index_bonus_on_plate_id", using: :btree
   end
 
-  create_table "finds", force: :cascade do |t|
+  create_table "finds", id: :integer, default: -> { "nextval('spoils_id_seq'::regclass)" }, force: :cascade do |t|
     t.integer  "game_id"
     t.integer  "player_id"
     t.integer  "plate_id"
@@ -34,9 +35,9 @@ ActiveRecord::Schema.define(version: 20160720212424) do
     t.datetime "updated_at",    null: false
     t.string   "current_coord"
     t.string   "state_coord"
-    t.index ["game_id"], name: "index_finds_on_game_id", using: :btree
-    t.index ["plate_id"], name: "index_finds_on_plate_id", using: :btree
-    t.index ["player_id"], name: "index_finds_on_player_id", using: :btree
+    t.index ["game_id"], name: "index_spoils_on_game_id", using: :btree
+    t.index ["plate_id"], name: "index_spoils_on_plate_id", using: :btree
+    t.index ["player_id"], name: "index_spoils_on_player_id", using: :btree
   end
 
   create_table "game_players", force: :cascade do |t|

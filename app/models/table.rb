@@ -1,5 +1,5 @@
 class Table
-  def initialize(game, method='finds')
+  def initialize(game, method='spoils')
     @game = game
     @table = @game.send(method).group_by { |f| f.player }
   end
@@ -11,9 +11,9 @@ class Table
       totals = {player: p, states: []}
       with_points << p
       total_points = 0
-      f.each do | find |
-        total_points += find.points
-        totals[:states] << {state: find.plate.code, points: find.points}
+      f.each do | spoil |
+        total_points += spoil.points
+        totals[:states] << {state: spoil.plate.code, points: spoil.points}
       end
       totals[:total_points] = total_points
       players << totals

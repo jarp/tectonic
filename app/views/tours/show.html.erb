@@ -19,13 +19,13 @@
 <div class="row">
   <div class="small-12 medium-12 columns">
       <p><%= @tour.games.count %> combined games.</p>
-      <p><%= @tour.finds.count %> combined finds and <%= @tour.unique_finds.count %> unique finds.</p>
+      <p><%= @tour.spoils.count %> combined spoils and <%= @tour.unique_spoils.count %> unique spoils.</p>
   </div>
 </div>
 
 <div class="row">
   <div class="small-12 medium-12 columns">
-    <%= render partial: 'shared/map', locals: {finds: @tour.unique_finds } %>
+    <%= render partial: 'shared/map', locals: {spoils: @tour.unique_spoils } %>
   </div>
 </div>
 
