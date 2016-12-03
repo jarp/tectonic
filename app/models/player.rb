@@ -15,7 +15,7 @@ class Player < ActiveRecord::Base
 
   def avatar
     return image if image
-    return "/assets/missing_avatar.jpg"
+    return "/ing/missing_avatar.jpg"
   end
 
   def to_s
