@@ -6,6 +6,9 @@ set :stages, %w(production staging vagrant)
 set :default_stage, "staging"
 set :repo_url, 'git@github.com:j-arp/tectonic.git' # Edit this to match your repository
 set :branch, :master
+
+set :branch, ENV['BRANCH'] if ENV['BRANCH']
+
 set :deploy_to, '/apps/tectonic'
 
 # Default branch is :master
