@@ -35,3 +35,6 @@ Rails Controllers
     sends what plate was found, who found it, the points it's worth, and a message
   spoils#clear
     sends what plate was not found, who didn't spoil it, the points it's worth, and a message
+
+
+cd /apps/tectonic/current && ( export RACK_ENV="production" ; ~/.rvm/bin/rvm ruby-2.2.4 do bundle exec puma -C /apps/tectonic/shared/puma.rb --daemon )
