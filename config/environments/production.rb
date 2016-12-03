@@ -9,7 +9,7 @@ Rails.application.configure do
   #     :sender_address => %{"Earl of Lemongrab" < plates@arpcentral.net > },
   #     :exception_recipients => %w{developer@arpcentral.com}
   #   }
-  config.force_ssl = false
+  config.force_ssl = true
   # Code is not reloaded between requests.
   config.cache_classes = true
 

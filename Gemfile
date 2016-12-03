@@ -13,21 +13,21 @@ gem 'sass-rails'
 gem 'uglifier'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails'
-# See https://github.com/rails/execjs#readme for more supported runtimes
+# See https://github.com/rails/js#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
 # gem 'draper'
+
 gem 'redis'
 gem 'aws-ses'
 gem 'exception_notification'
-
+gem 'serviceworker-rails'
 gem 'google_maps_service'
 # Use jquery as the JavaScript library
 
 gem 'foundation-rails', '~> 5.5.2.1'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'serviceworker-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
