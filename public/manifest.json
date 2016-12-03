@@ -11,6 +11,12 @@
       "src": "/img/logo-128.png",
       "sizes": "128x128",
       "type": "image/png"
+    },
+
+    {
+      "src": "/img/logo-128.png",
+      "sizes": "256x256",
+      "type": "image/png"
     }
   ],
   "start_url": "/play",
