@@ -11,13 +11,8 @@
       <%= render 'invite_form' %>
 
       <h3>Current Players</h3>
-      <ul id="player-list">
-        <% @game.game_players.each do | player | %>
-          <li class="player">
-            <%= player.player %> | <%= player.token %> | <%= player.accepted? ? "Accepted" : "Waiting" %>
-          </li>
-        <% end %>
-      </ul>
+
+      <div id="player-list" game_id="<%= @game.id %>"></div>
 
   </div>
 </div>

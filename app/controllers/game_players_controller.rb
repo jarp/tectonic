@@ -1,10 +1,10 @@
 class GamePlayersController < ActivePlayerController
   before_action :set_game_player, only: [:show, :edit, :update, :destroy]
-
+  layout 'raw'
   # GET /game_players
   # GET /game_players.json
   def index
-    @game_players = GamePlayer.all
+    @game_players = params[:game_id] ? GamePlayer.where(game_id: params[:game_id]) : @game_players = GamePlayer.all
   end
 
   # GET /game_players/1
@@ -39,23 +39,10 @@ class GamePlayersController < ActivePlayerController
     end
   end
 
-  # PATCH/PUT /game_players/1
-  # PATCH/PUT /game_players/1.json
-  def update
-    respond_to do |format|
-      if @game_player.update(game_player_params)
-        format.html { redirect_to @game_player, notice: 'Game player was successfully updated.' }
-        format.json { render :show, status: :ok, location: @game_player }
-      else
-        format.html { render :edit }
-        format.json { render json: @game_player.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /game_players/1
   # DELETE /game_players/1.json
   def destroy
+    puts "params for destroy #{params.inspect}"
     @game_player.destroy
     respond_to do |format|
       format.html { redirect_to game_players_url, notice: 'Game player was successfully destroyed.' }

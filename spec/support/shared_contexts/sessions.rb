@@ -1,6 +1,7 @@
 RSpec.shared_context "sessions" do
 
   before(:all) do
+    puts "create player for session"
     @player = FactoryGirl.create(:player, first_name: 'Tester', last_name: 'McTestie', email: "test-#{SecureRandom.hex(5)}@test.com")
   end
 

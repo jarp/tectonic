@@ -3,6 +3,7 @@ class GamePlayer < ActiveRecord::Base
   belongs_to :player
   before_create :create_token
 
+  validates :game, :player, presence: true
   validates :player, uniqueness: { scope: :game_id }
 
   scope :active, -> { where(accepted: true) }
