@@ -1,6 +1,7 @@
 require 'rails_helper'
 require 'support/shared_contexts/sessions'
 require 'support/shared_contexts/current_game'
+
 RSpec.describe PlayController, :type => :controller do
   include_context "sessions"
   include_context "current_game"
@@ -25,6 +26,14 @@ RSpec.describe PlayController, :type => :controller do
       expect(assigns(:leaders)).to_not be_nil
       expect(assigns(:percent_done)).to_not be_nil
     end
+
+
+    it 'redirects to game lists if current game cookie is not available' do
+      cookies.delete :current_game_id
+      get :index
+      expect(response).to redirect_to games_path
+    end
+
   end
 
   describe "GET table" do

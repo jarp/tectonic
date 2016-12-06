@@ -53,12 +53,9 @@ class SpoilsController < ActivePlayerController
     @plate = Plate.find_by_code(params[:code])
 
     if @current_game.bonuses.map(&:plate_id).include?(@plate.id)
-      puts "\n\n\n\n>>>>>>>bonus!!!!"
       bonus = true
       bonus_obj =  Bonus.find_by(plate_id: @plate.id, game_id: cookies["current_game_id"])
       image = bonus_obj.nil? ? image = "" : bonus_obj.image
-
-      puts "bonus image is #{image}\n\n\n\n\n"
       bonus_multiplier = 2
     else
       bonus = false

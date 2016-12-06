@@ -1,5 +1,6 @@
 class PlayController < ActivePlayerController
   layout 'play'
+  before_action :require_cookies, except: [:set]
   before_action :get_current_game, except: [:set]
 
   def index
@@ -32,6 +33,11 @@ class PlayController < ActivePlayerController
 
 
   private
+
+  def require_cookies
+    flash[:message] = "You do not have an active game currently"
+    redirect_to games_path unless cookies[:current_game_id]
+  end
 
   def get_current_game
     if cookies[:current_game_id]

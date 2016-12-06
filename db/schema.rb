@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20161202204237) do
     t.index ["plate_id"], name: "index_bonus_on_plate_id", using: :btree
   end
 
-  create_table "finds", id: :integer, default: -> { "nextval('spoils_id_seq'::regclass)" }, force: :cascade do |t|
+  create_table "finds", force: :cascade do |t|
     t.integer  "game_id"
     t.integer  "player_id"
     t.integer  "plate_id"

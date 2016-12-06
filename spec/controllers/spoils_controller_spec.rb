@@ -1,8 +1,10 @@
 require 'rails_helper'
 require 'support/shared_contexts/sessions'
 require 'support/shared_contexts/current_game'
+require 'support/shared_contexts/plates'
 
 RSpec.describe SpoilsController, :type => :controller do
+  include_context "plates"
   include_context "sessions"
   include_context "current_game"
 
@@ -10,8 +12,12 @@ RSpec.describe SpoilsController, :type => :controller do
     {code: Plate.first.code, id: Plate.first.id, current_location: '41.704812499999996|-86.2334759'}
   }
 
+  before(:all) do
+  end
+
   before(:each) do
-  login_as(@player)
+    allow(LocationService).to receive(:distance) { '700' }
+    login_as(@player)
   end
 
   describe "GET index" do
@@ -81,6 +87,7 @@ RSpec.describe SpoilsController, :type => :controller do
           player: @player,
           points: 7,
           bonus: false,
+          image: "",
           action: "spoil"
         }
         )
