@@ -7,6 +7,10 @@ class GamePlayersController < ActivePlayerController
     @game_players = params[:game_id] ? GamePlayer.where(game_id: params[:game_id]) : @game_players = GamePlayer.all
   end
 
+  def count
+    set_game
+    render text: @game.players.count
+  end
   # GET /game_players/1
   # GET /game_players/1.json
   def show
@@ -24,6 +28,9 @@ class GamePlayersController < ActivePlayerController
   # POST /game_players
   # POST /game_players.json
   def create
+    set_game
+    puts "create a game player :: #{@game.players.count}"
+    raise "Player limit has been reached. Sorry." if @game.players.count > 3
     @game_player = GamePlayer.new(game_player_params)
     system 'clear'
     puts "create invite iwth #{params}"
@@ -54,6 +61,10 @@ class GamePlayersController < ActivePlayerController
     # Use callbacks to share common setup or constraints between actions.
     def set_game_player
       @game_player = GamePlayer.find(params[:id])
+    end
+
+    def set_game
+      @game = Game.find(params[:game_id]) if params[:game_id]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

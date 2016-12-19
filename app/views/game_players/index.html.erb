@@ -1,11 +1,16 @@
+<div id="invitation-list" status="full">
 
 <% @game_players.each do |game_player| %>
-  <div class="row">
+  <div class="row invitation-details">
     <div class="columns small-2 medium-1" ><img src="<%= game_player.player.avatar %>" ></div>
-    <div class="columns small-5 medium-7"><%= game_player.player %></div>
-    <div class="columns small-3 medium-3"><%= game_player.accepted ? "Accepted" : "Pending" %></div>
+    <div class="columns small-8 medium-10">
+      <b><%= game_player.player %></b>
+      <%= game_player.accepted ? "accepted the invitation #{time_ago_in_words(game_player.updated_at)} ago" : "was invited #{time_ago_in_words(game_player.created_at)} ago" %>
+    </div>
+
     <div class="columns small-2 medium-1">
       <%= button_to('X', game_player_path(game_player), method: "delete", remote: true, data: { confirm: 'Are you sure?', disable_with: 'processing...' }, class: 'button tiny alert radius') unless game_player.originator %>
     </div>
   </div>
 <% end %>
+</div>

@@ -25,14 +25,47 @@ $(document).ready(function(){
     ;
 
    if ( $("#player-list").length > 0 ){
-     console.log('jq')
      var game_id = $('#player-list').attr('game_id')
 
      loadPlayers(game_id);
 
      function loadPlayers(game_id){
-       console.log('load')
-       $('#player-list').load('/game_players?game_id=' + game_id)
+       $('#player-list').load('/game_players?game_id=' + game_id, function(){
+         console.log('get player count');
+         var game_id = $('#player-list').attr('game_id')
+         var jqxhr = $.ajax({
+           type: "GET",
+           url: '/game_players/' + game_id + '/count',
+           dataType: 'JSON'
+           })
+           .success(function(response){
+             console.log("player coutn resuel",response);
+             if (response > 3 ){
+               console.log('close it out');
+               toggleInviteForm('hide')
+             }
+
+             else{
+               toggleInviteForm('show')
+             }
+           })
+           .error(function(response){
+
+           })
+       })
+
+     }
+
+     function toggleInviteForm(action='hide'){
+       if (action == 'show'){
+         $('#invite-players form#invite_form').fadeIn()
+         $('#invite-players #closed-message').html('<p>You have reached the limit of 4 players</p>').fadeOut()
+       }
+
+       else {
+         $('#invite-players form#invite_form').fadeOut()
+         $('#invite-players #closed-message').html('<p>You have reached the limit of 4 players</p>').fadeIn()
+       }
      }
    }
 });

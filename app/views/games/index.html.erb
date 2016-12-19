@@ -1,8 +1,6 @@
 <div class="row">
   <div class="small-12 columns">
 
-
-
     <div class="row">
       <div class="small-8 columns">
         <h2>Games</h2>
@@ -12,43 +10,46 @@
       </div>
     </div>
 
-        <% if @games.empty? %>
-          <p>You have no active games. <%= link_to 'Start One', new_game_path %> now.</p>
-        <% end %>
+    <% if @games.empty? %>
+      <p>You have no active games. <%= link_to 'Start One', new_game_path %> now.</p>
+    <% end %>
 
-        <% @games.each do |game| %>
-          <%= render partial: 'active_game', locals: {invite: game}  unless game.is_completed%>
-        <% end %>
+    <% @games.each do |game| %>
+      <%= render partial: 'active_game', locals: {invite: game}  unless game.is_completed%>
+    <% end %>
+
   </div>
 </div>
 
 <div class="row">
-<% if @invitations.any? %>
+
 
   <div class="small-12 medium-6 columns ">
-    <div class="sub-game-box">
+    <div class="game-list-item">
 
     <h3>Pending Games</h3>
 
-
-    <% @invitations.each do |i| %>
-      <div class="pending-game-list-item">
-        <div class="row">
-          <div class="small-6 medium-4 columns">
-            <p><%= i.game.title %> <%= "(#{i.game.tour})" if i.game.part_of_tour? %></p>
+    <% if @invitations.any? %>
+        <% @invitations.each do |i| %>
+          <div class="pending-game-list-item">
+            <div class="row">
+              <div class="small-6 medium-4 columns">
+                <p><%= i.game.title %> <%= "(#{i.game.tour})" if i.game.part_of_tour? %></p>
+              </div>
+              <div class="small-6 medium-8 columns medium-text-right small-text-center">
+                    <%= link_to 'Accept', accept_invite_path(i.token), class: 'button  tiny' %>
+              </div>
+            </div>
           </div>
-          <div class="small-6 medium-8 columns medium-text-right small-text-center">
-                <%= link_to 'Accept', accept_invite_path(i.token), class: 'button  tiny' %>
-          </div>
-        </div>
+        <% end %>
+        <% else %>
+        <p>You have no pending games.</p>
+      <% end %>
       </div>
-    <% end %>
-    </div>
-  </div>
-<% end %>
+</div>
 
   <div class="small-12 medium-6 columns ">
-    <div class="sub-game-box">
+    <div class="game-list-item">
 
     <h3>Completed Games</h3>
 

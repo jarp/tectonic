@@ -1,5 +1,9 @@
 .fixed-width {width: 30%}
 
+  div.row.invitation-details{
+      min-height: 65px;
+    }
+
 #players {
   margin-top: 0px;
   ul.small-block-grid-4 > li.ranking-items {

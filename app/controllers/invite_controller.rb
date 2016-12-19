@@ -5,6 +5,8 @@ class InviteController < ActivePlayerController
   def create
     @game = @active_player.games.find(params[:invite][:game_id])
     @player = Player.where(email: params[:invite][:email]).first_or_create
+    puts "create a game player :: #{@game.players.count}"
+    raise "Player limit has been reached. Sorry." if @game.players.count > 3
     @game_player = GameService.add_player(@game, @player)
     @game_player.update(accepted: false)
 

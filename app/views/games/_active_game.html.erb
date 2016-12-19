@@ -1,14 +1,17 @@
 <div class="game-list-item">
   <div class="row">
     <div class="small-12 medium-6 columns">
-      <p><%= invite.title %> <%= "(#{invite.game.tour})" if invite.game.part_of_tour? %></p>
+      <h3><%= invite.title %> <%= "(#{invite.game.tour})" if invite.game.part_of_tour? %></h3>
+      <p><i>
+        Started <%= time_ago_in_words(invite.game.created_at) %> ago with <%= pluralize(invite.game.players.count, "player") %>. <%= invite.game.spoils.count %> out of <%= Plate.count %> plates found.
+      </i></p>
     </div>
     <div class="small-12 medium-6 columns medium-text-right small-text-center">
       <ul class="button-group radius">
         <li><%= link_to 'Play', play_game_path(invite.game), class: 'button success tiny' %></li>
 
         <% if @active_player == invite.game.owner %>
-          <li><%= link_to 'Details', invite.game, class: 'button  tiny' %></li>
+          <li><%= link_to 'Invite', invite.game, class: 'button  tiny' %></li>
           <li><%= link_to 'Complete', complete_game_path(invite.game), class: 'button secondary tiny' %></li>
           <li><%= link_to 'Remove', invite.game, method: :delete, data: { confirm: 'Are you sure you want to delete this?' }, class: 'button warning tiny' %></li>
         <% end %>

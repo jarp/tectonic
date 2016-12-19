@@ -39,6 +39,8 @@ end
   post 'spoils/:player_id' => 'spoils#create'
 
   resources :game_players
+  get 'game_players/:game_id/count' => 'game_players#count'
+  
   resources :players
   resources :games do
     member do

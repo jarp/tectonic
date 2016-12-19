@@ -1,17 +1,26 @@
 <% if @game.title.present? %>
-  <h2><%= @game.title %></h2>
-<% end %>
-
-<p><b>Game type:</b> <%= @game.game_type %> </p>
-<p><b>Game Bonuses:</b> <%= @game.bonuses.count %> </p>
-
 <div class="row">
   <div class="small-12 columns">
-      <h3>Invite Players</h3>
+    <h2><%= @game.title %></h2>
+  </div>
+</div>
+<% end %>
+<div class="row">
+  <div class="small-6 columns">
+    <p><b>Game type:</b> <%= @game.game_type %> </p>
+  </div>
+  <div class="small-6 columns">
+    <p><b>Game Bonuses:</b> <%= @game.bonuses.count %> </p>
+  </div>
+</div>
+
+<div id="invite-players" class="row">
+  <div class="small-12 columns">
+      <h3>Invite Up to 4 Players</h3>
+      <p id="closed-message" style="display:none"></p>
       <%= render 'invite_form' %>
-
+      <%# raw "<p><i>You have reached the maximum of 4 players.</i></p>" unless (@game.players.count) < 4 %>
       <h3>Current Players</h3>
-
       <div id="player-list" game_id="<%= @game.id %>"></div>
 
   </div>
