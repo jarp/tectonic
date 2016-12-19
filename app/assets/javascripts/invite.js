@@ -44,19 +44,16 @@ $(document).ready(function(){
                console.log('close it out');
                toggleInviteForm('hide')
              }
-
              else{
                toggleInviteForm('show')
              }
            })
            .error(function(response){
-
            })
        })
-
      }
 
-     function toggleInviteForm(action='hide'){
+     function toggleInviteForm(action){
        if (action == 'show'){
          $('#invite-players form#invite_form').fadeIn()
          $('#invite-players #closed-message').html('<p>You have reached the limit of 4 players</p>').fadeOut()
