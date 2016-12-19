@@ -34,11 +34,14 @@ $(document).ready(function(){
 
     clear: function(){
       $('#message-box').fadeOut('slow',function(){
-        $('#message-box').css('bottom', '-150px');
+        console.log('callback from fadeout');
+        $('#message-box').css('bottom', '-150px', function(){
+          $('#message-box #message-text').text("");
+          $('#celebration').removeAttr('class');
+          $('#celebration').attr('class', '');
+
+        });
       });
-      $('#message-box #message-text').text("");
-      $('#celebration').removeAttr('class');
-      $('#celebration').attr('class', '');
 
       },
 
