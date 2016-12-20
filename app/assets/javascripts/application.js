@@ -23,11 +23,3 @@ $(document).on('ready page:load', function () {
 });
 
 $('.datepicker').datepicker();
-
-
-if ('serviceWorker' in navigator) {
-  console.log('registering service worker');
- navigator.serviceWorker
-          .register('./service_worker.js')
-          .then(function() { console.log('Service Worker Registered'); });
-}

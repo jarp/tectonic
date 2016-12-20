@@ -21,3 +21,7 @@
      padding: 0px 0 0 0;
      font-size: .95em;
  }
+
+.underlined {
+  border-bottom: thin solid #ccc;
+}

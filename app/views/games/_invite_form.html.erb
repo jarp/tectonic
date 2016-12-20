@@ -3,8 +3,8 @@
   <%= hidden_field :invite, :game_id, value: @game.id %>
 
   <div class="row">
-    <div class="small-2 medium-2 large-1 columns"><label for="invite_field" class="inline">Invite</label></div>
-    <div class="small-7 columns"><%= text_field :invite, :email, value: "", placeholder: 'email', id: "invite_field" %></div>
+    <!-- <div class="small-2 medium-2 large-1 columns"><label for="invite_field" class="inline">Invite</label></div> -->
+    <div class="small-9 columns"><%= text_field :invite, :email, value: "", placeholder: 'email', id: "invite_field" %></div>
     <div class="small-3 columns end"><%= submit_tag 'Invite', class: 'button small secondary' %></div>
   </div>
 <% end %>

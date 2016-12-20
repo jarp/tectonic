@@ -7,10 +7,10 @@
 <% end %>
 <div class="row">
   <div class="small-6 columns">
-    <p><b>Game type:</b> <%= @game.game_type %> </p>
+    <p class="underlined"><b>Type:</b> <span class="right"><%= @game.game_type %> </span></p>
   </div>
   <div class="small-6 columns">
-    <p><b>Game Bonuses:</b> <%= @game.bonuses.count %> </p>
+    <p class="underlined"><b>Bonus Plates:</b> <span class="right"><%= @game.bonuses.count %></span></p>
   </div>
 </div>
 

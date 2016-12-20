@@ -13,6 +13,15 @@
     <%= javascript_include_tag "play-application" %>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
+
+    <script>
+    if ('serviceWorker' in navigator) {
+      console.log('registering service worker');
+     navigator.serviceWorker
+              .register('./service_worker.js')
+              .then(function() { console.log('Service Worker Registered'); });
+    }
+    </script>
   </head>
 
   <body id="play">
