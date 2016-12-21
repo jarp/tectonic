@@ -41,7 +41,13 @@ class PlayController < ActivePlayerController
 
   def get_current_game
     if cookies[:current_game_id]
-      @current_game = Game.includes(:players, :spoils).find(cookies[:current_game_id])
+      begin
+        @current_game = Game.includes(:players, :spoils).find(cookies[:current_game_id])
+      rescue
+        cookies.delete(:current_game_id)
+        flash[:message] = "could not find the current game you were trying to access"
+        redirect_to games_path
+      end
     else
       flash[:message] = "You need to be part of an active game..."
       redirect_to games_path
