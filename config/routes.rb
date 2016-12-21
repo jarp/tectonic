@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   get 'play/timeline' => 'play#timeline', as: :timeline
   get '/play/:id' => 'play#set', as: :play_game
   get '/play' => 'play#index', as: :current_game
-
   get '/dashboard' => 'administrator#index', as: :dashboard
 
   root 'welcome#index'
@@ -22,6 +21,7 @@ Rails.application.routes.draw do
 
   get 'login' => 'account#index', as: :login
   get 'logout' => 'account#logout', as: :logout
+  get '/auth/failure' => 'account#failure'
 
   get '/auth/google'
   get '/auth/:provider/callback', to: 'account#callback'
@@ -40,7 +40,7 @@ end
 
   resources :game_players
   get 'game_players/:game_id/count' => 'game_players#count'
-  
+
   resources :players
   resources :games do
     member do

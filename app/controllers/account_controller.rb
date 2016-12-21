@@ -61,6 +61,9 @@ class AccountController < ApplicationController
     }
   end
 
+  def failure
+  end
+
 
   def process_login
      player = Player.find_by(email: params[:email])
