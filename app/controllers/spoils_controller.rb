@@ -124,7 +124,7 @@ class SpoilsController < ActivePlayerController
         points = GameService.points(@current_game)
       end
 
-      message = "Apparently #{@spoil.player.first_name} didn't spoil the plate for  #{@plate.state}"
+      message = "Apparently #{@spoil.player.first_name} didn't find the plate for  #{@plate.state}"
 
       Timeline.create!(game: @current_game, message: message)
 
