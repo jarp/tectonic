@@ -114,8 +114,8 @@ Table = {
     var current_points = $("div.ranking[player_id='" + player.id + "']").find(".player-points").text()
     var current_team_points = $("div#team-points").text()
 
-    console.log("CURRENT TO POINTS from '" + current_points + "' points");
-    console.log("team to points '" +  current_team_points +   "' points");
+    console.log("CURRENT TO POINTS from '" + current_points + "' points to '" + points + "' points" );
+    console.log("team to points '" +  current_team_points +   "' points to '" + current_team_points + "' points");
 
     if ( points == null ){
       points = 0
