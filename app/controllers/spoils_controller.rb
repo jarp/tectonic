@@ -79,8 +79,10 @@ class SpoilsController < ActivePlayerController
     respond_to do |format|
       if @spoil.save
           if @current_game.combatitive?
+            points_type = 'combat'
             points = GameService.points(@current_game, @spoil.player)
           else
+            points_type = 'collab'
             points = GameService.points(@current_game)
           end
 
@@ -95,6 +97,7 @@ class SpoilsController < ActivePlayerController
             player_name: @spoil.player.first_name,
             player: @spoil.player,
             points: points,
+            points_type: points_type,
             bonus: bonus,
             image: image,
             action: "spoil"
