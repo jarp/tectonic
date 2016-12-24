@@ -49,7 +49,7 @@ Table = {
   },
 
   spin: function(target, start_at, end_at){
-    console.log("spinning" target);
+    console.log("spinning", target);
     console.log("from " + start_at + " to " + end_at);
     if ( start_at < end_at ){
       var dir = 'up'
