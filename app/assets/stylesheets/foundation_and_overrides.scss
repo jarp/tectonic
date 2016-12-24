@@ -23,6 +23,10 @@ $warning-color: #5C3A39;
 $info-color: #a0d3e8;
 
 
+
+.top-bar-section .dropdown li.title h5 a, .top-bar-section .dropdown li.parent-link a {
+    color: #ccc;
+}
 // The default font-size is set to 100% of the browser style sheet (usually 16px)
 // for compatibility with browser-based text zoom or user-set defaults.
 

@@ -18,8 +18,8 @@
             <li class="has-dropdown">
                 <a href="#">Games</a>
                 <ul class="dropdown">
-                  <li><a href="/play">Play Current Game</a></li>
-                  <li><a href="/games">Go to Games</a></li>
+                  <li><a href="/games">My Games</a></li>
+                  <% if cookies[:current_game_id] %><li><a href="/play">Current Game</a></li><% end %>
                   <li><a href="/games/new">New Game</a></li>
                   <li><a href="/tours">Tours</a></li>
 
@@ -45,3 +45,6 @@
                 <%= link_to 'Login', login_path %>
               </li>
             <% end %>
+            <li>
+              <%= link_to 'About the Game', '/' %>
+            </li>

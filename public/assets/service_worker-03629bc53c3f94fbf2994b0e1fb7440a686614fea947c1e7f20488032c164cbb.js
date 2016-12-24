@@ -53,7 +53,7 @@ var filesToCache = [
 '/img/plates/wy.jpg',
 '/img/play_games_plate.png',
 '/assets/application-fdbab63c87ec7cd33d58771861903a1ffeec1b7ffd94d9b0642b63aec70bff12.js',
-'/assets/application-e113cc58d930559a6ca7d77afba9fc0e29293725ae5000e7cc215714cdcf8856.css',
+'/assets/application-749b40ac9b7f5d8c3095f61687dc54ea9d696f2e239d812548f9a50a5506ceba.css',
 '/offline.html'
 ];
 

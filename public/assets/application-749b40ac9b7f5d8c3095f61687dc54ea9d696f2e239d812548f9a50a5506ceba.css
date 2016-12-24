@@ -1,3 +1,8 @@
+/* line 27, /Users/jarp/Webapps/exby8t/tectonics/app/assets/stylesheets/foundation_and_overrides.scss */
+.top-bar-section .dropdown li.title h5 a, .top-bar-section .dropdown li.parent-link a {
+  color: #ccc;
+}
+
 /* line 364, /Users/jarp/.rvm/gems/ruby-2.2.4/gems/foundation-rails-5.5.2.1/vendor/assets/stylesheets/foundation/components/_global.scss */
 meta.foundation-version {
   font-family: "/5.5.2/";
