@@ -28,11 +28,11 @@ class Game < ActiveRecord::Base
   end
 
   def collaborative?
-    return true if game_type_id == 1
+    return true if game_type_id == GameType.find_by(name: 'Collaborate')
   end
 
   def combatitive?
-    return true if game_type_id == 2
+    return true if game_type_id == GameType.find_by(name: 'Combat')
   end
 
   def create_token
