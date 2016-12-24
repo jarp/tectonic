@@ -111,8 +111,8 @@ Table = {
   },
 
   update_points: function(player, points){
-    current_points = $("div.ranking[player_id='" + player.id + "']").find(".player-points").text()
-    current_team_points = $("div#team-points").text()
+    var current_points = $("div.ranking[player_id='" + player.id + "']").find(".player-points").text()
+    var current_team_points = $("div#team-points").text()
 
     console.log("CURRENT TO POINTS from '" + current_points + "' points");
     console.log("team to points '" +  current_team_points +   "' points");
