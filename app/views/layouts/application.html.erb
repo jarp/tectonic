@@ -15,12 +15,12 @@
   </head>
 
   <body id='manage'>
-    <%= render 'layouts/messages' %>
     <%= render 'layouts/header' %>
     <%= render 'layouts/nav' %>
 
     <main class="row">
       <div class="small-12 columns">
+        <%= render 'layouts/static_messages' %>
         <%= yield %>
       </div>
     </main>

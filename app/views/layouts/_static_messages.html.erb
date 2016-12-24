@@ -1,0 +1,13 @@
+<div class="row static-messages" id="static-message-box">
+  <span id="static-close-message-x" class="static-messages-close">X</span>
+  <div class="small-12 columns text-center">
+    <span id="static-message-text" class="static-message-text">
+      <%= flash[:notice]  if flash[:notice] %>
+      <%= flash[:message]  if flash[:message] %>
+      <%= flash[:warning]  if flash[:warning] %>
+      <%= flash[:alert]  if flash[:alert] %>
+      <%=raw flash[:message_raw] if flash[:message_raw]%>
+    </span>
+    <div id="celebration"></div>
+  </div>
+</div>

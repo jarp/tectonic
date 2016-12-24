@@ -54,7 +54,7 @@
   left: 33%;
 }
 
-#message-box {
+#message-box, #static-message-box {
     position: fixed;
     background-color: #000;
     color: #fff;
@@ -70,7 +70,12 @@
     right: 2%;
 }
 
-
+#static-message-box {
+    float: left;
+    height: inherit;
+    border-radius: 6px;
+    width: 100%;
+}
 .messages {display:none;
   #close-message-x {
     float:right;

@@ -35,8 +35,11 @@ class PlayController < ActivePlayerController
   private
 
   def require_cookies
-    flash[:message] = "You do not have an active game currently"
-    redirect_to games_path unless cookies[:current_game_id]
+    unless cookies[:current_game_id]
+      flash[:message] = "You do not have an active game currently"
+      puts "#{cookies[:current_game_id]}"
+      redirect_to games_path
+    end
   end
 
   def get_current_game

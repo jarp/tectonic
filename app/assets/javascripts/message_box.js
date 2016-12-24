@@ -9,6 +9,10 @@ $(document).ready(function(){
     $('#message-box').fadeIn();
   }
 
+  if ( $('#static-message-box #message-text').text().trim().length ){
+    $('#static-message-box').fadeIn();
+  }
+
   MessageBox = {
 
     set: function(msg, format){
