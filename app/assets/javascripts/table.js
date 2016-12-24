@@ -27,8 +27,8 @@ Table = {
     current_points = $("div.ranking[player_id='" + player.id + "']").find(".player-points").text()
     current_team_points = $("div#team-points").text()
 
-    console.log("CURRENT TO POINTS from " + current_points + " points");
-    console.log("team to points" +  current_team_points +   " points");
+    console.log("CURRENT TO POINTS from '" + current_points + "' points");
+    console.log("team to points '" +  current_team_points +   "' points");
 
     if ( points == null ){
       points = 0
@@ -49,7 +49,8 @@ Table = {
   },
 
   spin: function(target, start_at, end_at){
-
+    console.log("spinning" target);
+    console.log("from " + start_at + " to " + end_at);
     if ( start_at < end_at ){
       var dir = 'up'
 
