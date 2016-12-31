@@ -20,6 +20,7 @@ class PlayController < ActivePlayerController
 
   def table
     @leaders = Table.new(@current_game).leaders
+    @unclaimed_plates = Plate.all - @current_game.plates
   end
 
   def timeline

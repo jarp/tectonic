@@ -1,9 +1,12 @@
 <div class="game-list-item">
   <div class="row">
     <div class="small-12 medium-6 columns">
-      <h3><%= invite.title %> <%= "(#{invite.game.tour})" if invite.game.part_of_tour? %></h3>
+      <h3><%= invite.title %></h3>
       <p><i>
         Started <%= time_ago_in_words(invite.game.created_at) %> ago with <%= pluralize(invite.game.players.count, "player") %>. <%= invite.game.spoils.count %> out of <%= Plate.count %> plates found.
+        <% if invite.game.part_of_tour? %>
+        Part of the <b><%= link_to invite.game.tour, invite.game.tour %></b> tour.
+        <% end %>
       </i></p>
     </div>
     <div class="small-12 medium-6 columns medium-text-right small-text-center">

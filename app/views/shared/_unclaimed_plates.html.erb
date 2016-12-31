@@ -1,0 +1,13 @@
+<% if unclaimed_plates && unclaimed_plates.any? %>
+  <h4>Unclaimed Plates</h4>
+  <ul class="small-block-grid-3 medium-block-grid-6 large-block-grid-8">
+    <% unclaimed_plates.each do | plate | %>
+
+      <li>
+        <div  class="points-badge">
+          <%= plate.code %>
+        </span>
+      </li>
+      <% end %>
+  </ul>
+<% end %>

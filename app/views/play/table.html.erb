@@ -10,14 +10,8 @@
     <%= render partial: 'shared/map', locals: { spoils: @current_game.spoils } %>
   </div>
     <div class="small-12 medium-4 columns left">
-      <% @leaders.each do | leader | %>
-        <h3><%= leader[:player] %>: <%= leader[:total_points] %></h3>
-        <ul class="small-block-grid-3 medium-block-grid-2">
-          <% leader[:states].each do | state | %>
-            <li><%= state[:state] %> - <%= state[:points] %>pts</li>
-            <% end %>
-        </ul>
-      <% end %>
+      <%= render partial: 'shared/leaders', locals: {leaders: @leaders } %>
+      <%= render partial: 'shared/unclaimed_plates', locals: {unclaimed_plates: @unclaimed_plates } %>
     </div>
 </div>
 

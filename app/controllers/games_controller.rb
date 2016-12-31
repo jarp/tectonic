@@ -12,10 +12,12 @@ class GamesController < ActivePlayerController
   # GET /games/1
   # GET /games/1.json
   def show
+    @unclaimed_plates = Plate.all - @game.spoils.map(&:plate)
   end
 
   def results
     @leaders = @leaders = Table.new(@game).leaders
+    @unclaimed_plates = Plate.all - @game.spoils.map(&:plate)
   end
 
   # GET /games/new

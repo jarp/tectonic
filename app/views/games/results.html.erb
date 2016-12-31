@@ -1,10 +1,10 @@
 
 <div class="row">
-  <div class="small-12 medium-8 columns right">
-    <% puts @game.spoils.inspect %>
-    <%= render partial: 'shared/map', locals: {spoils: @game.spoils } %>
-  </div>
-    <div class="small-12 medium-4 columns left">
+  <div class="small-12 medium-4 columns left">
     <%= render partial: 'shared/leaders', locals: {leaders: @leaders } %>
-    </div>
+  </div>
+  <div class="small-12 medium-8 columns right">
+    <%= render partial: 'shared/map', locals: {spoils: @game.spoils } %>
+    <%= render partial: 'shared/unclaimed_plates', locals: {unclaimed_plates: @unclaimed_plates } %>
+  </div>
 </div>

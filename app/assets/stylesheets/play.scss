@@ -1,7 +1,20 @@
+[class*="block-grid-"] > li div.points-badge {
+  background-color: #efefef;
+  padding: 3px;
+  text-align: center;
+  border-radius: 4px;
+  border: thin solid #ccc;
+  width: 100%;
+  font-size: .7rem;
+}
+
+
 #map{
   width:100%;
   min-height: 400px;
   background-color: #ccc;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .select-player {
