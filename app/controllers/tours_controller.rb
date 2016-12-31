@@ -12,6 +12,7 @@ class ToursController < ActivePlayerController
   # GET /tours/1.json
   def show
     @leaders = Table.new(@tour, 'unique_spoils').leaders
+    @unclaimed_plates = Plate.all - @tour.spoils.map(&:plate)
   end
 
   # GET /tours/new

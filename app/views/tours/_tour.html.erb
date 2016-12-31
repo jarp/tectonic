@@ -18,15 +18,17 @@
   </div>
   <div class="row">
     <div class="small-6 columns">
+      <h4>Games</h4>
       <ul>
         <% tour.games.each do | game | %>
-        <li><%= game.title %> / <%= game.created_at %></li>
+        <li><b><%= link_to game.title, game %></b> on <%= game.created_at.strftime('%D') %></li>
         <% end %>
       </ul>
     </div>
     <div class="small-6 columns">
+      <h4>Players</h4>
       <ul>
-        <% tour.players.each do | player | %>
+        <% tour.players.uniq.each do | player | %>
         <li><%= player %> </li>
         <% end %>
       </ul>
